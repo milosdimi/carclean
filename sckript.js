@@ -155,11 +155,20 @@ function nextImagevor() {
 document.addEventListener("DOMContentLoaded", function () {
   var cookieBanner = document.getElementById("cookie-banner");
   var acceptCookiesBtn = document.getElementById("accept-cookies");
+  var declineCookiesBtn = document.getElementById("decline-cookies");
 
+  // Funktion für "Akzeptieren"
   acceptCookiesBtn.addEventListener("click", function () {
     // Set a cookie to indicate that the user has accepted cookies
     document.cookie =
       "cookies_accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+    // Hide the cookie banner
+    cookieBanner.style.display = "none";
+  });
+
+  // Funktion für "Ablehnen"
+  declineCookiesBtn.addEventListener("click", function () {
+    // Optionale Aktion bei Ablehnung der Cookies
     // Hide the cookie banner
     cookieBanner.style.display = "none";
   });

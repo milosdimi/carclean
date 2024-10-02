@@ -142,12 +142,11 @@
 
       <div class="contact-wrapper">
         <div class="contact-form">
-          <form id="contact-form" class="form-horizontal" role="form">
+          <form onsubmit="sendMail(event)">
             <div class="form-group">
               <input
                 type="text"
                 class="form-control"
-                id="name"
                 placeholder="Name"
                 name="name"
                 required
@@ -156,8 +155,8 @@
             <div class="form-group">
               <input
                 type="email"
+
                 class="form-control"
-                id="email"
                 placeholder="Email"
                 name="email"
                 required
@@ -172,15 +171,7 @@
                 required
               ></textarea>
             </div>
-            <button
-              class="btn btn-primary send-button"
-              id="submit"
-              type="submit"
-              value="SEND"
-            >
-              
-              <span class="send-text">Send</span>
-            </button>
+            <button class="send-button" type="submit">Send</button>
           </form>
         </div>
 
@@ -190,9 +181,9 @@
               <i><img src="./img/gps.png" alt="gps-img" /></i
               ><span class="contact-text"
                 ><a
-                  href="https://www.google.com/maps?q=Kufstein,%206330,%20TestStrasse%2032"
+                  href="https://maps.app.goo.gl/DPDSxfMkDGzxPVxH7"
                   target="_blank" rel="noopener noreferrer"
-                  >Kufstein, 6330, TestStrasse 32</a
+                  >Kufstein, 6330, Untere Sparchen 18</a
                 ></span
               >
             </li>
@@ -248,7 +239,13 @@
     </section>
 
     <!-- Weitere Inhalte Ihrer Webseite hier -->
-
+    <!-- Cookies -->
+    <div id="cookie-banner" class="cookie-banner" style="display: none;">
+      <p>Wir verwenden Cookies, um Ihre Erfahrung auf unserer Webseite zu verbessern. Sie können die Nutzung von Cookies akzeptieren oder ablehnen. Mehr Informationen finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+      <button id="accept-cookies" class="accept-cookies-btn">Akzeptieren</button>
+      <button id="decline-cookies" class="decline-cookies-btn">Ablehnen</button>
+    </div>
+    
     <footer class="footer">
       <div class="footer__parralax">
         <div class="footer__parralax-trees"></div>
@@ -263,13 +260,13 @@
             <h3 class="footer__col-title">
               <span>Adresse</span>
             </h3>
-            <nav class="footer__nav">
+            <div class="footer__nav">
               <ul class="contact-list">
                 <li>
                   <i><img src="./img/gps.png" alt="gps-img" /></i
                   ><span class="contact-text"
                     ><a
-                      href="https://www.google.com/maps?q=Kufstein,%206330,%20TestStrasse%2032"
+                      href="https://maps.app.goo.gl/DPDSxfMkDGzxPVxH7"
                       target="_blank" rel="noopener noreferrer"
                       >Kufstein, 6330, Untere Sparchen 18</a
                     ></span
@@ -290,13 +287,13 @@
                   >
                 </li>
               </ul>
-            </nav>
+            </div>
           </div>
           <div class="footer__col">
             <h3 class="footer__col-title">
               <span>Sozial Media</span>
             </h3>
-            <nav class="footer__nav">
+            <div class="footer__nav">
               <ul class="social-media-list">
                 <li>
                   <a
@@ -326,22 +323,22 @@
                   </a>
                 </li>
               </ul>
-            </nav>
+            </div>
           </div>
           <div class="footer__col">
             <h3 class="footer__col-title">
                 <span>Links</span>
             </h3>
-            <nav class="footer__nav">
+            <div class="footer__nav">
               <ul class="footer__nav-list">
                 <li class="footer__nav-item">
-                  <a href="./impressum.html" class="footer__nav-link">Impressum</a>
+                  <a href="impressum.html" class="footer__nav-link">Impressum</a>
                 </li>
                 <li class="footer__nav-item">
-                  <a href="./datenschutz.html" class="footer__nav-link">Datenschutz</a>
+                  <a href="datenschutz.html" class="footer__nav-link">Datenschutz</a>
                 </li>
               </ul>
-            </nav>
+            </div>
           </div>
         </div>
         <div class="footer__copyrights">

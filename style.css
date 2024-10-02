@@ -90,10 +90,8 @@ nav ul li a {
 }
 
 .slider_container {
-  overflow: hidden;
-
-  height: 800px;
-
+  overflow: hidden; /* Versteckt überlaufenden Inhalt */
+  height: 800px; /* Höhe des Containers */
   position: relative;
 }
 .text_overlay {
@@ -109,11 +107,17 @@ nav ul li a {
   padding: 10px; /* Innenabstand für den Text */
 }
 .slider_image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  transition: transform 225ms ease-in-out;
+  width: 100%; /* Breite des Containers */
+  height: 100%; /* Höhe des Containers */
+  position: absolute; /* Positioniert die Bilder übereinander */
+  top: 0; /* Oben ansetzen */
+  left: 0; /* Links ansetzen */
+  transition: transform 0.5s ease; /* Weicher Übergang */
+}
+.slider_image img {
+  width: 100%; /* Bildbreite auf 100% setzen */
+  height: 100%; /* Bildhöhe auf 100% setzen */
+  object-fit: cover; /* Das Bild füllt den Container, ohne das Seitenverhältnis zu verlieren */
 }
 .slider_nav {
   display: flex;
@@ -344,19 +348,72 @@ nav ul li a {
 }
 
 .right-section {
-  display: flex; /* Flexbox für die rechte Sektion aktivieren */
-  padding: 50px;
-  gap: 60px;
-  justify-content: center;
+  display: flex;
+  justify-content: center; /* Zentriert die Buttons horizontal */
+  gap: 16px; /* Abstand zwischen den Buttons */
 }
-.right-section a {
-  display: flex; /* Flexbox für die Links aktivieren */
-  align-items: center; /* Elemente vertikal zentriert ausrichten */
-  text-decoration: none; /* Unterstreichung der Links entfernen */
-  color: white; /* Textfarbe auf weiß setzen */
-  padding: 10px;
-  border-style: outset;
+
+.button-container {
+  display: flex; /* Flexbox für die Buttons */
+  gap: 16px; /* Abstand zwischen den Buttons */
+  flex-direction: column;
 }
+
+.social-button {
+  display: flex; /* Flexbox für die Buttons */
+  align-items: center; /* Vertikale Ausrichtung der Inhalte */
+  padding: 12px 20px; /* Innenabstand */
+  border-radius: 8px; /* Abgerundete Ecken */
+  text-decoration: none; /* Unterstreichung entfernen */
+  font-size: 18px; /* Schriftgröße */
+  transition: all 0.3s ease; /* Übergangseffekt */
+  color: #fff; /* Schriftfarbe */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Schatten für den 3D-Effekt */
+}
+
+/* Facebook Button */
+.social-button.facebook {
+  background-color: #3b5998; /* Facebook-Farbe */
+}
+
+.social-button.facebook:hover {
+  background-color: #2d4373; /* Dunklere Facebook-Farbe beim Hover */
+}
+
+/* Instagram Button */
+.social-button.instagram {
+  background-color: #e1306c; /* Instagram-Farbe */
+}
+
+.social-button.instagram:hover {
+  background-color: #c91c56; /* Dunklere Instagram-Farbe beim Hover */
+}
+
+/* Telefon Button */
+.social-button.phone {
+  background-color: #4caf50; /* Grüner Farbton für Telefon */
+}
+
+.social-button.phone:hover {
+  background-color: #388e3c; /* Dunklerer Grüner Farbton beim Hover */
+}
+
+/* WhatsApp Button */
+.social-button.whatsapp {
+  background-color: #25D366; /* WhatsApp-Farbe */
+}
+
+.social-button.whatsapp:hover {
+  background-color: #1da351; /* Dunklere WhatsApp-Farbe beim Hover */
+}
+
+/* Styles für die Icons */
+.social-button img {
+  width: 40px; /* Breite der Icons anpassen */
+  height: 40px; /* Höhe der Icons anpassen */
+  margin-right: 10px; /* Abstand zwischen Icon und Text */
+}
+
 
 /* Optional: Stil für Links */
 a {
@@ -368,10 +425,6 @@ a:hover {
   text-decoration: underline;
 }
 
-.right-section img {
-  width: 64px; /* Breite des Facebook-Icons anpassen */
-  margin-right: 16px;
-}
 /* Galerie */
 
 .container_galerie {

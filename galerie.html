@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/x-icon" href="./img/cclogo32px.png">
+    <link rel="icon" type="image/x-icon" href="./img/cclogo32px.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="sckript.js"></script>
     <title>CarClean | Galerie</title>
@@ -18,7 +18,9 @@
   <body onload="load()">
     <header>
       <div>
-        <a href="./index.html"><img class="logo" src="./img/logocc1.png" alt="carclean-logo" /></a>
+        <a href="./index.html">
+          <img class="logo" src="./img/logocc1.png" alt="CarClean-Logo" />
+        </a>
       </div>
       <nav>
         <ul class="menu">
@@ -33,19 +35,28 @@
           <a href="./galerie.html">Galerie</a>
           <a href="./vornach.html">Vor-Nach Fotos</a>
           <a href="./index.html#contact">Kontakt</a>
-          <button onclick="closeMenu()">Close</button>
+          <button onclick="closeMenu()">Schließen</button>
         </div>
       </nav>
     </header>
 
     <div class="imgcontainer" id="images"></div>
     <div class="image d-none" id="openimg"></div>
-    <a href="./index.html"><button class="send-button">Zurück zur Hauptseite</button></a>
+    <a href="./index.html">
+      <button class="send-button">Zurück zur Hauptseite</button>
+    </a>
 
-    <!-- Cookies -->
-    <div id="cookie-banner" class="cookie-banner" style="display: none;">
-      <p>Wir verwenden Cookies, um Ihre Erfahrung auf unserer Webseite zu verbessern. Sie können die Nutzung von Cookies akzeptieren oder ablehnen. Mehr Informationen finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
-      <button id="accept-cookies" class="accept-cookies-btn">Akzeptieren</button>
+    <!-- Cookie-Banner -->
+    <div id="cookie-banner" class="cookie-banner" style="display: none">
+      <p>
+        Wir verwenden Cookies, um Ihre Erfahrung auf unserer Webseite zu
+        verbessern. Sie können die Nutzung von Cookies akzeptieren oder
+        ablehnen. Mehr Informationen finden Sie in unserer
+        <a href="datenschutz.html">Datenschutzerklärung</a>.
+      </p>
+      <button id="accept-cookies" class="accept-cookies-btn">
+        Akzeptieren
+      </button>
       <button id="decline-cookies" class="decline-cookies-btn">Ablehnen</button>
     </div>
 
@@ -60,44 +71,41 @@
       <div class="container_footer">
         <div class="footer__columns">
           <div class="footer__col">
-            <h3 class="footer__col-title">
-              <span>Adresse</span>
-            </h3>
+            <h3 class="footer__col-title">Adresse</h3>
             <div class="footer__nav">
               <ul class="contact-list">
                 <li>
-                  <i><img src="./img/gps.png" alt="gps-img" /></i
-                  ><span class="contact-text"
-                    ><a
+                  <i><img src="./img/gps.png" alt="GPS-Icon" /></i>
+                  <span class="contact-text">
+                    <a
                       href="https://maps.app.goo.gl/DPDSxfMkDGzxPVxH7"
-                      target="_blank" rel="noopener noreferrer"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       >Kufstein, 6330, Untere Sparchen 18</a
-                    ></span
-                  >
+                    >
+                  </span>
                 </li>
                 <li>
-                  <i><img src="./img/telephone-call.png" alt="phone-img" /></i
-                  ><span class="contact-text"
-                    ><a href="tel:+436606568206">
-                      <span>+43 660 65 68 206</span>
-                    </a></span
-                  >
+                  <i
+                    ><img src="./img/telephone-call.png" alt="Telefon-Icon"
+                  /></i>
+                  <span class="contact-text">
+                    <a href="tel:+436606568206"
+                      ><span>+43 660 65 68 206</span></a
+                    >
+                  </span>
                 </li>
                 <li>
-                  <i><img src="./img/email.png" alt="mail-img" /></i
-                  ><span class="contact-text"
-                    ><a href="mailto:carclean@kufnet.at"
-                      >carclean@kufnet.at</a
-                    ></span
-                  >
+                  <i><img src="./img/email.png" alt="E-Mail-Icon" /></i>
+                  <span class="contact-text">
+                    <a href="mailto:carclean@kufnet.at">carclean@kufnet.at</a>
+                  </span>
                 </li>
               </ul>
             </div>
           </div>
           <div class="footer__col">
-            <h3 class="footer__col-title">
-              <span>Sozial Media</span>
-            </h3>
+            <h3 class="footer__col-title">Sozial Media</h3>
             <div class="footer__nav">
               <ul class="social-media-list">
                 <li>
@@ -106,7 +114,7 @@
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src="./img/facebook.png" alt="Facebook Logo" />
+                    <img src="./img/facebook.png" alt="Facebook-Logo" />
                   </a>
                 </li>
                 <li>
@@ -115,7 +123,7 @@
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src="./img/instagram.png" alt="instagram-logo" />
+                    <img src="./img/instagram.png" alt="Instagram-Logo" />
                   </a>
                 </li>
                 <li>
@@ -124,23 +132,25 @@
                     target="_blank"
                     rel="noopener"
                   >
-                    <img src="./img/whatsapp.png" alt="whatsapp-logo" />
+                    <img src="./img/whatsapp.png" alt="WhatsApp-Logo" />
                   </a>
                 </li>
               </ul>
             </div>
           </div>
           <div class="footer__col">
-            <h3 class="footer__col-title">
-              <span>Links</span>
-            </h3>
+            <h3 class="footer__col-title">Links</h3>
             <div class="footer__nav">
               <ul class="footer__nav-list">
                 <li class="footer__nav-item">
-                  <a href="./impressum.html" class="footer__nav-link">Impressum</a>
+                  <a href="./impressum.html" class="footer__nav-link"
+                    >Impressum</a
+                  >
                 </li>
                 <li class="footer__nav-item">
-                  <a href="./datenschutz.html" class="footer__nav-link">Datenschutz</a>
+                  <a href="./datenschutz.html" class="footer__nav-link"
+                    >Datenschutz</a
+                  >
                 </li>
               </ul>
             </div>
@@ -148,7 +158,8 @@
         </div>
         <div class="footer__copyrights">
           <div class="copyright">
-            &copy; ALL OF THE RIGHTS RESERVED | made by <a href="https://www.dimit.cc/"> dimit </a>
+            &copy; ALL RIGHTS RESERVED | made by
+            <a href="https://www.dimit.cc/">dimit</a>
           </div>
         </div>
       </div>

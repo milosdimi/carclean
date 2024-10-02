@@ -1,3 +1,4 @@
+// Menüsteuerung
 function showMenu() {
   document.getElementById("menuoverlay").style.width = "100%";
 }
@@ -6,40 +7,36 @@ function closeMenu() {
   document.getElementById("menuoverlay").style.width = "0";
 }
 
+// Slider
+let currentImageIndex = 0; // Der Index des aktuellen Bildes
+const imagess = document.getElementsByClassName("slider_image");
+
 function startSlider() {
-  setTimeout(function () {
-    document.getElementById("img-1").style = "transform: translateX(-100%)";
-    document.getElementById("img-2").style = "transform: translateX(0)";
-    document.getElementById("img-3").style = "transform: translateX(100%)";
-  }, 3000);
-  setTimeout(function () {
-    document.getElementById("img-1").style = "transform: translateX(-200%)";
-    document.getElementById("img-2").style = "transform: translateX(-100%)";
-    document.getElementById("img-3").style = "transform: translateX(0)";
-  }, 6000);
-  setTimeout(function () {
-    document.getElementById("img-1").style = "transform: translateX(0)";
-    document.getElementById("img-2").style = "transform: translateX(100%)";
-    document.getElementById("img-3").style = "transform: translateX(200%)";
-
-    startSlider();
-  }, 9000);
+  setInterval(() => {
+    currentImageIndex = (currentImageIndex + 1) % imagess.length; // Zyklisch durch die Bilder blättern
+    updateSlider();
+  }, 3000); // Alle 3 Sekunden wechseln
 }
+
+function updateSlider() {
+  Array.from(imagess).forEach((image, index) => {
+    image.style.transform = `translateX(${(index - currentImageIndex) * 100}%)`; // Verschiebt die Bilder entsprechend
+  });
+}
+
 function showImage(index) {
-  var images = document.getElementsByClassName("slider_image");
-  for (var i = 0; i < images.length; i++) {
-    images[i].style.transform = "translateX(" + (i - index + 1) * 100 + "%)";
-  }
+  currentImageIndex = index - 1; // Umwandeln in 0-basierten Index
+  updateSlider();
 }
 
-// Contakt
+// Kontaktformular
 function sendMail(event) {
   event.preventDefault();
   const data = new FormData(event.target);
 
   fetch("https://formspree.io/f/mdknjddr", {
     method: "POST",
-    body: new FormData(event.target),
+    body: data,
     headers: {
       Accept: "application/json",
     },
@@ -48,35 +45,38 @@ function sendMail(event) {
       window.location.href = "./send_mail.html";
     })
     .catch((error) => {
-      console.log(error);
+      console.error("Fehler beim Senden der E-Mail:", error);
     });
 }
+
 // Galerie
-let images = Array.from({ length: 52 }, (_, i) => `galerie/${i + 1}.jpg`);
+const images = Array.from({ length: 52 }, (_, i) => `galerie/${i + 1}.jpg`);
 let imageIndex = 0;
 
 function load() {
-  let imagesContainer = document.getElementById("images");
+  const imagesContainer = document.getElementById("images");
   if (!imagesContainer) return;
-  for (let i = 0; i < images.length; i++) {
+
+  images.forEach((src, i) => {
     imagesContainer.innerHTML += /*html*/ `
-        <div class="imgbox"><img src="${images[i]}" onclick="openImage(${i})"></div>    
-        `;
-  }
+      <div class="imgbox"><img src="${src}" onclick="openImage(${i})"></div>
+    `;
+  });
 }
 
 function openImage(i) {
-  document.getElementById("openimg").innerHTML = /*html*/ `
-        <div class="openimg">
-            <div class="btn-container">
-                <img onclick="backImage()" class="nextimage" src="./img/next-button.png" alt="">
-                <img onclick="closeImg()" class="nextimage" src="./img/close.png" alt="close-img">
-                <img onclick="nextImage()" class="nextimage" src="./img/back-button.png" alt="">
-            </div>
-            <div><img class="imagesolo" src="${images[i]}" alt=""></div>
-        </div>  
-    `;
-  document.getElementById("openimg").classList.remove("d-none");
+  const openImgContainer = document.getElementById("openimg");
+  openImgContainer.innerHTML = /*html*/ `
+    <div class="openimg">
+      <div class="btn-container">
+        <img onclick="backImage()" class="nextimage" src="./img/next-button.png" alt="">
+        <img onclick="closeImg()" class="nextimage" src="./img/close.png" alt="close-img">
+        <img onclick="nextImage()" class="nextimage" src="./img/back-button.png" alt="">
+      </div>
+      <div><img class="imagesolo" src="${images[i]}" alt=""></div>
+    </div>
+  `;
+  openImgContainer.classList.remove("d-none");
   imageIndex = i;
 }
 
@@ -85,49 +85,46 @@ function closeImg() {
 }
 
 function backImage() {
-  imageIndex--;
-  if (imageIndex < 0) {
-    imageIndex = images.length - 1;
-  }
+  imageIndex = (imageIndex - 1 + images.length) % images.length;
   openImage(imageIndex);
 }
 
 function nextImage() {
-  imageIndex++;
-  if (imageIndex >= images.length) {
-    imageIndex = 0;
-  }
+  imageIndex = (imageIndex + 1) % images.length;
   openImage(imageIndex);
 }
+
 // Vor Nach Galerie
-let imagesvor = Array.from(
+const imagesvor = Array.from(
   { length: 21 },
   (_, i) => `vornachfotos/${i + 1}.jpg`
 );
 let imageIndexvor = 0;
 
 function loadvor() {
-  let imagesContainer = document.getElementById("images");
+  const imagesContainer = document.getElementById("images");
   if (!imagesContainer) return;
-  for (let i = 0; i < imagesvor.length; i++) {
+
+  imagesvor.forEach((src, i) => {
     imagesContainer.innerHTML += /*html*/ `
-        <div class="imgbox"><img src="${imagesvor[i]}" onclick="openImagevor(${i})"></div>    
-        `;
-  }
+      <div class="imgbox"><img src="${src}" onclick="openImagevor(${i})"></div>
+    `;
+  });
 }
 
 function openImagevor(i) {
-  document.getElementById("openimg").innerHTML = /*html*/ `
-        <div class="openimg">
-            <div class="btn-container">
-                <img onclick="backImagevor()" class="nextimage" src="./img/next-button.png" alt="">
-                <img onclick="closeImgvor()" class="nextimage" src="./img/close.png" alt="close-img">
-                <img onclick="nextImagevor()" class="nextimage" src="./img/back-button.png" alt="">
-            </div>
-            <div><img class="imagesolo" src="${imagesvor[i]}" alt=""></div>
-        </div>  
-    `;
-  document.getElementById("openimg").classList.remove("d-none");
+  const openImgContainer = document.getElementById("openimg");
+  openImgContainer.innerHTML = /*html*/ `
+    <div class="openimg">
+      <div class="btn-container">
+        <img onclick="backImagevor()" class="nextimage" src="./img/next-button.png" alt="">
+        <img onclick="closeImgvor()" class="nextimage" src="./img/close.png" alt="close-img">
+        <img onclick="nextImagevor()" class="nextimage" src="./img/back-button.png" alt="">
+      </div>
+      <div><img class="imagesolo" src="${imagesvor[i]}" alt=""></div>
+    </div>
+  `;
+  openImgContainer.classList.remove("d-none");
   imageIndexvor = i;
 }
 
@@ -136,49 +133,38 @@ function closeImgvor() {
 }
 
 function backImagevor() {
-  imageIndexvor--;
-  if (imageIndexvor < 0) {
-    imageIndexvor = imagesvor.length - 1;
-  }
+  imageIndexvor = (imageIndexvor - 1 + imagesvor.length) % imagesvor.length;
   openImagevor(imageIndexvor);
 }
 
 function nextImagevor() {
-  imageIndexvor++;
-  if (imageIndexvor >= imagesvor.length) {
-    imageIndexvor = 0;
-  }
+  imageIndexvor = (imageIndexvor + 1) % imagesvor.length;
   openImagevor(imageIndexvor);
 }
-//cookies
-// JavaScript-Code hier einfügen
+
+// Cookies
 document.addEventListener("DOMContentLoaded", function () {
-  var cookieBanner = document.getElementById("cookie-banner");
-  var acceptCookiesBtn = document.getElementById("accept-cookies");
-  var declineCookiesBtn = document.getElementById("decline-cookies");
+  const cookieBanner = document.getElementById("cookie-banner");
+  const acceptCookiesBtn = document.getElementById("accept-cookies");
+  const declineCookiesBtn = document.getElementById("decline-cookies");
 
   // Funktion für "Akzeptieren"
   acceptCookiesBtn.addEventListener("click", function () {
-    // Set a cookie to indicate that the user has accepted cookies
     document.cookie =
       "cookies_accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
-    // Hide the cookie banner
     cookieBanner.style.display = "none";
   });
 
   // Funktion für "Ablehnen"
   declineCookiesBtn.addEventListener("click", function () {
-    // Optionale Aktion bei Ablehnung der Cookies
-    // Hide the cookie banner
     cookieBanner.style.display = "none";
   });
 
-  // Check if the user has already accepted cookies
-  var cookiesAccepted = document.cookie.split(";").some(function (cookie) {
-    return cookie.trim().startsWith("cookies_accepted=");
-  });
+  // Überprüfen, ob der Benutzer bereits Cookies akzeptiert hat
+  const cookiesAccepted = document.cookie
+    .split(";")
+    .some((cookie) => cookie.trim().startsWith("cookies_accepted="));
 
-  // If cookies are already accepted, hide the cookie banner
   if (cookiesAccepted) {
     cookieBanner.style.display = "none";
   } else {

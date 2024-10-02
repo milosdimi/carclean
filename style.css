@@ -414,6 +414,21 @@ nav ul li a {
   margin-right: 10px; /* Abstand zwischen Icon und Text */
 }
 
+.map-container {
+  width: 100%; /* Volle Breite des Containers */
+  max-width: 800px; /* Maximalbreite der Karte */
+  margin: 20px auto; /* Zentriert den Container mit Abstand */
+  border-radius: 8px; /* Abgerundete Ecken für die Karte */
+  overflow: hidden; /* Verhindert Überlauf */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Schatten für den 3D-Effekt */
+}
+
+iframe {
+  width: 100%; /* Volle Breite des Containers */
+  height: 450px; /* Höhe der Karte */
+  border: none; /* Entfernt den Rahmen */
+  border-radius: 8px; /* Abgerundete Ecken für das Iframe */
+}
 
 /* Optional: Stil für Links */
 a {

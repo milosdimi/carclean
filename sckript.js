@@ -171,3 +171,11 @@ document.addEventListener("DOMContentLoaded", function () {
     cookieBanner.style.display = "block";
   }
 });
+// Popup-Formular für Frühlingsangebot
+function openSpringOfferForm() {
+  document.getElementById('spring-offer-popup').style.display = 'flex';
+}
+
+function closeSpringOfferForm() {
+  document.getElementById('spring-offer-popup').style.display = 'none';
+}

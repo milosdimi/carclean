@@ -1,530 +1,470 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO Meta Tags -->
-    <meta
-      name="description"
-      content="CarClean bietet professionelle KFZ-Reinigung, Lackversiegelung und Motorreinigung in Kufstein, Tirol. Vertrauen Sie unseren Experten für die Pflege Ihres Fahrzeugs."
-    />
-    <meta
-      name="keywords"
-      content="autoaufbereitung, KFZ-Reinigung, Lackversiegelung, Motorreinigung, Autopflege, Kufstein, Tirol, CarClean"
-    />
-    <meta name="author" content="CarClean" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="CarClean | Home" />
-    <meta
-      property="og:description"
-      content="Entdecken Sie unsere professionellen Dienstleistungen für Ihr Fahrzeug."
-    />
-    <meta property="og:image" content="https://carclean.cc/img/logocc.png" />
-    <meta property="og:url" content="https://www.carclean.cc/" />
-    <meta property="og:type" content="website" />
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="CarClean bietet professionelle KFZ-Reinigung, Lackversiegelung und Motorreinigung in Kufstein, Tirol. Vertrauen Sie unseren Experten für die Pflege Ihres Fahrzeugs." />
+  <meta name="keywords"
+    content="autoaufbereitung, KFZ-Reinigung, Lackversiegelung, Motorreinigung, Autopflege, Kufstein, Tirol, CarClean" />
+  <meta name="author" content="CarClean" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/x-icon" href="./img/logocc.png" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="sckript.js"></script>
-    <title>CarClean | Home</title>
-  </head>
+  <!-- Open Graph Meta Tags for Social Media -->
+  <meta property="og:title" content="CarClean | Home" />
+  <meta property="og:description" content="Entdecken Sie unsere professionellen Dienstleistungen für Ihr Fahrzeug." />
+  <meta property="og:image" content="https://carclean.cc/img/logocc.png" />
+  <meta property="og:url" content="https://www.carclean.cc/" />
+  <meta property="og:type" content="website" />
 
-  <body onload="startSlider()">
-    <header>
-      <div>
-        <a href="./index.html">
-          <img class="logo" src="./img/logocc1.png" alt="CarClean-Logo" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="./img/logocc.png" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="sckript.js"></script>
+  <title>CarClean | Home</title>
+</head>
+
+<body onload="startSlider()">
+  <header>
+    <div>
+      <a href="./index.html">
+        <img class="logo" src="./img/logocc1.png" alt="CarClean-Logo" />
+      </a>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#service">Leistungen</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+      <span class="menu-mobile" onclick="showMenu()">☰</span>
+      <div id="menuoverlay" class="overlay-menu">
+        <a href="./index.html">Start</a>
+        <a href="#service">Leistungen</a>
+        <a href="./galerie.html">Galerie</a>
+        <a href="./vornach.html">Vor-Nach Fotos</a>
+        <a href="#contact">Kontakt</a>
+        <button onclick="closeMenu()">Schließen</button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="slider_container">
+    <div class="slider_image">
+      <img id="img-1" src="./img/pexels-jan-kopřiva-3354648.jpg" alt="Kfz-Reinigung" />
+      <div class="text_overlay">
+        <h1>
+          Willkommen bei <span class="highlight">Car Clean</span>, Ihrem
+          Experten für professionelle Autoreinigung in
+          <span class="highlight">Kufstein</span>, Tirol.
+        </h1>
+      </div>
+    </div>
+    <div class="slider_image">
+      <img id="img-2" src="./img/pexels-karolina-grabowska-4870739.jpg" alt="Kfz-Reinigung" />
+      <div class="text_overlay">
+        <h1>
+          Willkommen bei <span class="highlight">Car Clean</span>, Ihrem
+          Experten für professionelle Autoreinigung in
+          <span class="highlight">Kufstein</span>, Tirol.
+        </h1>
+      </div>
+    </div>
+    <div class="slider_image">
+      <img id="img-3" src="./img/pexels-tima-miroshnichenko-6872161.jpg" alt="Kfz-Reinigung" />
+      <div class="text_overlay">
+        <h1>
+          Willkommen bei <span class="highlight">Car Clean</span>, Ihrem
+          Experten für professionelle Autoreinigung in
+          <span class="highlight">Kufstein</span>, Tirol.
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider_nav">
+    <div onclick="showImage(1)"></div>
+    <div onclick="showImage(2)"></div>
+    <div onclick="showImage(3)"></div>
+  </div>
+
+  <div class="text_con">
+    <div class="Link">
+      <span class="Link-title">In unserem Autoreinigungsservice in Kufstein, Tirol, bieten wir
+        umfassende Dienstleistungen an. Wir kümmern uns darum, Ihr Fahrzeug in
+        Bestform zu bringen - sei es durch gründliche
+        <strong>KFZ-Reinigung, Lackversiegelung, Motorreinigung oder
+          Lackpolitur.</strong>
+        Egal ob <strong>Auto, Motorrad, LKW oder Bus</strong> - wir bieten
+        schnellen und präzisen Service für makellose Sauberkeit. Unser Team
+        ist darauf spezialisiert, auf individuelle Kundenwünsche einzugehen
+        und Sie kompetent zu unseren umfangreichen Serviceleistungen zu
+        beraten.</span>
+      <hr />
+      <span class="Link-title">Nutzen Sie unseren bequemen <strong>Abholservice!</strong> Wir holen
+        Ihr Auto direkt bei Ihnen ab, reinigen es gründlich und bringen es
+        Ihnen anschließend wieder zurück. Genießen Sie die Zeitersparnis und
+        den frischen Glanz Ihres Fahrzeugs – ohne den Aufwand, Ihr Zuhause zu
+        verlassen.</span>
+    </div>
+    <div class="con_list">
+      <ul>
+        <li><span class="icon"></span><strong>Abholservice</strong></li>
+        <li><span class="icon"></span><strong>Innenreinigung</strong></li>
+        <li><span class="icon"></span><strong>Außenreinigung</strong></li>
+        <li><span class="icon"></span><strong>Politur</strong></li>
+        <li><span class="icon"></span><strong>Waschen</strong></li>
+        <li>
+          <span class="icon"></span><strong>Pflege & Vorbereitung</strong>
+        </li>
+      </ul>
+      <ul>
+        <li><span class="icon"></span><strong>Lederpflege</strong></li>
+        <li><span class="icon"></span><strong>Flächenreinigung</strong></li>
+        <li><span class="icon"></span><strong>Felgenreinigung</strong></li>
+        <li><span class="icon"></span><strong>Folienentfernen</strong></li>
+        <li><span class="icon"></span><strong>Flugrostentfernung</strong></li>
+      </ul>
+    </div>
+  </div>
+  <!-- Neue Frühlingsangebot-Sektion -->
+  <section id="spring-offer" class="spring-offer">
+    <div class="spring-offer-content">
+      <h1>Frühlingsangebot Bis zu -20%</h1>
+      <p>
+        Sichern Sie sich jetzt unser exklusives Frühlingsangebot! Lassen Sie
+        Ihr Fahrzeug mit unserer professionellen Autoaufbereitung in neuem
+        Glanz erstrahlen – perfekt für die neue Saison!
+      </p>
+      <button class="spring-offer-btn" onclick="openSpringOfferForm()">Jetzt Angebot anfragen</button>
+    </div>
+    <!-- Popup-Formular -->
+    <div id="spring-offer-popup" class="popup">
+      <div class="popup-content">
+        <span class="close-popup" onclick="closeSpringOfferForm()">×</span>
+        <h2>Frühlingsangebot anfragen</h2>
+        <form onsubmit="sendMail(event)">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Name" name="name" required />
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="service-select" class="form-label">Dienstleistung auswählen:</label>
+            <select id="service-select" class="form-control" name="service" required>
+              <option value="" disabled selected>Wählen Sie eine Dienstleistung</option>
+              <option value="Innenreinigung">Innenreinigung -20%</option>
+              <option value="Außenreinigung">Außenreinigung -20%</option>
+              <option value="Komplettreinigung">Komplettreinigung -20%</option>
+              <option value="Lackpolitur">Lackpolitur</option>
+              <option value="Versiegelung">Versiegelung</option>
+              <option value="Motorreinigung">Motorreinigung</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" rows="5" placeholder="Fahrzeugtyp oder spezielle Wünsche (z. B. 'SUV, Innenreinigung intensiv')" name="message"></textarea>
+          </div>
+          <button class="send-button" type="submit">Anfrage senden</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: flex; justify-content: center">
+    <h1>Services</h1>
+  </div>
+  <div id="service" class="wrapper">
+    <div class="card">
+      <img src="./img/pexels-tima-miroshnichenko-6873088.jpg" alt="KFZ-Reinigung" />
+      <div class="info">
+        <h2>KFZ-Reinigung</h2>
+        <p>
+          Unser erfahrenes Team reinigt Ihr KFZ innen und außen. Ob Auto,
+          Motorrad, Bus, LKW oder Wohnwagen – wir bieten volle Leistung für
+          Ihr Fahrzeug
+        </p>
+        <a href="./kfz-reinigung.html" class="btn">Read More</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./img/microfiber-3789848_640.jpg" alt="Versiegelung" />
+      <div class="info">
+        <h2>Versiegelung</h2>
+        <p>
+          Neben Autolack versiegeln wir auch Bremsen und Felgen. Für beste
+          Wirkung und hohen Schutz von empfindlichen Oberflächen am Fahrzeug.
+        </p>
+        <a href="./versiegelung.html" class="btn">Read More</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./img/pexels-pixabay-159293.jpg" alt="Motorreinigung" />
+      <div class="info">
+        <h2>Motorreinigung</h2>
+        <p>
+          Ein sauberer Motor macht nicht nur Eindruck. Schmutz kann die
+          Oberflächen angreifen. Wir tragen professionell zur Sauberkeit Ihres
+          Motors bei.
+        </p>
+        <a href="./motorreinigung.html" class="btn">Read More</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./img/pexels-khunkorn-laowisit-5233261.jpg" alt="Lackpolitur" />
+      <div class="info">
+        <h2>Lackpolitur</h2>
+        <p>
+          Wir polieren den Lack Ihres KFZ bis er glänzt! Ihr Auto ist mehr als
+          nur ein Fortbewegungsmittel. Es drückt Ihren Stil und Ihren
+          Geschmack aus.
+        </p>
+        <a href="./lackpolitur.html" class="btn">Read More</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sozial_media">
+    <div class="Link">
+      <span class="Link-title">
+        Wir laden Sie herzlich ein, uns zu kontaktieren und gleich einen
+        persönlichen <strong>Termin</strong> zu vereinbaren. Unser Team steht
+        Ihnen gerne zur Verfügung, um Ihre Anliegen zu besprechen und Ihnen
+        den bestmöglichen Service zu bieten. Wir freuen uns darauf, von Ihnen
+        zu hören.
+      </span>
+      <hr />
+      <span class="Link-title">
+        Die <strong>Preise</strong> werden individuell vor Ort mit dem Kunden
+        vereinbart, entweder in unserer Werkstatt oder direkt beim Kunden zu
+        Hause.
+      </span>
+    </div>
+    <div class="right-section">
+      <div class="button-container">
+        <a href="https://www.facebook.com/share/bbG41wXmoRcbMgao/?mibextid=LQQJ4d" target="_blank" rel="noopener"
+          class="social-button facebook">
+          <img src="./img/facebook.png" alt="Facebook Logo" />
+          <span>BESUCHE UNS AUF FACEBOOK</span>
+        </a>
+        <a href="https://www.instagram.com/carclean.kufstein?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+          target="_blank" rel="noopener" class="social-button instagram">
+          <img src="./img/instagram.png" alt="Instagram-Logo" />
+          <span>BESUCHE UNS AUF INSTAGRAM</span>
+        </a>
+        <a href="tel:+436606568206" class="social-button phone">
+          <img src="./img/telephone-call.png" alt="Telefon-Icon" />
+          <span>+43 660 65 68 206</span>
+        </a>
+        <a href="https://wa.me/436606568206" target="_blank" rel="noopener" class="social-button whatsapp">
+          <img src="./img/whatsapp.png" alt="WhatsApp-Logo" />
+          <span>ODER AUF WHATSAPP</span>
         </a>
       </div>
-      <nav>
-        <ul class="menu">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#service">Leistungen</a></li>
-          <li><a href="#contact">Kontakt</a></li>
-        </ul>
-        <span class="menu-mobile" onclick="showMenu()">☰</span>
-        <div id="menuoverlay" class="overlay-menu">
-          <a href="./index.html">Start</a>
-          <a href="#service">Leistungen</a>
-          <a href="./galerie.html">Galerie</a>
-          <a href="./vornach.html">Vor-Nach Fotos</a>
-          <a href="#contact">Kontakt</a>
-          <button onclick="closeMenu()">Schließen</button>
-        </div>
-      </nav>
-    </header>
-
-    <div class="slider_container">
-      <div class="slider_image">
-        <img
-          id="img-1"
-          src="./img/pexels-jan-kopřiva-3354648.jpg"
-          alt="Kfz-Reinigung"
-        />
-        <div class="text_overlay">
-          <h1>
-            Willkommen bei <span class="highlight">Car Clean</span>, Ihrem
-            Experten für professionelle Autoreinigung in
-            <span class="highlight">Kufstein</span>, Tirol.
-          </h1>
-        </div>
-      </div>
-      <div class="slider_image">
-        <img
-          id="img-2"
-          src="./img/pexels-karolina-grabowska-4870739.jpg"
-          alt="Kfz-Reinigung"
-        />
-        <div class="text_overlay">
-          <h1>
-            Willkommen bei <span class="highlight">Car Clean</span>, Ihrem
-            Experten für professionelle Autoreinigung in
-            <span class="highlight">Kufstein</span>, Tirol.
-          </h1>
-        </div>
-      </div>
-      <div class="slider_image">
-        <img
-          id="img-3"
-          src="./img/pexels-tima-miroshnichenko-6872161.jpg"
-          alt="Kfz-Reinigung"
-        />
-        <div class="text_overlay">
-          <h1>
-            Willkommen bei <span class="highlight">Car Clean</span>, Ihrem
-            Experten für professionelle Autoreinigung in
-            <span class="highlight">Kufstein</span>, Tirol.
-          </h1>
-        </div>
-      </div>
     </div>
 
-    <div class="slider_nav">
-      <div onclick="showImage(1)"></div>
-      <div onclick="showImage(2)"></div>
-      <div onclick="showImage(3)"></div>
+    <!-- Neues div für die Google Maps -->
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3195.4365098606795!2d12.17757837557385!3d47.59892987987244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477639a403366857%3A0xea387eaaea5da389!2sCar%20Clean!5e1!3m2!1sde!2sat!4v1727908236917!5m2!1sde!2sat"
+        width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
+  <div class="container_galerie">
+    <a href="./galerie.html">
+      <h1>
+        Gallery<br />
+        <h2>mehr Fotos...</h2>
+      </h1>
+    </a>
+    <div class="gallery-wrap">
+      <div class="item item-5"></div>
+      <div class="item item-6"></div>
+      <div class="item item-7"></div>
+      <div class="item item-8"></div>
     </div>
 
-    <div class="text_con">
-      <div class="Link">
-        <span class="Link-title"
-          >In unserem Autoreinigungsservice in Kufstein, Tirol, bieten wir
-          umfassende Dienstleistungen an. Wir kümmern uns darum, Ihr Fahrzeug in
-          Bestform zu bringen - sei es durch gründliche
-          <strong
-            >KFZ-Reinigung, Lackversiegelung, Motorreinigung oder
-            Lackpolitur.</strong
-          >
-          Egal ob <strong>Auto, Motorrad, LKW oder Bus</strong> - wir bieten
-          schnellen und präzisen Service für makellose Sauberkeit. Unser Team
-          ist darauf spezialisiert, auf individuelle Kundenwünsche einzugehen
-          und Sie kompetent zu unseren umfangreichen Serviceleistungen zu
-          beraten.</span
-        >
-        <hr />
-        <span class="Link-title"
-          >Nutzen Sie unseren bequemen <strong>Abholservice!</strong> Wir holen
-          Ihr Auto direkt bei Ihnen ab, reinigen es gründlich und bringen es
-          Ihnen anschließend wieder zurück. Genießen Sie die Zeitersparnis und
-          den frischen Glanz Ihres Fahrzeugs – ohne den Aufwand, Ihr Zuhause zu
-          verlassen.</span
-        >
+    <a href="./vornach.html">
+      <h1>
+        Vorher | Nachher<br />
+        <h2>mehr Fotos...</h2>
+      </h1>
+    </a>
+    <div class="gallery-wrap">
+      <div class="item item-1"></div>
+      <div class="item item-2"></div>
+      <div class="item item-3"></div>
+      <div class="item item-4"></div>
+    </div>
+  </div>
+
+  <section id="contact">
+    <h1 class="section-header">Contact</h1>
+    <div class="contact-wrapper">
+      <div class="contact-form">
+        <form onsubmit="sendMail(event)">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Name" name="name" required />
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" name="email" required />
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" rows="5" placeholder="Message" name="message" required></textarea>
+          </div>
+          <button class="send-button" type="submit">Send</button>
+        </form>
       </div>
-      <div class="con_list">
-        <ul>
-          <li><span class="icon"></span><strong>Abholservice</strong></li>
-          <li><span class="icon"></span><strong>Innenreinigung</strong></li>
-          <li><span class="icon"></span><strong>Außenreinigung</strong></li>
-          <li><span class="icon"></span><strong>Politur</strong></li>
-          <li><span class="icon"></span><strong>Waschen</strong></li>
+
+      <div class="contact-info">
+        <ul class="contact-list">
           <li>
-            <span class="icon"></span><strong>Pflege & Vorbereitung</strong>
+            <i><img src="./img/gps.png" alt="GPS-Icon" /></i>
+            <span class="contact-text">
+              <a href="https://maps.app.goo.gl/DPDSxfMkDGzxPVxH7" target="_blank" rel="noopener noreferrer">Kufstein,
+                6330, Untere Sparchen 18</a>
+            </span>
+          </li>
+          <li>
+            <i><img src="./img/telephone-call.png" alt="Telefon-Icon" /></i>
+            <span class="contact-text">
+              <a href="tel:+436606568206">+43 660 65 68 206</a>
+            </span>
+          </li>
+          <li>
+            <i><img src="./img/email.png" alt="E-Mail-Icon" /></i>
+            <span class="contact-text">
+              <a href="mailto:carclean@kufnet.at">carclean@kufnet.at</a>
+            </span>
           </li>
         </ul>
-        <ul>
-          <li><span class="icon"></span><strong>Lederpflege</strong></li>
-          <li><span class="icon"></span><strong>Flächenreinigung</strong></li>
-          <li><span class="icon"></span><strong>Felgenreinigung</strong></li>
-          <li><span class="icon"></span><strong>Folienentfernen</strong></li>
-          <li><span class="icon"></span><strong>Flugrostentfernung</strong></li>
-        </ul>
-      </div>
-    </div>
-
-    <div style="display: flex; justify-content: center">
-      <h1>Services</h1>
-    </div>
-    <div id="service" class="wrapper">
-      <div class="card">
-        <img
-          src="./img/pexels-tima-miroshnichenko-6873088.jpg"
-          alt="KFZ-Reinigung"
-        />
-        <div class="info">
-          <h2>KFZ-Reinigung</h2>
-          <p>
-            Unser erfahrenes Team reinigt Ihr KFZ innen und außen. Ob Auto,
-            Motorrad, Bus, LKW oder Wohnwagen – wir bieten volle Leistung für
-            Ihr Fahrzeug
-          </p>
-          <a href="./kfz-reinigung.html" class="btn">Read More</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./img/microfiber-3789848_640.jpg" alt="Versiegelung" />
-        <div class="info">
-          <h2>Versiegelung</h2>
-          <p>
-            Neben Autolack versiegeln wir auch Bremsen und Felgen. Für beste
-            Wirkung und hohen Schutz von empfindlichen Oberflächen am Fahrzeug.
-          </p>
-          <a href="./versiegelung.html" class="btn">Read More</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./img/pexels-pixabay-159293.jpg" alt="Motorreinigung" />
-        <div class="info">
-          <h2>Motorreinigung</h2>
-          <p>
-            Ein sauberer Motor macht nicht nur Eindruck. Schmutz kann die
-            Oberflächen angreifen. Wir tragen professionell zur Sauberkeit Ihres
-            Motors bei.
-          </p>
-          <a href="./motorreinigung.html" class="btn">Read More</a>
-        </div>
-      </div>
-      <div class="card">
-        <img
-          src="./img/pexels-khunkorn-laowisit-5233261.jpg"
-          alt="Lackpolitur"
-        />
-        <div class="info">
-          <h2>Lackpolitur</h2>
-          <p>
-            Wir polieren den Lack Ihres KFZ bis er glänzt! Ihr Auto ist mehr als
-            nur ein Fortbewegungsmittel. Es drückt Ihren Stil und Ihren
-            Geschmack aus.
-          </p>
-          <a href="./lackpolitur.html" class="btn">Read More</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="sozial_media">
-      <div class="Link">
-        <span class="Link-title">
-          Wir laden Sie herzlich ein, uns zu kontaktieren und gleich einen
-          persönlichen <strong>Termin</strong> zu vereinbaren. Unser Team steht
-          Ihnen gerne zur Verfügung, um Ihre Anliegen zu besprechen und Ihnen
-          den bestmöglichen Service zu bieten. Wir freuen uns darauf, von Ihnen
-          zu hören.
-        </span>
         <hr />
-        <span class="Link-title">
-          Die <strong>Preise</strong> werden individuell vor Ort mit dem Kunden
-          vereinbart, entweder in unserer Werkstatt oder direkt beim Kunden zu
-          Hause.
-        </span>
-      </div>
-      <div class="right-section">
-        <div class="button-container">
-          <a
-            href="https://www.facebook.com/share/bbG41wXmoRcbMgao/?mibextid=LQQJ4d"
-            target="_blank"
-            rel="noopener"
-            class="social-button facebook"
-          >
-            <img src="./img/facebook.png" alt="Facebook Logo" />
-            <span>BESUCHE UNS AUF FACEBOOK</span>
-          </a>
-          <a
-            href="https://www.instagram.com/carclean.kufstein?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-            target="_blank"
-            rel="noopener"
-            class="social-button instagram"
-          >
-            <img src="./img/instagram.png" alt="Instagram-Logo" />
-            <span>BESUCHE UNS AUF INSTAGRAM</span>
-          </a>
-          <a href="tel:+436606568206" class="social-button phone">
-            <img src="./img/telephone-call.png" alt="Telefon-Icon" />
-            <span>+43 660 65 68 206</span>
-          </a>
-          <a
-            href="https://wa.me/436606568206"
-            target="_blank"
-            rel="noopener"
-            class="social-button whatsapp"
-          >
-            <img src="./img/whatsapp.png" alt="WhatsApp-Logo" />
-            <span>ODER AUF WHATSAPP</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Neues div für die Google Maps -->
-      <div class="map-container">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3195.4365098606795!2d12.17757837557385!3d47.59892987987244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477639a403366857%3A0xea387eaaea5da389!2sCar%20Clean!5e1!3m2!1sde!2sat!4v1727908236917!5m2!1sde!2sat"
-          width="600"
-          height="450"
-          style="border: 0"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+        <ul class="social-media-list">
+          <li>
+            <a href="https://www.facebook.com/carcleankufstein/?mono_donottrack=false" target="_blank" rel="noopener">
+              <img src="./img/facebook.png" alt="Facebook Logo" />
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/carclean.kufstein?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw=="
+              target="_blank" rel="noopener">
+              <img src="./img/instagram.png" alt="Instagram-Logo" />
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/436606568206" target="_blank" rel="noopener">
+              <img src="./img/whatsapp.png" alt="WhatsApp-Logo" />
+            </a>
+          </li>
+        </ul>
+        <hr />
       </div>
     </div>
+  </section>
 
-    <div class="container_galerie">
-      <a href="./galerie.html">
-        <h1>
-          Gallery<br />
-          <h2>mehr Fotos...</h2>
-        </h1>
-      </a>
-      <div class="gallery-wrap">
-        <div class="item item-5"></div>
-        <div class="item item-6"></div>
-        <div class="item item-7"></div>
-        <div class="item item-8"></div>
+  <!-- Cookies -->
+  <div id="cookie-banner" class="cookie-banner" style="display: none">
+    <p>
+      Wir verwenden Cookies, um Ihre Erfahrung auf unserer Webseite zu
+      verbessern. Sie können die Nutzung von Cookies akzeptieren oder
+      ablehnen. Mehr Informationen finden Sie in unserer
+      <a href="datenschutz.html">Datenschutzerklärung</a>.
+    </p>
+    <button id="accept-cookies" class="accept-cookies-btn">
+      Akzeptieren
+    </button>
+    <button id="decline-cookies" class="decline-cookies-btn">Ablehnen</button>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__parralax">
+      <div class="footer__parralax-trees"></div>
+      <div class="footer__parralax-moto"></div>
+      <div class="footer__parralax-secondplan"></div>
+      <div class="footer__parralax-premierplan"></div>
+      <div class="footer__parralax-voiture"></div>
+    </div>
+    <div class="container_footer">
+      <div class="footer__columns">
+        <div class="footer__col">
+          <h3 class="footer__col-title"><span>Adresse</span></h3>
+          <div class="footer__nav">
+            <ul class="contact-list">
+              <li>
+                <i><img src="./img/gps.png" alt="GPS-Icon" /></i>
+                <span class="contact-text">
+                  <a href="https://maps.app.goo.gl/DPDSxfMkDGzxPVxH7" target="_blank"
+                    rel="noopener noreferrer">Kufstein, 6330, Untere Sparchen 18</a>
+                </span>
+              </li>
+              <li>
+                <i><img src="./img/telephone-call.png" alt="Telefon-Icon" /></i>
+                <span class="contact-text">
+                  <a href="tel:+436606568206">+43 660 65 68 206</a>
+                </span>
+              </li>
+              <li>
+                <i><img src="./img/email.png" alt="E-Mail-Icon" /></i>
+                <span class="contact-text">
+                  <a href="mailto:carclean@kufnet.at">carclean@kufnet.at</a>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__col-title"><span>Sozial Media</span></h3>
+          <div class="footer__nav">
+            <ul class="social-media-list">
+              <li>
+                <a href="https://www.facebook.com/carcleankufstein/?mono_donottrack=false" target="_blank"
+                  rel="noopener">
+                  <img src="./img/facebook.png" alt="Facebook Logo" />
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/carclean.kufstein?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw=="
+                  target="_blank" rel="noopener">
+                  <img src="./img/instagram.png" alt="Instagram-Logo" />
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/436606568206" target="_blank" rel="noopener">
+                  <img src="./img/whatsapp.png" alt="WhatsApp-Logo" />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__col-title"><span>Links</span></h3>
+          <div class="footer__nav">
+            <ul class="footer__nav-list">
+              <li class="footer__nav-item">
+                <a href="impressum.html" class="footer__nav-link">Impressum</a>
+              </li>
+              <li class="footer__nav-item">
+                <a href="datenschutz.html" class="footer__nav-link">Datenschutz</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-
-      <a href="./vornach.html">
-        <h1>
-          Vorher | Nachher<br />
-          <h2>mehr Fotos...</h2>
-        </h1>
-      </a>
-      <div class="gallery-wrap">
-        <div class="item item-1"></div>
-        <div class="item item-2"></div>
-        <div class="item item-3"></div>
-        <div class="item item-4"></div>
+      <div class="footer__copyrights">
+        <div class="copyright">
+          &copy; ALL RIGHTS RESERVED | made by
+          <a href="https://www.dimit.cc/">dimit</a>
+        </div>
       </div>
     </div>
+  </footer>
+</body>
 
-    <section id="contact">
-      <h1 class="section-header">Contact</h1>
-      <div class="contact-wrapper">
-        <div class="contact-form">
-          <form onsubmit="sendMail(event)">
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Name"
-                name="name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="email"
-                class="form-control"
-                placeholder="Email"
-                name="email"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <textarea
-                class="form-control"
-                rows="5"
-                placeholder="Message"
-                name="message"
-                required
-              ></textarea>
-            </div>
-            <button class="send-button" type="submit">Send</button>
-          </form>
-        </div>
-
-        <div class="contact-info">
-          <ul class="contact-list">
-            <li>
-              <i><img src="./img/gps.png" alt="GPS-Icon" /></i>
-              <span class="contact-text">
-                <a
-                  href="https://maps.app.goo.gl/DPDSxfMkDGzxPVxH7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Kufstein, 6330, Untere Sparchen 18</a
-                >
-              </span>
-            </li>
-            <li>
-              <i><img src="./img/telephone-call.png" alt="Telefon-Icon" /></i>
-              <span class="contact-text">
-                <a href="tel:+436606568206">+43 660 65 68 206</a>
-              </span>
-            </li>
-            <li>
-              <i><img src="./img/email.png" alt="E-Mail-Icon" /></i>
-              <span class="contact-text">
-                <a href="mailto:carclean@kufnet.at">carclean@kufnet.at</a>
-              </span>
-            </li>
-          </ul>
-          <hr />
-          <ul class="social-media-list">
-            <li>
-              <a
-                href="https://www.facebook.com/carcleankufstein/?mono_donottrack=false"
-                target="_blank"
-                rel="noopener"
-              >
-                <img src="./img/facebook.png" alt="Facebook Logo" />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.instagram.com/carclean.kufstein?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw=="
-                target="_blank"
-                rel="noopener"
-              >
-                <img src="./img/instagram.png" alt="Instagram-Logo" />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://wa.me/436606568206"
-                target="_blank"
-                rel="noopener"
-              >
-                <img src="./img/whatsapp.png" alt="WhatsApp-Logo" />
-              </a>
-            </li>
-          </ul>
-          <hr />
-        </div>
-      </div>
-    </section>
-
-    <!-- Cookies -->
-    <div id="cookie-banner" class="cookie-banner" style="display: none">
-      <p>
-        Wir verwenden Cookies, um Ihre Erfahrung auf unserer Webseite zu
-        verbessern. Sie können die Nutzung von Cookies akzeptieren oder
-        ablehnen. Mehr Informationen finden Sie in unserer
-        <a href="datenschutz.html">Datenschutzerklärung</a>.
-      </p>
-      <button id="accept-cookies" class="accept-cookies-btn">
-        Akzeptieren
-      </button>
-      <button id="decline-cookies" class="decline-cookies-btn">Ablehnen</button>
-    </div>
-
-    <footer class="footer">
-      <div class="footer__parralax">
-        <div class="footer__parralax-trees"></div>
-        <div class="footer__parralax-moto"></div>
-        <div class="footer__parralax-secondplan"></div>
-        <div class="footer__parralax-premierplan"></div>
-        <div class="footer__parralax-voiture"></div>
-      </div>
-      <div class="container_footer">
-        <div class="footer__columns">
-          <div class="footer__col">
-            <h3 class="footer__col-title"><span>Adresse</span></h3>
-            <div class="footer__nav">
-              <ul class="contact-list">
-                <li>
-                  <i><img src="./img/gps.png" alt="GPS-Icon" /></i>
-                  <span class="contact-text">
-                    <a
-                      href="https://maps.app.goo.gl/DPDSxfMkDGzxPVxH7"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Kufstein, 6330, Untere Sparchen 18</a
-                    >
-                  </span>
-                </li>
-                <li>
-                  <i
-                    ><img src="./img/telephone-call.png" alt="Telefon-Icon"
-                  /></i>
-                  <span class="contact-text">
-                    <a href="tel:+436606568206">+43 660 65 68 206</a>
-                  </span>
-                </li>
-                <li>
-                  <i><img src="./img/email.png" alt="E-Mail-Icon" /></i>
-                  <span class="contact-text">
-                    <a href="mailto:carclean@kufnet.at">carclean@kufnet.at</a>
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="footer__col">
-            <h3 class="footer__col-title"><span>Sozial Media</span></h3>
-            <div class="footer__nav">
-              <ul class="social-media-list">
-                <li>
-                  <a
-                    href="https://www.facebook.com/carcleankufstein/?mono_donottrack=false"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src="./img/facebook.png" alt="Facebook Logo" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.instagram.com/carclean.kufstein?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw=="
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src="./img/instagram.png" alt="Instagram-Logo" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://wa.me/436606568206"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src="./img/whatsapp.png" alt="WhatsApp-Logo" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="footer__col">
-            <h3 class="footer__col-title"><span>Links</span></h3>
-            <div class="footer__nav">
-              <ul class="footer__nav-list">
-                <li class="footer__nav-item">
-                  <a href="impressum.html" class="footer__nav-link"
-                    >Impressum</a
-                  >
-                </li>
-                <li class="footer__nav-item">
-                  <a href="datenschutz.html" class="footer__nav-link"
-                    >Datenschutz</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="footer__copyrights">
-          <div class="copyright">
-            &copy; ALL RIGHTS RESERVED | made by
-            <a href="https://www.dimit.cc/">dimit</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </body>
 </html>

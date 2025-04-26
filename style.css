@@ -15,10 +15,51 @@ html {
 
 body {
   margin: 0 auto;
-  font-family: Arial, sans-serif;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 400;
   display: flex;
   flex-direction: column;
   max-width: 1600px;
+}
+
+/* Sicherstellen, dass alle Text-Elemente die Schriftart verwenden */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+li,
+span,
+button,
+input,
+textarea,
+select,
+label {
+  font-family: 'Unbounded', sans-serif !important;
+}
+
+/* Anpassen der Schriftgewichte für Überschriften, falls nötig */
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  /* Fette Überschriften */
+}
+
+p,
+a,
+li,
+span,
+button,
+input,
+textarea,
+select,
+label {
+  font-weight: 400;
+  /* Normales Gewicht für Text */
 }
 
 header {
@@ -283,11 +324,8 @@ nav ul li a {
 
 .highlight {
   color: #2c3a82;
-  /* Ändern Sie die Farbe des hervorgehobenen Textes */
-  font-size: 42px;
-  /* Ändern Sie die Schriftgröße des hervorgehobenen Textes */
-  /* Fügen Sie weitere Stileigenschaften hinzu, wie gewünscht */
   text-decoration: underline;
+  font-weight: 600;
 }
 
 .wrapper {
@@ -1306,9 +1344,11 @@ p {
   /* Dunkle Textfarbe */
   font-family: 'Unbounded', sans-serif;
 }
+
 /* Sicherstellen, dass der Button initial sichtbar ist */
 .spring-offer-btn {
-  background-color: #ff6200; /* Orange, passend zu deinem Branding */
+  background-color: #ff6200;
+  /* Orange, passend zu deinem Branding */
   color: #fff;
   font-family: 'Unbounded', sans-serif;
   font-size: 1.1rem;
@@ -1317,9 +1357,11 @@ p {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-  opacity: 1; /* Standard-Sichtbarkeit */
+  opacity: 1;
+  /* Standard-Sichtbarkeit */
   animation: glowPulse 2s infinite ease-in-out;
-  animation-delay: 1.7s; /* Startet nach der popAndGlow-Animation */
+  animation-delay: 1.7s;
+  /* Startet nach der popAndGlow-Animation */
 }
 
 /* Animation für die Überschrift */
@@ -1327,7 +1369,8 @@ p {
   opacity: 0;
   transform: scale(0.8);
   animation: popAndColor 1.2s ease-in-out forwards;
-  animation-play-state: paused; /* Animation startet erst, wenn sie ausgelöst wird */
+  animation-play-state: paused;
+  /* Animation startet erst, wenn sie ausgelöst wird */
 }
 
 /* Animation für den Button */
@@ -1335,7 +1378,8 @@ p {
   opacity: 0;
   transform: scale(0.8);
   animation: popAndGlow 1.2s ease-in-out forwards;
-  animation-delay: 0.5s; /* Verzögerung, damit der Button nach der Überschrift erscheint */
+  animation-delay: 0.5s;
+  /* Verzögerung, damit der Button nach der Überschrift erscheint */
   animation-play-state: paused;
 }
 
@@ -1344,16 +1388,21 @@ p {
   0% {
     opacity: 0;
     transform: scale(0.8);
-    color: #fff; /* Startfarbe: Weiß */
+    color: #fff;
+    /* Startfarbe: Weiß */
   }
+
   50% {
     opacity: 1;
-    transform: scale(1.2); /* Überschreitet die normale Größe für einen "Pop"-Effekt */
+    transform: scale(1.2);
+    /* Überschreitet die normale Größe für einen "Pop"-Effekt */
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
-    color: #ff6200; /* Endfarbe: Orange */
+    color: #ff6200;
+    /* Endfarbe: Orange */
   }
 }
 
@@ -1364,15 +1413,19 @@ p {
     transform: scale(0.8);
     box-shadow: none;
   }
+
   50% {
     opacity: 1;
     transform: scale(1.2);
-    box-shadow: 0 0 15px rgba(255, 98, 0, 0.7); /* Leuchtender Schatten */
+    box-shadow: 0 0 15px rgba(255, 98, 0, 0.7);
+    /* Leuchtender Schatten */
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 0 10px rgba(255, 98, 0, 0.5); /* Subtiler Leuchteffekt am Ende */
+    box-shadow: 0 0 10px rgba(255, 98, 0, 0.5);
+    /* Subtiler Leuchteffekt am Ende */
   }
 }
 
@@ -1381,9 +1434,11 @@ p {
   0% {
     box-shadow: 0 0 10px rgba(255, 98, 0, 0.5);
   }
+
   50% {
     box-shadow: 0 0 20px rgba(255, 98, 0, 0.8);
   }
+
   100% {
     box-shadow: 0 0 10px rgba(255, 98, 0, 0.5);
   }
@@ -1522,7 +1577,7 @@ p {
 
   .card .info .btn {
     padding: 0.7rem 4rem;
-    font-size: 24px;
+
   }
 
   .contact-form {
@@ -1556,11 +1611,25 @@ p {
   }
 }
 
-.spring-offer-content h1 {
+/* Media Query für mobile Geräte (max-width: 768px) */
+@media (max-width: 768px) {
+  .spring-offer-content h1 {
+    font-size: 1.8rem;
+    /* Reduziert von 2.5rem auf 1.8rem */
+  }
 
-  font-size: 1.5rem;
+  .spring-offer-content p {
+    font-size: 1rem;
+    /* Reduziert von 1.2rem auf 1rem */
+  }
 
+  /* Optional: Anpassen des Padding für kleinere Bildschirme */
+  .spring-offer-content {
+    padding: 15px;
+    /* Etwas weniger Padding für mobile Geräte */
+  }
 }
+
 
 @media screen and (max-width: 700px) and (min-width: 481px) {
   .menu-mobile {

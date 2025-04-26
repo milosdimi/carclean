@@ -1,190 +1,164 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO Meta Tags -->
-    <meta
-      name="description"
-      content="CarClean bietet professionelle KFZ-Reinigung, Lackversiegelung und Motorreinigung in Kufstein, Tirol. Vertrauen Sie unseren Experten für die Pflege Ihres Fahrzeugs."
-    />
-    <meta
-      name="keywords"
-      content="autoaufbereitung, KFZ-Reinigung, Lackversiegelung, Motorreinigung, Autopflege, Kufstein, Tirol, CarClean"
-    />
-    <meta name="author" content="CarClean" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="CarClean | Home" />
-    <meta
-      property="og:description"
-      content="Entdecken Sie unsere professionellen Dienstleistungen für Ihr Fahrzeug."
-    />
-    <meta property="og:image" content="https://carclean.cc/img/logocc.png" />
-    <meta property="og:url" content="https://www.carclean.cc/" />
-    <meta property="og:type" content="website" />
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="CarClean bietet professionelle KFZ-Reinigung, Lackversiegelung und Motorreinigung in Kufstein, Tirol. Vertrauen Sie unseren Experten für die Pflege Ihres Fahrzeugs." />
+  <meta name="keywords"
+    content="autoaufbereitung, KFZ-Reinigung, Lackversiegelung, Motorreinigung, Autopflege, Kufstein, Tirol, CarClean" />
+  <meta name="author" content="CarClean" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/x-icon" href="./img/logocc.png" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="sckript.js"></script>
-    <title>CarClean | Galerie</title>
-  </head>
-  <body onload="load()">
-    <header>
-      <div>
-        <a href="./index.html">
-          <img class="logo" src="./img/logocc1.png" alt="CarClean-Logo" />
-        </a>
-      </div>
-      <nav>
-        <ul class="menu">
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="#service">Leistungen</a></li>
-          <li><a href="#contact">Kontakt</a></li>
-        </ul>
-        <span class="menu-mobile" onclick="showMenu()">☰</span>
-        <div id="menuoverlay" class="overlay-menu">
-          <a href="./index.html">Start</a>
-          <a href="./index.html#service">Leistungen</a>
-          <a href="./galerie.html">Galerie</a>
-          <a href="./vornach.html">Vor-Nach Fotos</a>
-          <a href="./index.html#contact">Kontakt</a>
-          <button onclick="closeMenu()">Schließen</button>
-        </div>
-      </nav>
-    </header>
+  <!-- Open Graph Meta Tags for Social Media -->
+  <meta property="og:title" content="CarClean | Home" />
+  <meta property="og:description" content="Entdecken Sie unsere professionellen Dienstleistungen für Ihr Fahrzeug." />
+  <meta property="og:image" content="https://carclean.cc/img/logocc.png" />
+  <meta property="og:url" content="https://www.carclean.cc/" />
+  <meta property="og:type" content="website" />
 
-    <div class="imgcontainer" id="images"></div>
-    <div class="image d-none" id="openimg"></div>
-    <a href="./index.html">
-      <button class="send-button">Zurück zur Hauptseite</button>
-    </a>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="./img/logocc.png" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="sckript.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap" rel="stylesheet" />
+  <title>CarClean | Galerie</title>
+</head>
 
-    <!-- Cookie-Banner -->
-    <div id="cookie-banner" class="cookie-banner" style="display: none">
-      <p>
-        Wir verwenden Cookies, um Ihre Erfahrung auf unserer Webseite zu
-        verbessern. Sie können die Nutzung von Cookies akzeptieren oder
-        ablehnen. Mehr Informationen finden Sie in unserer
-        <a href="datenschutz.html">Datenschutzerklärung</a>.
-      </p>
-      <button id="accept-cookies" class="accept-cookies-btn">
-        Akzeptieren
-      </button>
-      <button id="decline-cookies" class="decline-cookies-btn">Ablehnen</button>
+<body onload="load()">
+  <header>
+    <div>
+      <a href="./index.html">
+        <img class="logo" src="./img/logocc1.png" alt="CarClean-Logo" />
+      </a>
     </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="#service">Leistungen</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+      <span class="menu-mobile" onclick="showMenu()">☰</span>
+      <div id="menuoverlay" class="overlay-menu">
+        <a href="./index.html">Start</a>
+        <a href="./index.html#service">Leistungen</a>
+        <a href="./galerie.html">Galerie</a>
+        <a href="./vornach.html">Vor-Nach Fotos</a>
+        <a href="./index.html#contact">Kontakt</a>
+        <button onclick="closeMenu()">Schließen</button>
+      </div>
+    </nav>
+  </header>
 
-    <footer class="footer">
-      <div class="footer__parralax">
-        <div class="footer__parralax-trees"></div>
-        <div class="footer__parralax-moto"></div>
-        <div class="footer__parralax-secondplan"></div>
-        <div class="footer__parralax-premierplan"></div>
-        <div class="footer__parralax-voiture"></div>
-      </div>
-      <div class="container_footer">
-        <div class="footer__columns">
-          <div class="footer__col">
-            <h3 class="footer__col-title">Adresse</h3>
-            <div class="footer__nav">
-              <ul class="contact-list">
-                <li>
-                  <i><img src="./img/gps.png" alt="GPS-Icon" /></i>
-                  <span class="contact-text">
-                    <a
-                      href="https://maps.app.goo.gl/DPDSxfMkDGzxPVxH7"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >Kufstein, 6330, Untere Sparchen 18</a
-                    >
-                  </span>
-                </li>
-                <li>
-                  <i
-                    ><img src="./img/telephone-call.png" alt="Telefon-Icon"
-                  /></i>
-                  <span class="contact-text">
-                    <a href="tel:+436606568206"
-                      ><span>+43 660 65 68 206</span></a
-                    >
-                  </span>
-                </li>
-                <li>
-                  <i><img src="./img/email.png" alt="E-Mail-Icon" /></i>
-                  <span class="contact-text">
-                    <a href="mailto:carclean@kufnet.at">carclean@kufnet.at</a>
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="footer__col">
-            <h3 class="footer__col-title">Sozial Media</h3>
-            <div class="footer__nav">
-              <ul class="social-media-list">
-                <li>
-                  <a
-                    href="https://www.facebook.com/carcleankufstein/?mono_donottrack=false"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src="./img/facebook.png" alt="Facebook-Logo" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.instagram.com/carclean.kufstein?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw=="
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src="./img/instagram.png" alt="Instagram-Logo" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://wa.me/436606568206"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img src="./img/whatsapp.png" alt="WhatsApp-Logo" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="footer__col">
-            <h3 class="footer__col-title">Links</h3>
-            <div class="footer__nav">
-              <ul class="footer__nav-list">
-                <li class="footer__nav-item">
-                  <a href="./impressum.html" class="footer__nav-link"
-                    >Impressum</a
-                  >
-                </li>
-                <li class="footer__nav-item">
-                  <a href="./datenschutz.html" class="footer__nav-link"
-                    >Datenschutz</a
-                  >
-                </li>
-              </ul>
-            </div>
+  <div class="imgcontainer" id="images"></div>
+  <div class="image d-none" id="openimg"></div>
+  <a href="./index.html">
+    <button class="send-button">Zurück zur Hauptseite</button>
+  </a>
+
+  <!-- Cookie-Banner -->
+  <div id="cookie-banner" class="cookie-banner" style="display: none">
+    <p>
+      Wir verwenden Cookies, um Ihre Erfahrung auf unserer Webseite zu
+      verbessern. Sie können die Nutzung von Cookies akzeptieren oder
+      ablehnen. Mehr Informationen finden Sie in unserer
+      <a href="datenschutz.html">Datenschutzerklärung</a>.
+    </p>
+    <button id="accept-cookies" class="accept-cookies-btn">
+      Akzeptieren
+    </button>
+    <button id="decline-cookies" class="decline-cookies-btn">Ablehnen</button>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__parralax">
+      <div class="footer__parralax-trees"></div>
+      <div class="footer__parralax-moto"></div>
+      <div class="footer__parralax-secondplan"></div>
+      <div class="footer__parralax-premierplan"></div>
+      <div class="footer__parralax-voiture"></div>
+    </div>
+    <div class="container_footer">
+      <div class="footer__columns">
+        <div class="footer__col">
+          <h3 class="footer__col-title">Adresse</h3>
+          <div class="footer__nav">
+            <ul class="contact-list">
+              <li>
+                <i><img src="./img/gps.png" alt="GPS-Icon" /></i>
+                <span class="contact-text">
+                  <a href="https://maps.app.goo.gl/DPDSxfMkDGzxPVxH7" target="_blank"
+                    rel="noopener noreferrer">Kufstein, 6330, Untere Sparchen 18</a>
+                </span>
+              </li>
+              <li>
+                <i><img src="./img/telephone-call.png" alt="Telefon-Icon" /></i>
+                <span class="contact-text">
+                  <a href="tel:+436606568206"><span>+43 660 65 68 206</span></a>
+                </span>
+              </li>
+              <li>
+                <i><img src="./img/email.png" alt="E-Mail-Icon" /></i>
+                <span class="contact-text">
+                  <a href="mailto:carclean@kufnet.at">carclean@kufnet.at</a>
+                </span>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="footer__copyrights">
-          <div class="copyright">
-            &copy; ALL RIGHTS RESERVED | made by
-            <a href="https://www.dimit.cc/">dimit</a>
+        <div class="footer__col">
+          <h3 class="footer__col-title">Sozial Media</h3>
+          <div class="footer__nav">
+            <ul class="social-media-list">
+              <li>
+                <a href="https://www.facebook.com/carcleankufstein/?mono_donottrack=false" target="_blank"
+                  rel="noopener">
+                  <img src="./img/facebook.png" alt="Facebook-Logo" />
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/carclean.kufstein?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw=="
+                  target="_blank" rel="noopener">
+                  <img src="./img/instagram.png" alt="Instagram-Logo" />
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/436606568206" target="_blank" rel="noopener">
+                  <img src="./img/whatsapp.png" alt="WhatsApp-Logo" />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__col-title">Links</h3>
+          <div class="footer__nav">
+            <ul class="footer__nav-list">
+              <li class="footer__nav-item">
+                <a href="./impressum.html" class="footer__nav-link">Impressum</a>
+              </li>
+              <li class="footer__nav-item">
+                <a href="./datenschutz.html" class="footer__nav-link">Datenschutz</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </footer>
-  </body>
+      <div class="footer__copyrights">
+        <div class="copyright">
+          &copy; ALL RIGHTS RESERVED | made by
+          <a href="https://www.dimit.cc/">dimit</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
 </html>

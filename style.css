@@ -1274,6 +1274,7 @@ p {
 .popup-content .send-button:hover {
   background-color: #e55a00;
 }
+
 /* Stil für das Label des Dropdowns */
 .form-label {
   font-family: 'Unbounded', sans-serif;
@@ -1285,8 +1286,10 @@ p {
 
 /* Stil für das Dropdown-Menü */
 #service-select {
-  background-color: #f5f5f5; /* Helle graue Hintergrundfarbe */
-  color: #333; /* Dunkle Textfarbe für bessere Lesbarkeit */
+  background-color: #f5f5f5;
+  /* Helle graue Hintergrundfarbe */
+  color: #333;
+  /* Dunkle Textfarbe für bessere Lesbarkeit */
   font-family: 'Unbounded', sans-serif;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -1297,10 +1300,100 @@ p {
 
 /* Stil für die Optionen im Dropdown */
 #service-select option {
-  background-color: #fff; /* Weißer Hintergrund für die Optionen */
-  color: #333; /* Dunkle Textfarbe */
+  background-color: #fff;
+  /* Weißer Hintergrund für die Optionen */
+  color: #333;
+  /* Dunkle Textfarbe */
   font-family: 'Unbounded', sans-serif;
 }
+/* Sicherstellen, dass der Button initial sichtbar ist */
+.spring-offer-btn {
+  background-color: #ff6200; /* Orange, passend zu deinem Branding */
+  color: #fff;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  opacity: 1; /* Standard-Sichtbarkeit */
+  animation: glowPulse 2s infinite ease-in-out;
+  animation-delay: 1.7s; /* Startet nach der popAndGlow-Animation */
+}
+
+/* Animation für die Überschrift */
+.animate-text {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: popAndColor 1.2s ease-in-out forwards;
+  animation-play-state: paused; /* Animation startet erst, wenn sie ausgelöst wird */
+}
+
+/* Animation für den Button */
+.animate-button {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: popAndGlow 1.2s ease-in-out forwards;
+  animation-delay: 0.5s; /* Verzögerung, damit der Button nach der Überschrift erscheint */
+  animation-play-state: paused;
+}
+
+/* Keyframes für die Überschrift: Pop-Effekt mit Farbwechsel */
+@keyframes popAndColor {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+    color: #fff; /* Startfarbe: Weiß */
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2); /* Überschreitet die normale Größe für einen "Pop"-Effekt */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    color: #ff6200; /* Endfarbe: Orange */
+  }
+}
+
+/* Keyframes für den Button: Pop-Effekt mit Leuchten */
+@keyframes popAndGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+    box-shadow: none;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgba(255, 98, 0, 0.7); /* Leuchtender Schatten */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 98, 0, 0.5); /* Subtiler Leuchteffekt am Ende */
+  }
+}
+
+/* Pulsierender Leuchteffekt für den Button */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 98, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 98, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 98, 0, 0.5);
+  }
+}
+
+/* Hover-Effekt für den Button */
+.spring-offer-btn:hover {
+  background-color: #e55a00;
+}
+
 /* Media Queries für responsives Design */
 
 @media screen and (max-width: 320px) {
@@ -1462,6 +1555,7 @@ p {
     justify-content: center;
   }
 }
+
 .spring-offer-content h1 {
 
   font-size: 1.5rem;

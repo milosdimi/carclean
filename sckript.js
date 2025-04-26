@@ -179,3 +179,36 @@ function openSpringOfferForm() {
 function closeSpringOfferForm() {
   document.getElementById('spring-offer-popup').style.display = 'none';
 }
+// Funktion, um zu prüfen, ob ein Element im Sichtbereich ist
+function isElementInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+  );
+}
+
+// Animation beim Scrollen auslösen
+function handleScrollAnimation() {
+  const springOfferSection = document.querySelector('#spring-offer');
+  const animatedText = document.querySelector('.animate-text');
+  const animatedButton = document.querySelector('.animate-button');
+
+  // Prüfen, ob die Sektion bereits animiert wurde
+  if (springOfferSection.classList.contains('animated')) {
+    return; // Wenn bereits animiert, abbrechen
+  }
+
+  if (isElementInViewport(springOfferSection)) {
+    animatedText.style.animationPlayState = 'running';
+    animatedButton.style.animationPlayState = 'running';
+    animatedButton.style.opacity = '1'; // Sicherstellen, dass der Button sichtbar ist
+    springOfferSection.classList.add('animated'); // Markieren, dass die Animation ausgeführt wurde
+  }
+}
+
+// Event-Listener für Scrollen
+window.addEventListener('scroll', handleScrollAnimation);
+
+// Animation beim Laden der Seite auslösen, falls die Sektion bereits sichtbar ist
+document.addEventListener('DOMContentLoaded', handleScrollAnimation);

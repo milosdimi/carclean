@@ -135,13 +135,13 @@
   <!-- Neue Frühlingsangebot-Sektion -->
   <section id="spring-offer" class="spring-offer">
     <div class="spring-offer-content">
-      <h1>Frühlingsangebot Bis zu -20%</h1>
+      <h1 class="animate-text">Frühlingsangebot Bis zu -20%</h1>
       <p>
         Sichern Sie sich jetzt unser exklusives Frühlingsangebot! Lassen Sie
         Ihr Fahrzeug mit unserer professionellen Autoaufbereitung in neuem
         Glanz erstrahlen – perfekt für die neue Saison!
       </p>
-      <button class="spring-offer-btn" onclick="openSpringOfferForm()">Jetzt Angebot anfragen</button>
+      <button class="spring-offer-btn animate-button" onclick="openSpringOfferForm()">Jetzt Angebot anfragen</button>
     </div>
     <!-- Popup-Formular -->
     <div id="spring-offer-popup" class="popup">
@@ -159,16 +159,18 @@
             <label for="service-select" class="form-label">Dienstleistung auswählen:</label>
             <select id="service-select" class="form-control" name="service" required>
               <option value="" disabled selected>Wählen Sie eine Dienstleistung</option>
-              <option value="Innenreinigung">Innenreinigung -20%</option>
-              <option value="Außenreinigung">Außenreinigung -20%</option>
-              <option value="Komplettreinigung">Komplettreinigung -20%</option>
+              <option value="Innenreinigung">Innenreinigung</option>
+              <option value="Außenreinigung">Außenreinigung</option>
+              <option value="Komplettreinigung">Komplettreinigung</option>
               <option value="Lackpolitur">Lackpolitur</option>
               <option value="Versiegelung">Versiegelung</option>
               <option value="Motorreinigung">Motorreinigung</option>
             </select>
           </div>
           <div class="form-group">
-            <textarea class="form-control" rows="5" placeholder="Fahrzeugtyp oder spezielle Wünsche (z. B. 'SUV, Innenreinigung intensiv')" name="message"></textarea>
+            <textarea class="form-control" rows="5"
+              placeholder="Fahrzeugtyp oder spezielle Wünsche (z. B. 'SUV, Innenreinigung intensiv')"
+              name="message"></textarea>
           </div>
           <button class="send-button" type="submit">Anfrage senden</button>
         </form>

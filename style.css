@@ -169,12 +169,11 @@ main {
   /* gleichmäßige Abstände */
 }
 
-/* ✅ FORM: optisch mittig (DAS war dir wichtig) */
+/* ✅ FORM: optisch mittig */
 #winter-offer-popup form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Mittelachse */
 }
 
 /* Form-Groups sauber + zentriert + gleiche Breite */
@@ -185,7 +184,6 @@ main {
 
   width: 100%;
   max-width: 420px;
-  /* sorgt für perfekte optische Mitte */
   margin: 0 auto;
 }
 
@@ -210,7 +208,7 @@ main {
   text-align: left;
 }
 
-/* Select fix (falls global appearance/farben kaputt sind) */
+/* Select fix */
 #winter-offer-popup select.form-control {
   appearance: auto;
   -webkit-appearance: menulist;
@@ -230,6 +228,9 @@ main {
   line-height: 1.45;
   opacity: 0.85;
   text-align: center;
+
+  /* ✅ Mobile: Platz, damit Sticky-Button nichts überdeckt */
+  padding-bottom: 10px;
 }
 
 /* Button exakt mittig */
@@ -242,6 +243,43 @@ main {
 .close-popup {
   cursor: pointer;
 }
+
+/* =========================
+   ✅ Mobile Fix: Button sichtbar (Popup scrollt)
+========================= */
+
+#winter-offer-popup.popup {
+  align-items: flex-start;
+  /* mobile: oben starten */
+  overflow-y: auto;
+  /* overlay scrollt */
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+}
+
+#winter-offer-popup .popup-content {
+  max-height: calc(100dvh - 32px);
+  /* mobile address bar safe */
+  overflow-y: auto;
+  /* box scrollt wenn nötig */
+  -webkit-overflow-scrolling: touch;
+}
+
+#winter-offer-popup .send-button {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  padding: 14px 18px;
+  z-index: 2;
+}
+
+@media (max-width: 420px) {
+  #winter-offer-popup .popup-content {
+    padding: 20px;
+  }
+}
+
 
 
 /* Wapp BTN */
@@ -268,6 +306,7 @@ main {
   width: 30px;
   height: 30px;
 }
+
 /* Wapp BTN end */
 
 

@@ -2,27 +2,40 @@
 // Menü
 // =====================
 function showMenu() {
-  document.getElementById("menuoverlay").style.width = "100%";
+  const menu = document.getElementById("menuoverlay");
+  if (menu) menu.style.width = "100%";
 }
 
 function closeMenu() {
-  document.getElementById("menuoverlay").style.width = "0";
+  const menu = document.getElementById("menuoverlay");
+  if (menu) menu.style.width = "0";
 }
 
 // =====================
-// Slider
+// Slider (nur wenn vorhanden)
 // =====================
 let currentImageIndex = 0;
-const imagess = document.getElementsByClassName("slider_image");
+let sliderIntervalId = null;
 
 function startSlider() {
-  setInterval(() => {
+  const imagess = document.getElementsByClassName("slider_image");
+  if (!imagess || imagess.length === 0) return;
+
+  // prevent double intervals
+  if (sliderIntervalId) clearInterval(sliderIntervalId);
+
+  sliderIntervalId = setInterval(() => {
     currentImageIndex = (currentImageIndex + 1) % imagess.length;
     updateSlider();
   }, 3000);
+
+  updateSlider();
 }
 
 function updateSlider() {
+  const imagess = document.getElementsByClassName("slider_image");
+  if (!imagess || imagess.length === 0) return;
+
   Array.from(imagess).forEach((image, index) => {
     image.style.transform = `translateX(${(index - currentImageIndex) * 100}%)`;
   });
@@ -50,18 +63,25 @@ function sendMail(event) {
     })
     .catch((error) => {
       console.error("Fehler beim Senden:", error);
+      alert("Fehler beim Senden. Bitte versuch es später nochmal.");
     });
 }
 
 // =====================
-// Gutscheinformular (Winteraktion)
+// Gutscheinformular (Winteraktion) - EINMAL
 // =====================
 function openWinterOfferForm() {
-  document.getElementById("winter-offer-popup").style.display = "flex";
+  const popup = document.getElementById("winter-offer-popup");
+  if (!popup) return;
+  popup.style.display = "flex";
+  document.body.style.overflow = "hidden";
 }
 
 function closeWinterOfferForm() {
-  document.getElementById("winter-offer-popup").style.display = "none";
+  const popup = document.getElementById("winter-offer-popup");
+  if (!popup) return;
+  popup.style.display = "none";
+  document.body.style.overflow = "";
 }
 
 function sendVoucherMail(event) {
@@ -80,6 +100,7 @@ function sendVoucherMail(event) {
     })
     .catch((error) => {
       console.error("Fehler beim Gutscheinversand:", error);
+      alert("Fehler beim Senden. Bitte versuch es später nochmal.");
     });
 }
 
@@ -93,31 +114,42 @@ function load() {
   const container = document.getElementById("images");
   if (!container) return;
 
+  let html = "";
   images.forEach((src, i) => {
-    container.innerHTML += `
+    html += `
       <div class="imgbox">
-        <img src="${src}" onclick="openImage(${i})">
+        <img src="${src}"
+             alt="CarClean Galerie – Autoaufbereitung Kufstein Bild ${i + 1}"
+             loading="lazy"
+             onclick="openImage(${i})">
       </div>`;
   });
+
+  container.innerHTML = html;
 }
 
 function openImage(i) {
   const openImgContainer = document.getElementById("openimg");
+  if (!openImgContainer) return;
+
   openImgContainer.innerHTML = `
     <div class="openimg">
       <div class="btn-container">
-        <img onclick="backImage()" class="nextimage" src="./img/next-button.png">
-        <img onclick="closeImg()" class="nextimage" src="./img/close.png">
-        <img onclick="nextImage()" class="nextimage" src="./img/back-button.png">
+        <img onclick="backImage()" class="nextimage" src="./img/next-button.png" alt="Zurück">
+        <img onclick="closeImg()" class="nextimage" src="./img/close.png" alt="Schließen">
+        <img onclick="nextImage()" class="nextimage" src="./img/back-button.png" alt="Weiter">
       </div>
-      <div><img class="imagesolo" src="${images[i]}"></div>
+      <div><img class="imagesolo" src="${images[i]}" alt="CarClean Galerie – Bild ${i + 1}"></div>
     </div>`;
+
   openImgContainer.classList.remove("d-none");
   imageIndex = i;
 }
 
 function closeImg() {
-  document.getElementById("openimg").classList.add("d-none");
+  const openImgContainer = document.getElementById("openimg");
+  if (!openImgContainer) return;
+  openImgContainer.classList.add("d-none");
 }
 
 function backImage() {
@@ -140,31 +172,42 @@ function loadvor() {
   const container = document.getElementById("images");
   if (!container) return;
 
+  let html = "";
   imagesvor.forEach((src, i) => {
-    container.innerHTML += `
+    html += `
       <div class="imgbox">
-        <img src="${src}" onclick="openImagevor(${i})">
+        <img src="${src}"
+             alt="Vorher–Nachher Autoaufbereitung Kufstein – CarClean Bild ${i + 1}"
+             loading="lazy"
+             onclick="openImagevor(${i})">
       </div>`;
   });
+
+  container.innerHTML = html;
 }
 
 function openImagevor(i) {
   const openImgContainer = document.getElementById("openimg");
+  if (!openImgContainer) return;
+
   openImgContainer.innerHTML = `
     <div class="openimg">
       <div class="btn-container">
-        <img onclick="backImagevor()" class="nextimage" src="./img/next-button.png">
-        <img onclick="closeImgvor()" class="nextimage" src="./img/close.png">
-        <img onclick="nextImagevor()" class="nextimage" src="./img/back-button.png">
+        <img onclick="backImagevor()" class="nextimage" src="./img/next-button.png" alt="Zurück">
+        <img onclick="closeImgvor()" class="nextimage" src="./img/close.png" alt="Schließen">
+        <img onclick="nextImagevor()" class="nextimage" src="./img/back-button.png" alt="Weiter">
       </div>
-      <div><img class="imagesolo" src="${imagesvor[i]}"></div>
+      <div><img class="imagesolo" src="${imagesvor[i]}" alt="Vorher–Nachher CarClean – Bild ${i + 1}"></div>
     </div>`;
+
   openImgContainer.classList.remove("d-none");
   imageIndexvor = i;
 }
 
 function closeImgvor() {
-  document.getElementById("openimg").classList.add("d-none");
+  const openImgContainer = document.getElementById("openimg");
+  if (!openImgContainer) return;
+  openImgContainer.classList.add("d-none");
 }
 
 function backImagevor() {
@@ -178,12 +221,14 @@ function nextImagevor() {
 }
 
 // =====================
-// Cookies
+// Cookies (nur wenn vorhanden)
 // =====================
 document.addEventListener("DOMContentLoaded", () => {
   const banner = document.getElementById("cookie-banner");
   const accept = document.getElementById("accept-cookies");
   const decline = document.getElementById("decline-cookies");
+
+  if (!banner || !accept || !decline) return;
 
   if (document.cookie.includes("cookies_accepted=true")) {
     banner.style.display = "none";
@@ -193,7 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
   banner.style.display = "block";
 
   accept.onclick = () => {
-    document.cookie = "cookies_accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+    document.cookie =
+      "cookies_accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
     banner.style.display = "none";
   };
 
@@ -203,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =====================
-// Scroll-Animation Winteraktion
+// Scroll-Animation Winteraktion (nur wenn vorhanden)
 // =====================
 function isElementInViewport(el) {
   const rect = el.getBoundingClientRect();
@@ -221,18 +267,5 @@ function handleScrollAnimation() {
   }
 }
 
-
-
 window.addEventListener("scroll", handleScrollAnimation);
 document.addEventListener("DOMContentLoaded", handleScrollAnimation);
-
-function openWinterOfferForm() {
-  document.getElementById("winter-offer-popup").style.display = "flex";
-  document.body.style.overflow = "hidden";
-}
-
-function closeWinterOfferForm() {
-  document.getElementById("winter-offer-popup").style.display = "none";
-  document.body.style.overflow = "";
-}
-

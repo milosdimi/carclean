@@ -143,6 +143,8 @@ function openImage(i) {
     </div>`;
 
   openImgContainer.classList.remove("d-none");
+  document.body.style.overflow = "hidden";
+
   imageIndex = i;
 }
 
@@ -150,6 +152,8 @@ function closeImg() {
   const openImgContainer = document.getElementById("openimg");
   if (!openImgContainer) return;
   openImgContainer.classList.add("d-none");
+  document.body.style.overflow = "";
+
 }
 
 function backImage() {
@@ -201,6 +205,8 @@ function openImagevor(i) {
     </div>`;
 
   openImgContainer.classList.remove("d-none");
+  document.body.style.overflow = "hidden";
+
   imageIndexvor = i;
 }
 
@@ -208,6 +214,8 @@ function closeImgvor() {
   const openImgContainer = document.getElementById("openimg");
   if (!openImgContainer) return;
   openImgContainer.classList.add("d-none");
+  document.body.style.overflow = "";
+
 }
 
 function backImagevor() {

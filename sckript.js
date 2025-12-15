@@ -1,4 +1,6 @@
-// Menüsteuerung
+// =====================
+// Menü
+// =====================
 function showMenu() {
   document.getElementById("menuoverlay").style.width = "100%";
 }
@@ -7,29 +9,33 @@ function closeMenu() {
   document.getElementById("menuoverlay").style.width = "0";
 }
 
+// =====================
 // Slider
-let currentImageIndex = 0; // Der Index des aktuellen Bildes
+// =====================
+let currentImageIndex = 0;
 const imagess = document.getElementsByClassName("slider_image");
 
 function startSlider() {
   setInterval(() => {
-    currentImageIndex = (currentImageIndex + 1) % imagess.length; // Zyklisch durch die Bilder blättern
+    currentImageIndex = (currentImageIndex + 1) % imagess.length;
     updateSlider();
-  }, 3000); // Alle 3 Sekunden wechseln
+  }, 3000);
 }
 
 function updateSlider() {
   Array.from(imagess).forEach((image, index) => {
-    image.style.transform = `translateX(${(index - currentImageIndex) * 100}%)`; // Verschiebt die Bilder entsprechend
+    image.style.transform = `translateX(${(index - currentImageIndex) * 100}%)`;
   });
 }
 
 function showImage(index) {
-  currentImageIndex = index - 1; // Umwandeln in 0-basierten Index
+  currentImageIndex = index - 1;
   updateSlider();
 }
 
-// Kontaktformular
+// =====================
+// Kontaktformular (Formspree)
+// =====================
 function sendMail(event) {
   event.preventDefault();
   const data = new FormData(event.target);
@@ -37,45 +43,75 @@ function sendMail(event) {
   fetch("https://formspree.io/f/mdknjddr", {
     method: "POST",
     body: data,
-    headers: {
-      Accept: "application/json",
-    },
+    headers: { Accept: "application/json" },
   })
     .then(() => {
       window.location.href = "./send_mail.html";
     })
     .catch((error) => {
-      console.error("Fehler beim Senden der E-Mail:", error);
+      console.error("Fehler beim Senden:", error);
     });
 }
 
+// =====================
+// Gutscheinformular (Winteraktion)
+// =====================
+function openWinterOfferForm() {
+  document.getElementById("winter-offer-popup").style.display = "flex";
+}
+
+function closeWinterOfferForm() {
+  document.getElementById("winter-offer-popup").style.display = "none";
+}
+
+function sendVoucherMail(event) {
+  event.preventDefault();
+  const data = new FormData(event.target);
+
+  fetch("https://formspree.io/f/mdknjddr", {
+    method: "POST",
+    body: data,
+    headers: { Accept: "application/json" },
+  })
+    .then(() => {
+      alert("Danke! Wir melden uns mit Zahlungsinfos & Gutschein per E-Mail 🎄");
+      closeWinterOfferForm();
+      event.target.reset();
+    })
+    .catch((error) => {
+      console.error("Fehler beim Gutscheinversand:", error);
+    });
+}
+
+// =====================
 // Galerie
+// =====================
 const images = Array.from({ length: 52 }, (_, i) => `galerie/${i + 1}.jpg`);
 let imageIndex = 0;
 
 function load() {
-  const imagesContainer = document.getElementById("images");
-  if (!imagesContainer) return;
+  const container = document.getElementById("images");
+  if (!container) return;
 
   images.forEach((src, i) => {
-    imagesContainer.innerHTML += /*html*/ `
-      <div class="imgbox"><img src="${src}" onclick="openImage(${i})"></div>
-    `;
+    container.innerHTML += `
+      <div class="imgbox">
+        <img src="${src}" onclick="openImage(${i})">
+      </div>`;
   });
 }
 
 function openImage(i) {
   const openImgContainer = document.getElementById("openimg");
-  openImgContainer.innerHTML = /*html*/ `
+  openImgContainer.innerHTML = `
     <div class="openimg">
       <div class="btn-container">
-        <img onclick="backImage()" class="nextimage" src="./img/next-button.png" alt="">
-        <img onclick="closeImg()" class="nextimage" src="./img/close.png" alt="close-img">
-        <img onclick="nextImage()" class="nextimage" src="./img/back-button.png" alt="">
+        <img onclick="backImage()" class="nextimage" src="./img/next-button.png">
+        <img onclick="closeImg()" class="nextimage" src="./img/close.png">
+        <img onclick="nextImage()" class="nextimage" src="./img/back-button.png">
       </div>
-      <div><img class="imagesolo" src="${images[i]}" alt=""></div>
-    </div>
-  `;
+      <div><img class="imagesolo" src="${images[i]}"></div>
+    </div>`;
   openImgContainer.classList.remove("d-none");
   imageIndex = i;
 }
@@ -94,36 +130,35 @@ function nextImage() {
   openImage(imageIndex);
 }
 
-// Vor Nach Galerie
-const imagesvor = Array.from(
-  { length: 21 },
-  (_, i) => `vornachfotos/${i + 1}.jpg`
-);
+// =====================
+// Vorher / Nachher Galerie
+// =====================
+const imagesvor = Array.from({ length: 21 }, (_, i) => `vornachfotos/${i + 1}.jpg`);
 let imageIndexvor = 0;
 
 function loadvor() {
-  const imagesContainer = document.getElementById("images");
-  if (!imagesContainer) return;
+  const container = document.getElementById("images");
+  if (!container) return;
 
   imagesvor.forEach((src, i) => {
-    imagesContainer.innerHTML += /*html*/ `
-      <div class="imgbox"><img src="${src}" onclick="openImagevor(${i})"></div>
-    `;
+    container.innerHTML += `
+      <div class="imgbox">
+        <img src="${src}" onclick="openImagevor(${i})">
+      </div>`;
   });
 }
 
 function openImagevor(i) {
   const openImgContainer = document.getElementById("openimg");
-  openImgContainer.innerHTML = /*html*/ `
+  openImgContainer.innerHTML = `
     <div class="openimg">
       <div class="btn-container">
-        <img onclick="backImagevor()" class="nextimage" src="./img/next-button.png" alt="">
-        <img onclick="closeImgvor()" class="nextimage" src="./img/close.png" alt="close-img">
-        <img onclick="nextImagevor()" class="nextimage" src="./img/back-button.png" alt="">
+        <img onclick="backImagevor()" class="nextimage" src="./img/next-button.png">
+        <img onclick="closeImgvor()" class="nextimage" src="./img/close.png">
+        <img onclick="nextImagevor()" class="nextimage" src="./img/back-button.png">
       </div>
-      <div><img class="imagesolo" src="${imagesvor[i]}" alt=""></div>
-    </div>
-  `;
+      <div><img class="imagesolo" src="${imagesvor[i]}"></div>
+    </div>`;
   openImgContainer.classList.remove("d-none");
   imageIndexvor = i;
 }
@@ -142,73 +177,49 @@ function nextImagevor() {
   openImagevor(imageIndexvor);
 }
 
+// =====================
 // Cookies
-document.addEventListener("DOMContentLoaded", function () {
-  const cookieBanner = document.getElementById("cookie-banner");
-  const acceptCookiesBtn = document.getElementById("accept-cookies");
-  const declineCookiesBtn = document.getElementById("decline-cookies");
+// =====================
+document.addEventListener("DOMContentLoaded", () => {
+  const banner = document.getElementById("cookie-banner");
+  const accept = document.getElementById("accept-cookies");
+  const decline = document.getElementById("decline-cookies");
 
-  // Funktion für "Akzeptieren"
-  acceptCookiesBtn.addEventListener("click", function () {
-    document.cookie =
-      "cookies_accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
-    cookieBanner.style.display = "none";
-  });
-
-  // Funktion für "Ablehnen"
-  declineCookiesBtn.addEventListener("click", function () {
-    cookieBanner.style.display = "none";
-  });
-
-  // Überprüfen, ob der Benutzer bereits Cookies akzeptiert hat
-  const cookiesAccepted = document.cookie
-    .split(";")
-    .some((cookie) => cookie.trim().startsWith("cookies_accepted="));
-
-  if (cookiesAccepted) {
-    cookieBanner.style.display = "none";
-  } else {
-    cookieBanner.style.display = "block";
+  if (document.cookie.includes("cookies_accepted=true")) {
+    banner.style.display = "none";
+    return;
   }
-});
-// Popup-Formular für Frühlingsangebot
-function openSpringOfferForm() {
-  document.getElementById('spring-offer-popup').style.display = 'flex';
-}
 
-function closeSpringOfferForm() {
-  document.getElementById('spring-offer-popup').style.display = 'none';
-}
-// Funktion, um zu prüfen, ob ein Element im Sichtbereich ist
+  banner.style.display = "block";
+
+  accept.onclick = () => {
+    document.cookie = "cookies_accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+    banner.style.display = "none";
+  };
+
+  decline.onclick = () => {
+    banner.style.display = "none";
+  };
+});
+
+// =====================
+// Scroll-Animation Winteraktion
+// =====================
 function isElementInViewport(el) {
   const rect = el.getBoundingClientRect();
-  return (
-    rect.top >= 0 &&
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-  );
+  return rect.top <= window.innerHeight && rect.bottom >= 0;
 }
 
-// Animation beim Scrollen auslösen
 function handleScrollAnimation() {
-  const springOfferSection = document.querySelector('#spring-offer');
-  const animatedText = document.querySelector('.animate-text');
-  const animatedButton = document.querySelector('.animate-button');
+  const section = document.querySelector("#winter-offer");
+  if (!section || section.classList.contains("animated")) return;
 
-  // Prüfen, ob die Sektion bereits animiert wurde
-  if (springOfferSection.classList.contains('animated')) {
-    return; // Wenn bereits animiert, abbrechen
-  }
-
-  if (isElementInViewport(springOfferSection)) {
-    animatedText.style.animationPlayState = 'running';
-    animatedButton.style.animationPlayState = 'running';
-    animatedButton.style.opacity = '1'; // Sicherstellen, dass der Button sichtbar ist
-    springOfferSection.classList.add('animated'); // Markieren, dass die Animation ausgeführt wurde
+  if (isElementInViewport(section)) {
+    section.classList.add("animated");
+    section.querySelector(".animate-text")?.style.setProperty("animation-play-state", "running");
+    section.querySelector(".animate-button")?.style.setProperty("animation-play-state", "running");
   }
 }
 
-// Event-Listener für Scrollen
-window.addEventListener('scroll', handleScrollAnimation);
-
-// Animation beim Laden der Seite auslösen, falls die Sektion bereits sichtbar ist
-document.addEventListener('DOMContentLoaded', handleScrollAnimation);
+window.addEventListener("scroll", handleScrollAnimation);
+document.addEventListener("DOMContentLoaded", handleScrollAnimation);

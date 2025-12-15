@@ -75,6 +75,202 @@ main {
   /* Füllt den verbleibenden verfügbaren Platz aus */
 }
 
+/* =========================
+   Winter Offer Section
+========================= */
+
+.winter-offer {
+  position: relative;
+  min-height: 65vh;
+  /* statt 100vh */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(48px, 6vw, 90px) 16px;
+  overflow: hidden;
+
+  background: url("./img/winter-gutschein.jpg") center / cover no-repeat;
+}
+
+/* Overlay für Lesbarkeit */
+.winter-offer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      rgba(10, 16, 28, 0.88) 0%,
+      rgba(10, 16, 28, 0.65) 55%,
+      rgba(10, 16, 28, 0.25) 100%);
+  z-index: 0;
+}
+
+.winter-offer-content {
+  position: relative;
+  z-index: 1;
+  width: min(720px, 92vw);
+  text-align: center;
+
+  padding: 32px 28px;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.38);
+
+  /* Safari Fix */
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.winter-offer-content h1 {
+  margin: 0 0 14px 0;
+}
+
+.winter-offer-content p {
+  margin: 0 0 22px 0;
+  line-height: 1.6;
+}
+
+.offer-badges {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px 0;
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  color: burlywood;
+}
+
+.winter-offer-btn {
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 14px 28px;
+}
+
+/* =========================
+   Popup: Gutschein-Form
+========================= */
+
+#winter-offer-popup.popup {
+  display: none;
+  /* JS schaltet auf flex */
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+#winter-offer-popup .popup-content {
+  width: min(560px, 92vw);
+  padding: 28px;
+  border-radius: 18px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  /* gleichmäßige Abstände */
+}
+
+/* ✅ FORM: optisch mittig (DAS war dir wichtig) */
+#winter-offer-popup form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Mittelachse */
+}
+
+/* Form-Groups sauber + zentriert + gleiche Breite */
+#winter-offer-popup .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  width: 100%;
+  max-width: 420px;
+  /* sorgt für perfekte optische Mitte */
+  margin: 0 auto;
+}
+
+#winter-offer-popup .form-label {
+  display: block;
+  margin-left: 2px;
+  text-align: left;
+  width: 100%;
+}
+
+/* Inputs + Select sichtbar & einheitlich */
+#winter-offer-popup .form-control {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #fff;
+  color: #111;
+  font-family: inherit;
+  font-size: 15.5px;
+  text-align: left;
+}
+
+/* Select fix (falls global appearance/farben kaputt sind) */
+#winter-offer-popup select.form-control {
+  appearance: auto;
+  -webkit-appearance: menulist;
+  -moz-appearance: menulist;
+}
+
+#winter-offer-popup select.form-control option {
+  color: #111;
+  background: #fff;
+}
+
+/* Hinweistext ebenfalls im gleichen Raster + zentriert */
+#winter-offer-popup .small-note {
+  max-width: 420px;
+  margin: 12px auto 0 auto;
+  font-size: 13.5px;
+  line-height: 1.45;
+  opacity: 0.85;
+  text-align: center;
+}
+
+/* Button exakt mittig */
+#winter-offer-popup .send-button {
+  margin-top: 14px;
+  align-self: center;
+  min-width: 220px;
+}
+
+.close-popup {
+  cursor: pointer;
+}
+
+
+/* Wapp BTN */
+.wa-float {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #25D366;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .25);
+  z-index: 9999;
+  transition: transform .15s ease;
+}
+
+.wa-float:hover {
+  transform: scale(1.06);
+}
+
+.wa-float img {
+  width: 30px;
+  height: 30px;
+}
+/* Wapp BTN end */
+
+
 .logo {
   width: 200px;
   height: auto;

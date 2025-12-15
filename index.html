@@ -2,35 +2,83 @@
 <html lang="de">
 
 <head>
+  <!-- Basic -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO Meta Tags -->
-  <meta name="description"
-    content="CarClean bietet professionelle KFZ-Reinigung, Lackversiegelung und Motorreinigung in Kufstein, Tirol. Vertrauen Sie unseren Experten für die Pflege Ihres Fahrzeugs." />
-  <meta name="keywords"
-    content="autoaufbereitung, KFZ-Reinigung, Lackversiegelung, Motorreinigung, Autopflege, Kufstein, Tirol, CarClean" />
-  <meta name="author" content="CarClean" />
+  <title>CarClean Kufstein | Autoaufbereitung, Innen- & Außenreinigung</title>
 
-  <!-- Open Graph Meta Tags for Social Media -->
-  <meta property="og:title" content="CarClean | Home" />
-  <meta property="og:description" content="Entdecken Sie unsere professionellen Dienstleistungen für Ihr Fahrzeug." />
+  <!-- SEO -->
+  <meta name="description"
+    content="CarClean Kufstein: professionelle Autoaufbereitung, Innenreinigung, Außenreinigung, Politur, Versiegelung & Motorreinigung in Tirol. Abholservice möglich. Jetzt Termin anfragen!" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.carclean.cc/" />
+
+  <!-- Performance: Hero Image -->
+  <link rel="preload" as="image" href="/img/pexels-jan-kopřiva-3354648.jpg" fetchpriority="high" />
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:title" content="CarClean Kufstein | Professionelle Autoaufbereitung" />
+  <meta property="og:description"
+    content="Innen- & Außenreinigung, Politur, Versiegelung, Motorreinigung – inkl. Abholservice in Kufstein/Tirol. Jetzt anfragen!" />
   <meta property="og:image" content="https://carclean.cc/img/logocc.png" />
   <meta property="og:url" content="https://www.carclean.cc/" />
   <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_AT" />
+  <meta property="og:site_name" content="CarClean Kufstein" />
 
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CarClean Kufstein | Autoaufbereitung" />
+  <meta name="twitter:description"
+    content="Profi-Autoreinigung in Kufstein/Tirol. Innen, außen, Politur, Versiegelung & mehr." />
+  <meta name="twitter:image" content="https://carclean.cc/img/logocc.png" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/x-icon" href="./img/logocc.png" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="sckript.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap" rel="stylesheet" />
-  <title>CarClean | Home</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/img/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/img/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="CarClean" />
+  <link rel="manifest" href="/img/favicon/site.webmanifest" />
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- LocalBusiness Schema (SEO Boost) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoDetailing",
+    "name": "CarClean Kufstein",
+    "url": "https://www.carclean.cc/",
+    "telephone": "+436606568206",
+    "email": "carclean@kufnet.at",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Untere Sparchen 18",
+      "postalCode": "6330",
+      "addressLocality": "Kufstein",
+      "addressCountry": "AT"
+    },
+    "areaServed": ["Kufstein", "Tirol"],
+    "image": "https://carclean.cc/img/logocc.png"
+  }
+  </script>
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+  <script src="sckript.js" defer></script>
 </head>
+
 
 <body onload="startSlider()">
   <header>
@@ -57,7 +105,7 @@
     </nav>
   </header>
 
-  <div class="slider_container">
+  <div class="slider_container" id="home">
     <div class="slider_image">
       <img id="img-1" src="./img/pexels-jan-kopřiva-3354648.jpg" alt="Kfz-Reinigung" />
       <div class="text_overlay">
@@ -135,55 +183,88 @@
       </ul>
     </div>
   </div>
-  <!-- Neue Frühlingsangebot-Sektion -->
-  <section id="spring-offer" class="spring-offer">
-    <div class="spring-offer-content">
-      <h1 class="animate-text">Frühlingsangebot Bis zu -20%</h1>
+
+  <!-- Winter/Weihnachten Gutschein-Aktion -->
+  <section id="winter-offer" class="winter-offer">
+    <div class="winter-offer-content">
+      <h1 class="animate-text">Winter- & Weihnachtsaktion 🎄</h1>
+
       <p>
-        Sichern Sie sich jetzt unser exklusives Frühlingsangebot! Lassen Sie
-        Ihr Fahrzeug mit unserer professionellen Autoaufbereitung in neuem
-        Glanz erstrahlen – perfekt für die neue Saison!
+        Verschenke Glanz statt Socken: Unsere <strong>CarClean Gutscheine</strong> sind die perfekte Geschenkidee.
+        Wähle einen Betrag oder eine Leistung – wir schicken den Gutschein bequem per E-Mail.
       </p>
-      <button class="spring-offer-btn animate-button" onclick="openSpringOfferForm()">Jetzt Angebot anfragen</button>
+
+      <ul class="offer-badges">
+        <li>✅ Gutschein per E-Mail (PDF)</li>
+        <li>✅ Frei wählbarer Betrag</li>
+        <li>✅ Einlösbar für alle Leistungen</li>
+        <li>✅ Abholservice möglich</li>
+      </ul>
+
+      <button class="winter-offer-btn animate-button" onclick="openWinterOfferForm()">
+        Gutschein bestellen
+      </button>
     </div>
+
     <!-- Popup-Formular -->
-    <div id="spring-offer-popup" class="popup">
+    <div id="winter-offer-popup" class="popup">
       <div class="popup-content">
-        <span class="close-popup" onclick="closeSpringOfferForm()">×</span>
-        <h2>Frühlingsangebot anfragen</h2>
-        <form onsubmit="sendMail(event)">
+        <span class="close-popup" onclick="closeWinterOfferForm()">×</span>
+        <h2>Gutschein bestellen</h2>
+
+        <form onsubmit="sendVoucherMail(event)">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Name" name="name" required />
+            <input type="text" class="form-control" placeholder="Ihr Name" name="name" required />
           </div>
+
           <div class="form-group">
-            <input type="email" class="form-control" placeholder="Email" name="email" required />
+            <input type="email" class="form-control" placeholder="E-Mail (für Gutschein)" name="email" required />
           </div>
+
           <div class="form-group">
-            <label for="service-select" class="form-label">Dienstleistung auswählen:</label>
-            <select id="service-select" class="form-control" name="service" required>
-              <option value="" disabled selected>Wählen Sie eine Dienstleistung</option>
-              <option value="Innenreinigung">Innenreinigung</option>
-              <option value="Außenreinigung">Außenreinigung</option>
-              <option value="Komplettreinigung">Komplettreinigung</option>
-              <option value="Lackpolitur">Lackpolitur</option>
-              <option value="Versiegelung">Versiegelung</option>
-              <option value="Motorreinigung">Motorreinigung</option>
+            <input type="tel" class="form-control" placeholder="Telefon (optional)" name="phone" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Gutscheinart:</label>
+            <select title="select" class="form-control" name="voucher_type" required>
+              <option value="" disabled selected>Bitte auswählen</option>
+              <option value="Betragsgutschein">Betragsgutschein</option>
+              <option value="Leistungsgutschein">Leistungsgutschein</option>
             </select>
           </div>
+
           <div class="form-group">
-            <textarea class="form-control" rows="5"
-              placeholder="Fahrzeugtyp oder spezielle Wünsche (z. B. 'SUV, Innenreinigung intensiv')"
-              name="message"></textarea>
+            <input type="text" class="form-control" placeholder="Betrag (z.B. 50€, 100€) oder gewünschte Leistung"
+              name="voucher_value" required />
           </div>
-          <button class="send-button" type="submit">Anfrage senden</button>
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Für wen ist der Gutschein? (optional)"
+              name="recipient" />
+          </div>
+
+          <div class="form-group">
+            <textarea class="form-control" rows="4"
+              placeholder="Wunschtext am Gutschein (optional) – z.B. 'Frohe Weihnachten!'" name="message"></textarea>
+          </div>
+
+          <p class="small-note">
+            Ablauf: Nach deiner Anfrage bekommst du eine Bestätigung + Zahlungsinfo.
+            Nach Zahlung senden wir den Gutschein als PDF per E-Mail.
+          </p>
+
+          <button class="send-button" type="submit">Bestellung senden</button>
         </form>
       </div>
     </div>
   </section>
+  <!-- Ende Gutschein-Aktion -->
 
   <div style="display: flex; justify-content: center">
     <h1>Services</h1>
   </div>
+
   <div id="service" class="wrapper">
     <div class="card">
       <img src="./img/pexels-tima-miroshnichenko-6873088.jpg" alt="KFZ-Reinigung" />
@@ -197,6 +278,7 @@
         <a href="./kfz-reinigung.html" class="btn">Read More</a>
       </div>
     </div>
+
     <div class="card">
       <img src="./img/microfiber-3789848_640.jpg" alt="Versiegelung" />
       <div class="info">
@@ -208,6 +290,7 @@
         <a href="./versiegelung.html" class="btn">Read More</a>
       </div>
     </div>
+
     <div class="card">
       <img src="./img/pexels-pixabay-159293.jpg" alt="Motorreinigung" />
       <div class="info">
@@ -220,6 +303,7 @@
         <a href="./motorreinigung.html" class="btn">Read More</a>
       </div>
     </div>
+
     <div class="card">
       <img src="./img/pexels-khunkorn-laowisit-5233261.jpg" alt="Lackpolitur" />
       <div class="info">
@@ -250,6 +334,7 @@
         Hause.
       </span>
     </div>
+
     <div class="right-section">
       <div class="button-container">
         <a href="https://www.facebook.com/share/bbG41wXmoRcbMgao/?mibextid=LQQJ4d" target="_blank" rel="noopener"
@@ -273,7 +358,6 @@
       </div>
     </div>
 
-    <!-- Neues div für die Google Maps -->
     <div class="map-container">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3195.4365098606795!2d12.17757837557385!3d47.59892987987244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477639a403366857%3A0xea387eaaea5da389!2sCar%20Clean!5e1!3m2!1sde!2sat!4v1727908236917!5m2!1sde!2sat"
@@ -470,6 +554,12 @@
       </div>
     </div>
   </footer>
+
+  <!-- Floating WhatsApp Button (immer sichtbar) -->
+  <a class="wa-float" href="https://wa.me/436606568206" target="_blank" rel="noopener"
+    aria-label="WhatsApp Chat starten">
+    <img src="./img/whatsapp.png" alt="WhatsApp" />
+  </a>
 </body>
 
 </html>

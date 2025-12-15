@@ -76,31 +76,33 @@ main {
 }
 
 /* =========================
-   Winter Offer Section
+   Winter Offer Section (BG bleibt fix)
 ========================= */
 
 .winter-offer {
   position: relative;
   min-height: 65vh;
-  /* statt 100vh */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: clamp(48px, 6vw, 90px) 16px;
   overflow: hidden;
 
-  background: url("./img/winter-gutschein.jpg") center / cover no-repeat;
+  /* BG – mit !important falls irgendwo überschrieben wird */
+  background-image: url("./img/winter-gutschein.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
 
-/* Overlay für Lesbarkeit */
 .winter-offer::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg,
-      rgba(10, 16, 28, 0.88) 0%,
-      rgba(10, 16, 28, 0.65) 55%,
-      rgba(10, 16, 28, 0.25) 100%);
+      rgba(10, 16, 28, .88) 0%,
+      rgba(10, 16, 28, .65) 55%,
+      rgba(10, 16, 28, .25) 100%);
   z-index: 0;
 }
 
@@ -112,20 +114,10 @@ main {
 
   padding: 32px 28px;
   border-radius: 18px;
-  background: rgba(0, 0, 0, 0.38);
+  background: rgba(0, 0, 0, .38);
 
-  /* Safari Fix */
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
-}
-
-.winter-offer-content h1 {
-  margin: 0 0 14px 0;
-}
-
-.winter-offer-content p {
-  margin: 0 0 22px 0;
-  line-height: 1.6;
 }
 
 .offer-badges {
@@ -138,145 +130,144 @@ main {
   color: burlywood;
 }
 
-.winter-offer-btn {
-  cursor: pointer;
-  display: inline-block;
-  margin-top: 10px;
-  padding: 14px 28px;
-}
-
 /* =========================
-   Popup: Gutschein-Form
+   Popup (clean + mobile safe)
 ========================= */
 
 #winter-offer-popup.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
   display: none;
-  /* JS schaltet auf flex */
-  align-items: center;
+  /* JS -> flex */
   justify-content: center;
-  padding: 16px;
-  background: rgba(0, 0, 0, 0.65);
+  align-items: center;
+  background: rgba(0, 0, 0, .65);
+  /* verhindert “Seite abgeschnitten” */
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 #winter-offer-popup .popup-content {
-  width: min(560px, 92vw);
-  padding: 28px;
+  position: relative;
+  /* wichtig für close button */
+  width: min(560px, 96vw);
+  max-height: 92dvh;
+  /* mobile address bar safe */
+  overflow: hidden;
+
+  background: #fff;
   border-radius: 18px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .35);
 
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  /* gleichmäßige Abstände */
 }
 
-/* ✅ FORM: optisch mittig */
+/* Header */
+#winter-offer-popup h2 {
+  margin: 0;
+  padding: 18px 18px 14px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, .08);
+}
+
+/* Close */
+#winter-offer-popup .close-popup {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Form scrollt innerhalb der Box */
 #winter-offer-popup form {
+  padding: 16px 18px 18px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 12px;
 }
 
-/* Form-Groups sauber + zentriert + gleiche Breite */
+/* Gruppen – gleich breit, sauber */
 #winter-offer-popup .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-
   width: 100%;
   max-width: 420px;
   margin: 0 auto;
 }
 
-#winter-offer-popup .form-label {
-  display: block;
-  margin-left: 2px;
-  text-align: left;
-  width: 100%;
-}
-
-/* Inputs + Select sichtbar & einheitlich */
+/* Inputs: nicht “zu hoch” und modern */
 #winter-offer-popup .form-control {
   width: 100%;
   box-sizing: border-box;
-  padding: 13px 14px;
+  padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  background: #fff;
+  border: 1px solid rgba(0, 0, 0, .14);
+  background: #f7f7f8;
   color: #111;
   font-family: inherit;
   font-size: 15.5px;
+}
+
+/* Label */
+#winter-offer-popup .form-label {
+  display: block;
+  margin: 0 0 6px 2px;
   text-align: left;
 }
 
-/* Select fix */
+/* ✅ SELECT FIX (damit "Bitte auswählen" sichtbar ist) */
 #winter-offer-popup select.form-control {
-  appearance: auto;
-  -webkit-appearance: menulist;
-  -moz-appearance: menulist;
+  background: #f7f7f8;
+  color: #111;
 }
 
+/* Wenn noch nichts gewählt: graue Placeholder-Farbe */
+#winter-offer-popup select.form-control:required:invalid {
+  color: #6b7280;
+}
+
+/* Option Styling (nicht überall möglich, aber schadet nicht) */
 #winter-offer-popup select.form-control option {
   color: #111;
-  background: #fff;
 }
 
-/* Hinweistext ebenfalls im gleichen Raster + zentriert */
+/* Hinweistext */
 #winter-offer-popup .small-note {
   max-width: 420px;
-  margin: 12px auto 0 auto;
+  margin: 2px auto 0;
+  text-align: center;
   font-size: 13.5px;
   line-height: 1.45;
-  opacity: 0.85;
-  text-align: center;
-
-  /* ✅ Mobile: Platz, damit Sticky-Button nichts überdeckt */
-  padding-bottom: 10px;
+  opacity: .85;
 }
 
-/* Button exakt mittig */
+/* Button: immer erreichbar, normal (kein sticky-chaos) */
 #winter-offer-popup .send-button {
-  margin-top: 14px;
-  align-self: center;
-  min-width: 220px;
-}
-
-.close-popup {
-  cursor: pointer;
-}
-
-/* =========================
-   ✅ Mobile Fix: Button sichtbar (Popup scrollt)
-========================= */
-
-#winter-offer-popup.popup {
-  align-items: flex-start;
-  /* mobile: oben starten */
-  overflow-y: auto;
-  /* overlay scrollt */
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: calc(16px + env(safe-area-inset-bottom));
-}
-
-#winter-offer-popup .popup-content {
-  max-height: calc(100dvh - 32px);
-  /* mobile address bar safe */
-  overflow-y: auto;
-  /* box scrollt wenn nötig */
-  -webkit-overflow-scrolling: touch;
-}
-
-#winter-offer-popup .send-button {
-  position: sticky;
-  bottom: 0;
   width: 100%;
   max-width: 420px;
+  margin: 6px auto 0;
   padding: 14px 18px;
-  z-index: 2;
+  border-radius: 12px;
 }
 
+/* Mobile Feinschliff */
 @media (max-width: 420px) {
-  #winter-offer-popup .popup-content {
-    padding: 20px;
+  #winter-offer-popup.popup {
+ 
+  }
+
+  #winter-offer-popup h2 {
+    padding: 16px 14px 12px;
+  }
+
+  #winter-offer-popup form {
+    padding: 14px;
+    gap: 10px;
   }
 }
 

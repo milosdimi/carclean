@@ -221,5 +221,18 @@ function handleScrollAnimation() {
   }
 }
 
+
+
 window.addEventListener("scroll", handleScrollAnimation);
 document.addEventListener("DOMContentLoaded", handleScrollAnimation);
+
+function openWinterOfferForm() {
+  document.getElementById("winter-offer-popup").style.display = "flex";
+  document.body.style.overflow = "hidden";
+}
+
+function closeWinterOfferForm() {
+  document.getElementById("winter-offer-popup").style.display = "none";
+  document.body.style.overflow = "";
+}
+

@@ -11,6 +11,42 @@ function closeMenu() {
   if (menu) menu.style.width = "0";
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  // Slider starten
+  startSlider();
+
+  // Menü-Buttons
+  document.getElementById("menu-toggle")?.addEventListener("click", showMenu);
+  document.getElementById("menu-close")?.addEventListener("click", closeMenu);
+
+  // Scroll Reveal: about-text und service-list einzeln beobachten
+  const revealObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.25,
+    rootMargin: "0px 0px -60px 0px" // 60px vor dem unteren Rand triggern
+  });
+
+  document.querySelectorAll(
+    ".about-text, .service-list, .spring-offer-content, .wrapper, .connect-text, .connect-buttons, .connect-map, .gallery-block, .contact-form, .contact-info"
+  ).forEach(el => revealObserver.observe(el));
+
+  // Kontaktformular
+  document.getElementById("contact-form")?.addEventListener("submit", sendMail);
+
+  // Frühjahrs-Aktion Popup
+  document.getElementById("spring-offer-open")?.addEventListener("click", openSpringOffer);
+  document.getElementById("spring-offer-close")?.addEventListener("click", closeSpringOffer);
+  document.getElementById("spring-offer-popup")?.addEventListener("click", (e) => {
+    if (e.target === e.currentTarget) closeSpringOffer(); // Klick außerhalb schließt Popup
+  });
+});
+
 // =====================
 // Slider (nur wenn vorhanden)
 // =====================
@@ -257,23 +293,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =====================
-// Scroll-Animation Winteraktion (nur wenn vorhanden)
+// Frühjahrs-Aktion Popup
 // =====================
-function isElementInViewport(el) {
-  const rect = el.getBoundingClientRect();
-  return rect.top <= window.innerHeight && rect.bottom >= 0;
+function openSpringOffer() {
+  const popup = document.getElementById("spring-offer-popup");
+  if (!popup) return;
+  popup.classList.add("is-open");
+  document.body.style.overflow = "hidden";
 }
 
-function handleScrollAnimation() {
-  const section = document.querySelector("#winter-offer");
-  if (!section || section.classList.contains("animated")) return;
-
-  if (isElementInViewport(section)) {
-    section.classList.add("animated");
-    section.querySelector(".animate-text")?.style.setProperty("animation-play-state", "running");
-    section.querySelector(".animate-button")?.style.setProperty("animation-play-state", "running");
-  }
+function closeSpringOffer() {
+  const popup = document.getElementById("spring-offer-popup");
+  if (!popup) return;
+  popup.classList.remove("is-open");
+  document.body.style.overflow = "";
 }
-
-window.addEventListener("scroll", handleScrollAnimation);
-document.addEventListener("DOMContentLoaded", handleScrollAnimation);

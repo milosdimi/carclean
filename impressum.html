@@ -22,12 +22,6 @@
   <meta property="og:locale" content="de_AT" />
   <meta property="og:site_name" content="CarClean Kufstein" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Impressum | CarClean Kufstein" />
-  <meta name="twitter:description" content="Anbieterinformationen und rechtliche Angaben von CarClean Kufstein." />
-  <meta name="twitter:image" content="https://carclean.cc/img/logocc.png" />
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,122 +40,83 @@
 
   <!-- Theme -->
   <meta name="theme-color" content="#0b1220" />
-
-  <!-- Optional (wenn du es im Index auch drin hast) -->
   <meta name="format-detection" content="telephone=no" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- Scripts -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 
-
 <body>
   <header>
-    <div>
-      <a href="./index.html">
-        <img class="logo" src="./img/logocc1.png" alt="CarClean-Logo" />
-      </a>
-    </div>
+    <a href="./index.html">
+      <img class="logo" src="./img/logocc1.png" alt="CarClean-Logo" />
+    </a>
     <nav>
       <ul class="menu">
         <li><a href="./index.html">Home</a></li>
-        <li><a href="./index.html">Leistungen</a></li>
-        <li><a href="#contact">Kontakt</a></li>
+        <li><a href="./index.html#service">Leistungen</a></li>
+        <li><a href="./galerie.html">Galerie</a></li>
+        <li><a href="./vornach.html">Vor-Nach</a></li>
+        <li><a href="./index.html#contact">Kontakt</a></li>
       </ul>
-      <span class="menu-mobile" onclick="showMenu()">☰</span>
-      <div id="menuoverlay" class="overlay-menu">
-        <a href="./index.html">Start</a>
-        <a href="./index.html#service">Leistungen</a>
-        <a href="./galerie.html">Galerie</a>
-        <a href="./vornach.html">Vor-Nach Fotos</a>
-        <a href="./index.html#contact">Kontakt</a>
-        <button onclick="closeMenu()">Schließen</button>
-      </div>
+      <button class="menu-mobile" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
     </nav>
   </header>
 
-  <h4>Impressum</h4>
-  <p>
-    <strong>Informationen und Offenlegung gemäß §5 (1) ECG, § 25 MedienG, § 63 GewO
-      und § 14 UGB</strong>
-  </p>
+  <div id="menuoverlay" class="overlay-menu" role="dialog" aria-label="Navigation">
+    <a href="./index.html">Start</a>
+    <a href="./index.html#service">Leistungen</a>
+    <a href="./galerie.html">Galerie</a>
+    <a href="./vornach.html">Vor-Nach Fotos</a>
+    <a href="./index.html#contact">Kontakt</a>
+    <button id="menu-close">Schließen</button>
+  </div>
 
-  <p><strong>Webseitenbetreiber:</strong> Goran Veselinovic</p>
-  <p><strong>Anschrift:</strong> KaiserjägerStr 26, 6330 Kufstein</p>
-  <p><strong>UID-Nr:</strong> ATU 67722501</p>
-  <p>
-    <strong>Gewerbeaufsichtsbehörde:</strong> Bezirkshauptmannschaft Kufstein
-  </p>
+  <main class="legal-page">
+    <div class="legal-container">
 
-  <p>
-    <strong>Kontaktdaten:</strong><br />
-    Telefon: 06606568206<br />
-    Email: <a href="mailto:carclean@kufnet.at">carclean@kufnet.at</a><br />
-    Fax: [Hier bitte die Faxnummer angeben]
-  </p>
+      <h1 class="legal-title">Impressum</h1>
+      <p class="legal-subtitle">Informationen und Offenlegung gemäß §5 (1) ECG, § 25 MedienG, § 63 GewO und § 14 UGB</p>
 
-  <p>
-    <strong>Anwendbare Rechtsvorschrift:</strong>
-    <a href="http://www.ris.bka.gv.at">www.ris.bka.gv.at</a>
-  </p>
+      <div class="legal-contact">
+        <p><strong>Webseitenbetreiber:</strong> Goran Veselinovic</p>
+        <p><strong>Anschrift:</strong> KaiserjägerStr 26, 6330 Kufstein</p>
+        <p><strong>UID-Nr:</strong> ATU 67722501</p>
+        <p><strong>Gewerbeaufsichtsbehörde:</strong> Bezirkshauptmannschaft Kufstein</p>
+        <p><strong>Telefon:</strong> <a href="tel:+436606568206">+43 660 65 68 206</a></p>
+        <p><strong>E-Mail:</strong> <a href="mailto:carclean@kufnet.at">carclean@kufnet.at</a></p>
+      </div>
 
-  <p>
-    <strong>Berufsbezeichnung:</strong> [Hier bitte die Berufsbezeichnung
-    angeben]
-  </p>
+      <h2>Anwendbare Rechtsvorschrift</h2>
+      <p><a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener">www.ris.bka.gv.at</a></p>
 
-  <p>
-    <strong>Online Streitbeilegung:</strong> Verbraucher, die in Österreich
-    oder in einem sonstigen Vertragsstaat der ODR-VO niedergelassen sind,
-    haben die Möglichkeit, Probleme bezüglich dem entgeltlichen Kauf von Waren
-    oder Dienstleistungen im Rahmen einer Online-Streitbeilegung (nach OS,
-    AStG) zu lösen. Die Europäische Kommission stellt eine Plattform hierfür
-    bereit:
-    <a href="https://ec.europa.eu/consumers/odr">https://ec.europa.eu/consumers/odr</a>
-  </p>
+      <h2>Online Streitbeilegung</h2>
+      <p>Verbraucher, die in Österreich oder in einem sonstigen Vertragsstaat der ODR-VO niedergelassen sind, haben die Möglichkeit, Probleme bezüglich dem entgeltlichen Kauf von Waren oder Dienstleistungen im Rahmen einer Online-Streitbeilegung (nach OS, AStG) zu lösen. Die Europäische Kommission stellt eine Plattform hierfür bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr</a></p>
 
-  <p>
-    <strong>Urheberrecht:</strong> Die Inhalte dieser Webseite unterliegen,
-    soweit dies rechtlich möglich ist, diversen Schutzrechten (z.B. dem
-    Urheberrecht). Jegliche Verwendung/Verbreitung von bereitgestelltem
-    Material, die urheberrechtlich untersagt ist, bedarf schriftlicher
-    Zustimmung des Webseitenbetreibers.
-  </p>
+      <h2>Urheberrecht</h2>
+      <p>Die Inhalte dieser Webseite unterliegen, soweit dies rechtlich möglich ist, diversen Schutzrechten (z.B. dem Urheberrecht). Jegliche Verwendung/Verbreitung von bereitgestelltem Material, die urheberrechtlich untersagt ist, bedarf schriftlicher Zustimmung des Webseitenbetreibers.</p>
 
-  <p>
-    <strong>Haftungsausschluss:</strong> Trotz sorgfältiger inhaltlicher
-    Kontrolle übernimmt der Webseitenbetreiber dieser Webseite keine Haftung
-    für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind
-    ausschließlich deren Betreiber verantwortlich. Sollten Sie dennoch auf
-    ausgehende Links aufmerksam werden, die auf eine Webseite mit
-    rechtswidriger Tätigkeit/Information verweisen, ersuchen wir um einen
-    entsprechenden Hinweis, um diese nach § 17 Abs. 2 ECG umgehend zu
-    entfernen. Die Urheberrechte Dritter werden vom Betreiber dieser Webseite
-    mit größter Sorgfalt beachtet. Sollten Sie trotzdem auf eine
-    Urheberrechtsverletzung aufmerksam werden, bitten wir um einen
-    entsprechenden Hinweis. Bei Bekanntwerden derartiger Rechtsverletzungen
-    werden wir den betroffenen Inhalt umgehend entfernen.
-  </p>
+      <h2>Haftungsausschluss</h2>
+      <p>Trotz sorgfältiger inhaltlicher Kontrolle übernimmt der Webseitenbetreiber dieser Webseite keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich. Sollten Sie dennoch auf ausgehende Links aufmerksam werden, die auf eine Webseite mit rechtswidriger Tätigkeit/Information verweisen, ersuchen wir um einen entsprechenden Hinweis, um diese nach § 17 Abs. 2 ECG umgehend zu entfernen. Die Urheberrechte Dritter werden vom Betreiber dieser Webseite mit größter Sorgfalt beachtet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden derartiger Rechtsverletzungen werden wir den betroffenen Inhalt umgehend entfernen.</p>
 
-  <p>
-    Quelle:
-    <strong><a href="https://www.fairesrecht.at/">fairesRecht.at</a></strong>
-  </p>
+      <p>Quelle: <a href="https://www.fairesrecht.at/" target="_blank" rel="noopener">fairesRecht.at</a></p>
 
-  <!-- Cookies -->
-  <div id="cookie-banner" class="cookie-banner" style="display: none">
-    <p>
-      Wir verwenden Cookies, um Ihre Erfahrung auf unserer Webseite zu
-      verbessern. Sie können die Nutzung von Cookies akzeptieren oder
-      ablehnen. Mehr Informationen finden Sie in unserer
-      <a href="datenschutz.html">Datenschutzerklärung</a>.
-    </p>
-    <button id="accept-cookies" class="accept-cookies-btn">
-      Akzeptieren
-    </button>
-    <button id="decline-cookies" class="decline-cookies-btn">Ablehnen</button>
+    </div>
+  </main>
+
+  <!-- Cookie-Banner -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen" style="display: none">
+    <div class="cookie-inner">
+      <div class="cookie-text">
+        <span class="cookie-icon">🍪</span>
+        <p>Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. <a href="datenschutz.html">Mehr erfahren</a></p>
+      </div>
+      <div class="cookie-actions">
+        <button id="decline-cookies" class="cookie-btn cookie-btn--ghost">Ablehnen</button>
+        <button id="accept-cookies" class="cookie-btn cookie-btn--primary">Akzeptieren</button>
+      </div>
+    </div>
   </div>
 
   <footer class="footer">
@@ -246,7 +201,8 @@
       </div>
     </div>
   </footer>
-  <!-- Floating WhatsApp Button (immer sichtbar) -->
+
+  <!-- Floating WhatsApp Button -->
   <a class="wa-float" href="https://wa.me/436606568206" target="_blank" rel="noopener"
     aria-label="WhatsApp Chat starten">
     <img src="./img/whatsapp.png" alt="WhatsApp" />

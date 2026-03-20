@@ -112,10 +112,9 @@ main {
   justify-content: center;
   padding: clamp(48px, 6vw, 90px) 16px;
   overflow: hidden;
-  background: linear-gradient(135deg,
-    #061a0e 0%,
-    #0b1220 45%,
-    #07180d 100%);
+  background:
+    linear-gradient(rgba(6, 26, 14, 0.65), rgba(11, 18, 32, 0.75)),
+    url('./img/angebot.jpg') no-repeat center center / cover;
 }
 
 .spring-offer::before {
@@ -377,6 +376,25 @@ main {
 
   .spring-offer-content {
     padding: 28px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .spring-offer {
+    min-height: 100dvh;
+    align-items: flex-start;
+    padding: 80px 12px 60px;
+    background:
+      linear-gradient(135deg, #061a0e 0%, #0b1220 45%, #07180d 100%);
+  }
+
+  .spring-offer-content {
+    padding: 24px 16px 32px;
+    width: 100%;
+  }
+
+  .spring-offer-content h2 {
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
   }
 }
 
@@ -1522,6 +1540,64 @@ a:hover {
 }
 
 /* Galerie ende*/
+
+/* ===================== */
+/* Subpage Layout        */
+/* (Galerie, Vor-Nach)   */
+/* ===================== */
+
+.subpage-main {
+  padding-top: 100px;
+  min-height: 70vh;
+}
+
+.subpage-hero {
+  text-align: center;
+  padding: 48px 5% 40px;
+}
+
+.subpage-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.subpage-subtitle {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.subpage-back {
+  text-align: center;
+  padding: 48px 0 64px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+.back-btn:hover {
+  background: rgba(44, 58, 130, 0.2);
+  border-color: rgba(44, 58, 130, 0.5);
+  color: #fff;
+  transform: translateX(-4px);
+}
+
 /* Galerie 2*/
 .imgcontainer {
   display: flex;
@@ -2240,61 +2316,152 @@ hr {
 
 /*Footer ende*/
 
+/* ===================== */
+/* Legal Pages           */
+/* (Datenschutz, Impressum) */
+/* ===================== */
+
+.legal-page {
+  padding: 120px 5% 80px;
+  min-height: 70vh;
+}
+
+.legal-container {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.legal-title {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.legal-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: #2c3a82;
+  border-radius: 2px;
+}
+
+.legal-subtitle {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 0 40px;
+}
+
+/* Danke-Seite */
+.thankyou-container {
+  text-align: center;
+}
+
+.thankyou-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2c3a82, #1a8cff);
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 24px;
+  box-shadow: 0 0 32px rgba(44, 58, 130, 0.5);
+}
+
+.thankyou-container .legal-contact {
+  text-align: left;
+}
+
+.legal-container h2 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 36px 0 12px;
+  padding-left: 12px;
+  border-left: 3px solid #2c3a82;
+}
+
+.legal-container p {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.85;
+  margin-bottom: 14px;
+}
+
+.legal-container ul {
+  margin: 0 0 16px 0;
+  padding-left: 22px;
+}
+
+.legal-container ul li {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.85;
+  margin-bottom: 4px;
+}
+
+.legal-container a {
+  color: #6c8cff;
+  text-decoration: none;
+  word-break: break-all;
+  transition: color 0.2s;
+}
+
+.legal-container a:hover {
+  color: #fff;
+}
+
+.legal-contact {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid #2c3a82;
+  border-radius: 0 12px 12px 0;
+  padding: 20px 24px;
+  margin-top: 8px;
+}
+
+.legal-contact p {
+  margin-bottom: 8px;
+}
+
+.legal-contact p:last-child {
+  margin-bottom: 0;
+}
+
 /*kfz-reinigung*/
-.hintergrund-div {
+.hintergrund-div,
+.hintergrund_versiegelung,
+.hintergrund_motorreinigung,
+.hintergrund_lackpolitur {
   width: 100%;
-  /* Breite des divs */
-  height: 650px;
-  /* Höhe des divs */
-  background-image: url("./img/pexels-tima-miroshnichenko-6873088.jpg");
-  /* Pfad zum Bild */
+  height: 600px;
   background-size: cover;
-  /* Das Bild wird so skaliert, dass es den ganzen Bereich des Divs abdeckt */
   background-position: center;
-  /* Das Bild wird zentriert positioniert */
-  /* Weitere Stilattribute nach Bedarf */
+  margin-top: 70px;
+}
+
+.hintergrund-div {
+  background-image: url("./img/pexels-tima-miroshnichenko-6873088.jpg");
 }
 
 .hintergrund_versiegelung {
-  width: 100%;
-  /* Breite des divs */
-  height: 650px;
-  /* Höhe des divs */
   background-image: url("./img/microfiber-3789848_640.jpg");
-  /* Pfad zum Bild */
-  background-size: cover;
-  /* Das Bild wird so skaliert, dass es den ganzen Bereich des Divs abdeckt */
-  background-position: center;
-  /* Das Bild wird zentriert positioniert */
-  /* Weitere Stilattribute nach Bedarf */
 }
 
 .hintergrund_motorreinigung {
-  width: 100%;
-  /* Breite des divs */
-  height: 650px;
-  /* Höhe des divs */
   background-image: url("./img/pexels-pixabay-159293.jpg");
-  /* Pfad zum Bild */
-  background-size: cover;
-  /* Das Bild wird so skaliert, dass es den ganzen Bereich des Divs abdeckt */
-  background-position: center;
-  /* Das Bild wird zentriert positioniert */
-  /* Weitere Stilattribute nach Bedarf */
 }
 
 .hintergrund_lackpolitur {
-  width: 100%;
-  /* Breite des divs */
-  height: 650px;
-  /* Höhe des divs */
   background-image: url("./img/pexels-khunkorn-laowisit-5233261.jpg");
-  /* Pfad zum Bild */
-  background-size: cover;
-  /* Das Bild wird so skaliert, dass es den ganzen Bereich des Divs abdeckt */
-  background-position: center;
-  /* Das Bild wird zentriert positioniert */
-  /* Weitere Stilattribute nach Bedarf */
 }
 
 .line_div {
@@ -2468,270 +2635,6 @@ p {
   }
 }
 
-/* Frühlingsangebot-Sektion */
-.spring-offer {
-  position: relative;
-  background: url('./img/angebot.jpg') no-repeat center center/cover;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #000000;
-  margin: 40px 0;
-}
-
-.spring-offer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  /* Dunkle Überlagerung für bessere Lesbarkeit */
-  z-index: 1;
-}
-
-.spring-offer-content {
-  position: relative;
-  z-index: 2;
-  padding: 20px;
-}
-
-.spring-offer-content h1 {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
-
-.spring-offer-content p {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-}
-
-.spring-offer-btn {
-  background-color: #ff6200;
-  /* Orange, passend zu deinem Branding */
-  color: #fff;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 1.1rem;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.spring-offer-btn:hover {
-  background-color: #e55a00;
-}
-
-/* Popup-Formular */
-.popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-}
-
-.popup-content {
-  background: #bbbbbb;
-  padding: 30px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 500px;
-  position: relative;
-}
-
-.close-popup {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #333;
-}
-
-.popup-content h2 {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.popup-content .form-group {
-  margin-bottom: 15px;
-}
-
-.popup-content .form-control {
-  width: 100%;
-  padding: 10px;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.popup-content .send-button {
-  background-color: #ff6200;
-  color: #000000;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 1.1rem;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-}
-
-.popup-content .send-button:hover {
-  background-color: #e55a00;
-}
-
-/* Stil für das Label des Dropdowns */
-.form-label {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 1rem;
-  color: #333;
-  display: block;
-  margin-bottom: 5px;
-}
-
-/* Stil für das Dropdown-Menü */
-#service-select {
-  background-color: #f5f5f5;
-  /* Helle graue Hintergrundfarbe */
-  color: #333;
-  /* Dunkle Textfarbe für bessere Lesbarkeit */
-  font-family: 'Unbounded', sans-serif;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  width: 100%;
-}
-
-/* Stil für die Optionen im Dropdown */
-#service-select option {
-  background-color: #fff;
-  /* Weißer Hintergrund für die Optionen */
-  color: #333;
-  /* Dunkle Textfarbe */
-  font-family: 'Unbounded', sans-serif;
-}
-
-/* Sicherstellen, dass der Button initial sichtbar ist */
-.spring-offer-btn {
-  background-color: #ff6200;
-  /* Orange, passend zu deinem Branding */
-  color: #fff;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 1.1rem;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  opacity: 1;
-  /* Standard-Sichtbarkeit */
-  animation: glowPulse 2s infinite ease-in-out;
-  animation-delay: 1.7s;
-  /* Startet nach der popAndGlow-Animation */
-}
-
-/* Animation für die Überschrift */
-.animate-text {
-  opacity: 0;
-  transform: scale(0.8);
-  animation: popAndColor 1.2s ease-in-out forwards;
-  animation-play-state: paused;
-  /* Animation startet erst, wenn sie ausgelöst wird */
-}
-
-/* Animation für den Button */
-.animate-button {
-  opacity: 0;
-  transform: scale(0.8);
-  animation: popAndGlow 1.2s ease-in-out forwards;
-  animation-delay: 0.5s;
-  /* Verzögerung, damit der Button nach der Überschrift erscheint */
-  animation-play-state: paused;
-}
-
-/* Keyframes für die Überschrift: Pop-Effekt mit Farbwechsel */
-@keyframes popAndColor {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-    color: #fff;
-    /* Startfarbe: Weiß */
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-    /* Überschreitet die normale Größe für einen "Pop"-Effekt */
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    color: #ff6200;
-    /* Endfarbe: Orange */
-  }
-}
-
-/* Keyframes für den Button: Pop-Effekt mit Leuchten */
-@keyframes popAndGlow {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-    box-shadow: none;
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-    box-shadow: 0 0 15px rgba(255, 98, 0, 0.7);
-    /* Leuchtender Schatten */
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    box-shadow: 0 0 10px rgba(255, 98, 0, 0.5);
-    /* Subtiler Leuchteffekt am Ende */
-  }
-}
-
-/* Pulsierender Leuchteffekt für den Button */
-@keyframes glowPulse {
-  0% {
-    box-shadow: 0 0 10px rgba(255, 98, 0, 0.5);
-  }
-
-  50% {
-    box-shadow: 0 0 20px rgba(255, 98, 0, 0.8);
-  }
-
-  100% {
-    box-shadow: 0 0 10px rgba(255, 98, 0, 0.5);
-  }
-}
-
-/* Hover-Effekt für den Button */
-.spring-offer-btn:hover {
-  background-color: #e55a00;
-}
-
 /* Media Queries für responsives Design */
 
 @media screen and (max-width: 320px) {
@@ -2903,24 +2806,6 @@ p {
   }
 }
 
-/* Media Query für mobile Geräte (max-width: 768px) */
-@media (max-width: 768px) {
-  .spring-offer-content h1 {
-    font-size: 1.8rem;
-    /* Reduziert von 2.5rem auf 1.8rem */
-  }
-
-  .spring-offer-content p {
-    font-size: 1rem;
-    /* Reduziert von 1.2rem auf 1rem */
-  }
-
-  /* Optional: Anpassen des Padding für kleinere Bildschirme */
-  .spring-offer-content {
-    padding: 15px;
-    /* Etwas weniger Padding für mobile Geräte */
-  }
-}
 
 
 @media screen and (max-width: 700px) and (min-width: 481px) {

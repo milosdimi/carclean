@@ -49,97 +49,68 @@
 
   <!-- Theme -->
   <meta name="theme-color" content="#0b1220" />
-
-  <!-- Optional -->
   <meta name="format-detection" content="telephone=no" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- Scripts -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 
-
-<body onload="loadvor()">
+<body>
   <header>
-    <div>
-      <a href="./index.html"><img class="logo" src="./img/logocc1.png" alt="CarClean kufstein logo" /></a>
-    </div>
+    <a href="./index.html">
+      <img class="logo" src="./img/logocc1.png" alt="CarClean-Logo" />
+    </a>
     <nav>
       <ul class="menu">
         <li><a href="./index.html">Home</a></li>
-        <li><a href="#service">Leistungen</a></li>
-        <li><a href="#contact">Kontakt</a></li>
+        <li><a href="./index.html#service">Leistungen</a></li>
+        <li><a href="./galerie.html">Galerie</a></li>
+        <li><a href="./vornach.html" aria-current="page">Vor-Nach</a></li>
+        <li><a href="./index.html#contact">Kontakt</a></li>
       </ul>
-      <span class="menu-mobile" onclick="showMenu()">☰</span>
-      <div id="menuoverlay" class="overlay-menu">
-        <a href="./index.html">Start</a>
-        <a href="./index.html#service">Leistungen</a>
-        <a href="./galerie.html">Galerie</a>
-        <a href="./vornach.html">Vor-Nach Fotos</a>
-        <a href="./index.html#contact">Kontakt</a>
-        <button onclick="closeMenu()">Schließen</button>
-      </div>
+      <button class="menu-mobile" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
     </nav>
   </header>
 
-  <!-- MAIN -->
-  <main class="vornach-page">
+  <div id="menuoverlay" class="overlay-menu" role="dialog" aria-label="Navigation">
+    <a href="./index.html">Start</a>
+    <a href="./index.html#service">Leistungen</a>
+    <a href="./galerie.html">Galerie</a>
+    <a href="./vornach.html">Vor-Nach Fotos</a>
+    <a href="./index.html#contact">Kontakt</a>
+    <button id="menu-close">Schließen</button>
+  </div>
 
-    <!-- SEO INTRO -->
-    <section class="vornach-intro">
-      <h1>Vorher–Nachher Autoaufbereitung in Kufstein</h1>
-      <p>
-        Auf dieser Seite sehen Sie <strong>echte Vorher–Nachher Ergebnisse</strong> unserer
-        professionellen Autoaufbereitung in <strong>Kufstein & Tirol</strong>.
-        Ob Innenreinigung, Lackpolitur oder Versiegelung – unsere Arbeit spricht für sich.
-      </p>
-    </section>
+  <main class="subpage-main">
 
-    <!-- GALERIE -->
-    <div class="imgcontainer" id="images"></div>
+    <div class="subpage-hero">
+      <h1 class="subpage-title">Vorher – <span class="highlight">Nachher</span></h1>
+      <p class="subpage-subtitle">Echte Ergebnisse unserer professionellen Autoaufbereitung in Kufstein & Tirol</p>
+    </div>
 
-    <!-- VERTRAUEN + SEO TEXT -->
-    <section class="vornach-text">
-      <h2>Sichtbare Ergebnisse statt leere Versprechen</h2>
+    <div class="imgcontainer" id="images" data-gallery="vornach"></div>
 
-      <p>
-        Jedes Fahrzeug wird individuell behandelt. Unsere Vorher–Nachher Bilder zeigen
-        reale Ergebnisse – ohne Filter, ohne Tricks. Von stark verschmutzten Innenräumen
-        bis hin zu glänzendem Lack nach einer professionellen Aufbereitung.
-      </p>
-
-      <p>
-        Interessiert an unseren Leistungen?
-        Erfahren Sie mehr über unsere
-        <a href="./kfz-reinigung.html">KFZ-Reinigung</a>,
-        <a href="./lackpolitur.html">Lackpolitur</a> oder
-        <a href="./versiegelung.html">Lackversiegelung</a>.
-      </p>
-
-      <a href="./index.html#contact" class="send-button">
-        Jetzt Termin anfragen
-      </a>
-    </section>
+    <div class="subpage-back">
+      <a href="./index.html" class="back-btn">← Zurück zur Hauptseite</a>
+    </div>
 
   </main>
 
-  <!-- MODAL -->
-  <div id="openimg" class="d-none"></div>
+  <div class="image d-none" id="openimg"></div>
 
-
-  <!-- Cookies -->
-  <div id="cookie-banner" class="cookie-banner" style="display: none">
-    <p>
-      Wir verwenden Cookies, um Ihre Erfahrung auf unserer Webseite zu
-      verbessern. Sie können die Nutzung von Cookies akzeptieren oder
-      ablehnen. Mehr Informationen finden Sie in unserer
-      <a href="datenschutz.html">Datenschutzerklärung</a>.
-    </p>
-    <button id="accept-cookies" class="accept-cookies-btn">
-      Akzeptieren
-    </button>
-    <button id="decline-cookies" class="decline-cookies-btn">Ablehnen</button>
+  <!-- Cookie-Banner -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen" style="display: none">
+    <div class="cookie-inner">
+      <div class="cookie-text">
+        <span class="cookie-icon">🍪</span>
+        <p>Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. <a href="datenschutz.html">Mehr erfahren</a></p>
+      </div>
+      <div class="cookie-actions">
+        <button id="decline-cookies" class="cookie-btn cookie-btn--ghost">Ablehnen</button>
+        <button id="accept-cookies" class="cookie-btn cookie-btn--primary">Akzeptieren</button>
+      </div>
+    </div>
   </div>
 
   <footer class="footer">
@@ -158,16 +129,22 @@
             <ul class="contact-list">
               <li>
                 <i><img src="./img/gps.png" alt="GPS-Icon" /></i>
-                <span class="contact-text"><a href="https://maps.app.goo.gl/DPDSxfMkDGzxPVxH7" target="_blank"
-                    rel="noopener noreferrer">Kufstein, 6330, Untere Sparchen 18</a></span>
+                <span class="contact-text">
+                  <a href="https://maps.app.goo.gl/DPDSxfMkDGzxPVxH7" target="_blank"
+                    rel="noopener noreferrer">Kufstein, 6330, Untere Sparchen 18</a>
+                </span>
               </li>
               <li>
                 <i><img src="./img/telephone-call.png" alt="Telefon-Icon" /></i>
-                <span class="contact-text"><a href="tel:+436606568206"><span>0660 65 68 206</span></a></span>
+                <span class="contact-text">
+                  <a href="tel:+436606568206">+43 660 65 68 206</a>
+                </span>
               </li>
               <li>
-                <i><img src="./img/email.png" alt="Mail-Icon" /></i>
-                <span class="contact-text"><a href="mailto:carclean@kufnet.at">carclean@kufnet.at</a></span>
+                <i><img src="./img/email.png" alt="E-Mail-Icon" /></i>
+                <span class="contact-text">
+                  <a href="mailto:carclean@kufnet.at">carclean@kufnet.at</a>
+                </span>
               </li>
             </ul>
           </div>
@@ -179,7 +156,7 @@
               <li>
                 <a href="https://www.facebook.com/carcleankufstein/?mono_donottrack=false" target="_blank"
                   rel="noopener">
-                  <img src="./img/facebook.png" alt="Facebook Logo" />
+                  <img src="./img/facebook.png" alt="Facebook-Logo" />
                 </a>
               </li>
               <li>
@@ -201,10 +178,10 @@
           <div class="footer__nav">
             <ul class="footer__nav-list">
               <li class="footer__nav-item">
-                <a href="impressum.html" class="footer__nav-link">Impressum</a>
+                <a href="./impressum.html" class="footer__nav-link">Impressum</a>
               </li>
               <li class="footer__nav-item">
-                <a href="datenschutz.html" class="footer__nav-link">Datenschutz</a>
+                <a href="./datenschutz.html" class="footer__nav-link">Datenschutz</a>
               </li>
             </ul>
           </div>
@@ -212,13 +189,14 @@
       </div>
       <div class="footer__copyrights">
         <div class="copyright">
-          &copy; ALL OF THE RIGHTS RESERVED | made by
-          <a href="https://www.dimit.cc/"> dimit </a>
+          &copy; ALL RIGHTS RESERVED | made by
+          <a href="https://www.dimit.cc/">dimit</a>
         </div>
       </div>
     </div>
   </footer>
-  <!-- Floating WhatsApp Button (immer sichtbar) -->
+
+  <!-- Floating WhatsApp Button -->
   <a class="wa-float" href="https://wa.me/436606568206" target="_blank" rel="noopener"
     aria-label="WhatsApp Chat starten">
     <img src="./img/whatsapp.png" alt="WhatsApp" />

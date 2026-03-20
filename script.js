@@ -12,8 +12,13 @@ function closeMenu() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Slider starten
+  // Slider starten (nur index.html)
   startSlider();
+
+  // Galerie laden – welche Funktion, bestimmt data-gallery am Container
+  const galleryEl = document.getElementById("images");
+  if (galleryEl?.dataset.gallery === "galerie") load();
+  if (galleryEl?.dataset.gallery === "vornach") loadvor();
 
   // Menü-Buttons
   document.getElementById("menu-toggle")?.addEventListener("click", showMenu);
@@ -87,7 +92,10 @@ function showImage(index) {
 // =====================
 function sendMail(event) {
   event.preventDefault();
-  const data = new FormData(event.target);
+  const form = event.target;
+  if (!form.reportValidity()) return;
+
+  const data = new FormData(form);
 
   fetch("https://formspree.io/f/mdknjddr", {
     method: "POST",
@@ -104,25 +112,14 @@ function sendMail(event) {
 }
 
 // =====================
-// Gutscheinformular (Winteraktion) - EINMAL
+// Frühjahrs-Aktion Terminformular
 // =====================
-function openWinterOfferForm() {
-  const popup = document.getElementById("winter-offer-popup");
-  if (!popup) return;
-  popup.style.display = "flex";
-  document.body.style.overflow = "hidden";
-}
-
-function closeWinterOfferForm() {
-  const popup = document.getElementById("winter-offer-popup");
-  if (!popup) return;
-  popup.style.display = "none";
-  document.body.style.overflow = "";
-}
-
 function sendVoucherMail(event) {
   event.preventDefault();
-  const data = new FormData(event.target);
+  const form = event.target;
+  if (!form.reportValidity()) return;
+
+  const data = new FormData(form);
 
   fetch("https://formspree.io/f/mdknjddr", {
     method: "POST",
@@ -130,12 +127,12 @@ function sendVoucherMail(event) {
     headers: { Accept: "application/json" },
   })
     .then(() => {
-      alert("Danke! Wir melden uns mit Zahlungsinfos & Gutschein per E-Mail 🎄");
-      closeWinterOfferForm();
-      event.target.reset();
+      alert("Danke! Wir melden uns so schnell wie möglich bei Ihnen. 🌸");
+      closeSpringOffer();
+      form.reset();
     })
     .catch((error) => {
-      console.error("Fehler beim Gutscheinversand:", error);
+      console.error("Fehler beim Senden:", error);
       alert("Fehler beim Senden. Bitte versuch es später nochmal.");
     });
 }

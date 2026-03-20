@@ -24,12 +24,6 @@
   <meta property="og:locale" content="de_AT" />
   <meta property="og:site_name" content="CarClean Kufstein" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Vielen Dank | CarClean Kufstein" />
-  <meta name="twitter:description" content="Ihre Anfrage wurde erfolgreich übermittelt." />
-  <meta name="twitter:image" content="https://carclean.cc/img/logocc.png" />
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -48,54 +42,69 @@
 
   <!-- Theme -->
   <meta name="theme-color" content="#0b1220" />
-
-  <!-- Optional -->
   <meta name="format-detection" content="telephone=no" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- Scripts -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 
-
 <body>
   <header>
-    <div>
-      <a href="./index.html"><img class="logo" src="./img/logocc1.png" alt="CarClean-Logo" /></a>
-    </div>
+    <a href="./index.html">
+      <img class="logo" src="./img/logocc1.png" alt="CarClean-Logo" />
+    </a>
     <nav>
       <ul class="menu">
         <li><a href="./index.html">Home</a></li>
-        <li><a href="#service">Leistungen</a></li>
-        <li><a href="#contact">Kontakt</a></li>
+        <li><a href="./index.html#service">Leistungen</a></li>
+        <li><a href="./galerie.html">Galerie</a></li>
+        <li><a href="./vornach.html">Vor-Nach</a></li>
+        <li><a href="./index.html#contact">Kontakt</a></li>
       </ul>
-      <span class="menu-mobile" onclick="showMenu()">☰</span>
-      <div id="menuoverlay" class="overlay-menu">
-        <a href="./index.html">Start</a>
-        <a href="./index.html#service">Leistungen</a>
-        <a href="./galerie.html">Galerie</a>
-        <a href="./vornach.html">Vor-Nach Fotos</a>
-        <a href="./index.html#contact">Kontakt</a>
-        <button onclick="closeMenu()">Schließen</button>
-      </div>
+      <button class="menu-mobile" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
     </nav>
   </header>
 
-  <main>
-    <div class="mail-con">
-      <h1>Vielen Dank für Ihre Anfrage!</h1>
-      <p>Wir haben Ihre Nachricht erhalten und werden uns so schnell wie möglich bei Ihnen melden. Ihr Anliegen ist uns
-        wichtig, und wir sind bestrebt, Ihnen den bestmöglichen Service zu bieten.</p>
-      <p>Bitte überprüfen Sie auch Ihren Spam-Ordner, falls Sie in den nächsten Stunden keine Antwort von uns erhalten
-        sollten.</p>
-      <p>Vielen Dank für Ihr Vertrauen in CarClean. Wir freuen uns darauf, Ihnen zu helfen!</p>
-      <a href="./index.html">
-        <button class="send-button">Zurück zur Hauptseite</button>
-      </a>
-    </div>
+  <div id="menuoverlay" class="overlay-menu" role="dialog" aria-label="Navigation">
+    <a href="./index.html">Start</a>
+    <a href="./index.html#service">Leistungen</a>
+    <a href="./galerie.html">Galerie</a>
+    <a href="./vornach.html">Vor-Nach Fotos</a>
+    <a href="./index.html#contact">Kontakt</a>
+    <button id="menu-close">Schließen</button>
+  </div>
 
+  <main class="legal-page">
+    <div class="legal-container thankyou-container">
+
+      <div class="thankyou-icon">✓</div>
+      <h1 class="legal-title">Vielen Dank!</h1>
+      <p class="legal-subtitle">Ihre Nachricht wurde erfolgreich übermittelt.</p>
+
+      <div class="legal-contact">
+        <p>Wir haben Ihre Anfrage erhalten und melden uns so schnell wie möglich bei Ihnen. Ihr Anliegen ist uns wichtig – wir sind bestrebt, Ihnen den bestmöglichen Service zu bieten.</p>
+        <p style="margin-top: 12px; color: rgba(255,255,255,0.5); font-size: 0.85rem;">Falls Sie in den nächsten Stunden keine Antwort erhalten, überprüfen Sie bitte auch Ihren Spam-Ordner.</p>
+      </div>
+
+      <a href="./index.html" class="back-btn" style="display: inline-block; margin-top: 32px;">← Zurück zur Hauptseite</a>
+
+    </div>
   </main>
+
+  <!-- Cookie-Banner -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen" style="display: none">
+    <div class="cookie-inner">
+      <div class="cookie-text">
+        <span class="cookie-icon">🍪</span>
+        <p>Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. <a href="datenschutz.html">Mehr erfahren</a></p>
+      </div>
+      <div class="cookie-actions">
+        <button id="decline-cookies" class="cookie-btn cookie-btn--ghost">Ablehnen</button>
+        <button id="accept-cookies" class="cookie-btn cookie-btn--primary">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="footer__parralax">
@@ -140,7 +149,7 @@
               <li>
                 <a href="https://www.facebook.com/carcleankufstein/?mono_donottrack=false" target="_blank"
                   rel="noopener">
-                  <img src="./img/facebook.png" alt="Facebook Logo" />
+                  <img src="./img/facebook.png" alt="Facebook-Logo" />
                 </a>
               </li>
               <li>
@@ -179,7 +188,8 @@
       </div>
     </div>
   </footer>
-  <!-- Floating WhatsApp Button (immer sichtbar) -->
+
+  <!-- Floating WhatsApp Button -->
   <a class="wa-float" href="https://wa.me/436606568206" target="_blank" rel="noopener"
     aria-label="WhatsApp Chat starten">
     <img src="./img/whatsapp.png" alt="WhatsApp" />

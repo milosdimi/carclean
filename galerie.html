@@ -10,11 +10,11 @@
 
   <!-- SEO -->
   <meta name="description"
-    content="Galerie von CarClean Kufstein: Vorher-Nachher Bilder und Einblicke in unsere professionelle Autoaufbereitung, Innen- & Außenreinigung in Tirol." />
+    content="Galerie von CarClean Kufstein: Einblicke in unsere professionelle Autoaufbereitung, Innen- & Außenreinigung in Tirol." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://www.carclean.cc/galerie.html" />
 
-  <!-- Open Graph / Social -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Galerie | CarClean Kufstein" />
   <meta property="og:description"
     content="Entdecken Sie Bilder unserer professionellen Autoaufbereitung, Innen- & Außenreinigung bei CarClean Kufstein." />
@@ -50,54 +50,64 @@
   <meta name="theme-color" content="#0b1220" />
 
   <!-- Scripts -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 
-
-<body onload="load()">
+<body>
   <header>
-    <div>
-      <a href="./index.html">
-        <img class="logo" src="./img/logocc1.png" alt="CarClean-Logo" />
-      </a>
-    </div>
+    <a href="./index.html">
+      <img class="logo" src="./img/logocc1.png" alt="CarClean-Logo" />
+    </a>
     <nav>
       <ul class="menu">
         <li><a href="./index.html">Home</a></li>
-        <li><a href="#service">Leistungen</a></li>
-        <li><a href="#contact">Kontakt</a></li>
+        <li><a href="./index.html#service">Leistungen</a></li>
+        <li><a href="./galerie.html" aria-current="page">Galerie</a></li>
+        <li><a href="./vornach.html">Vor-Nach</a></li>
+        <li><a href="./index.html#contact">Kontakt</a></li>
       </ul>
-      <span class="menu-mobile" onclick="showMenu()">☰</span>
-      <div id="menuoverlay" class="overlay-menu">
-        <a href="./index.html">Start</a>
-        <a href="./index.html#service">Leistungen</a>
-        <a href="./galerie.html">Galerie</a>
-        <a href="./vornach.html">Vor-Nach Fotos</a>
-        <a href="./index.html#contact">Kontakt</a>
-        <button onclick="closeMenu()">Schließen</button>
-      </div>
+      <button class="menu-mobile" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
     </nav>
   </header>
 
-  <div class="imgcontainer" id="images"></div>
+  <div id="menuoverlay" class="overlay-menu" role="dialog" aria-label="Navigation">
+    <a href="./index.html">Start</a>
+    <a href="./index.html#service">Leistungen</a>
+    <a href="./galerie.html">Galerie</a>
+    <a href="./vornach.html">Vor-Nach Fotos</a>
+    <a href="./index.html#contact">Kontakt</a>
+    <button id="menu-close">Schließen</button>
+  </div>
+
+  <main class="subpage-main">
+
+    <div class="subpage-hero">
+      <h1 class="subpage-title">Unsere <span class="highlight">Galerie</span></h1>
+      <p class="subpage-subtitle">Einblicke in unsere Arbeit – professionelle Autoaufbereitung in Kufstein</p>
+    </div>
+
+    <div class="imgcontainer" id="images" data-gallery="galerie"></div>
+
+    <div class="subpage-back">
+      <a href="./index.html" class="back-btn">← Zurück zur Hauptseite</a>
+    </div>
+
+  </main>
+
   <div class="image d-none" id="openimg"></div>
-  <a href="./index.html">
-    <button class="send-button">Zurück zur Hauptseite</button>
-  </a>
 
   <!-- Cookie-Banner -->
-  <div id="cookie-banner" class="cookie-banner" style="display: none">
-    <p>
-      Wir verwenden Cookies, um Ihre Erfahrung auf unserer Webseite zu
-      verbessern. Sie können die Nutzung von Cookies akzeptieren oder
-      ablehnen. Mehr Informationen finden Sie in unserer
-      <a href="datenschutz.html">Datenschutzerklärung</a>.
-    </p>
-    <button id="accept-cookies" class="accept-cookies-btn">
-      Akzeptieren
-    </button>
-    <button id="decline-cookies" class="decline-cookies-btn">Ablehnen</button>
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen" style="display: none">
+    <div class="cookie-inner">
+      <div class="cookie-text">
+        <span class="cookie-icon">🍪</span>
+        <p>Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. <a href="datenschutz.html">Mehr erfahren</a></p>
+      </div>
+      <div class="cookie-actions">
+        <button id="decline-cookies" class="cookie-btn cookie-btn--ghost">Ablehnen</button>
+        <button id="accept-cookies" class="cookie-btn cookie-btn--primary">Akzeptieren</button>
+      </div>
+    </div>
   </div>
 
   <footer class="footer">
@@ -111,7 +121,7 @@
     <div class="container_footer">
       <div class="footer__columns">
         <div class="footer__col">
-          <h3 class="footer__col-title">Adresse</h3>
+          <h3 class="footer__col-title"><span>Adresse</span></h3>
           <div class="footer__nav">
             <ul class="contact-list">
               <li>
@@ -124,7 +134,7 @@
               <li>
                 <i><img src="./img/telephone-call.png" alt="Telefon-Icon" /></i>
                 <span class="contact-text">
-                  <a href="tel:+436606568206"><span>+43 660 65 68 206</span></a>
+                  <a href="tel:+436606568206">+43 660 65 68 206</a>
                 </span>
               </li>
               <li>
@@ -137,7 +147,7 @@
           </div>
         </div>
         <div class="footer__col">
-          <h3 class="footer__col-title">Sozial Media</h3>
+          <h3 class="footer__col-title"><span>Sozial Media</span></h3>
           <div class="footer__nav">
             <ul class="social-media-list">
               <li>
@@ -161,7 +171,7 @@
           </div>
         </div>
         <div class="footer__col">
-          <h3 class="footer__col-title">Links</h3>
+          <h3 class="footer__col-title"><span>Links</span></h3>
           <div class="footer__nav">
             <ul class="footer__nav-list">
               <li class="footer__nav-item">
@@ -182,7 +192,8 @@
       </div>
     </div>
   </footer>
-  <!-- Floating WhatsApp Button (immer sichtbar) -->
+
+  <!-- Floating WhatsApp Button -->
   <a class="wa-float" href="https://wa.me/436606568206" target="_blank" rel="noopener"
     aria-label="WhatsApp Chat starten">
     <img src="./img/whatsapp.png" alt="WhatsApp" />

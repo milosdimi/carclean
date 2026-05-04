@@ -3,17 +3,57 @@
 // =====================
 function showMenu() {
   const menu = document.getElementById("menuoverlay");
+  const toggle = document.getElementById("menu-toggle");
   if (menu) menu.style.width = "100%";
+  if (toggle) toggle.setAttribute("aria-expanded", "true");
 }
 
 function closeMenu() {
   const menu = document.getElementById("menuoverlay");
+  const toggle = document.getElementById("menu-toggle");
   if (menu) menu.style.width = "0";
+  if (toggle) toggle.setAttribute("aria-expanded", "false");
+}
+
+// =====================
+// Hero Text Carousel
+// =====================
+let heroIndex = 0;
+let heroTimer = null;
+
+function startHeroCarousel() {
+  const slides = document.querySelectorAll('.hero-slide');
+  if (!slides.length) return;
+
+  slides[0].classList.add('active');
+  document.querySelector('.hero-dot')?.classList.add('active');
+
+  heroTimer = setInterval(() => goToHeroSlide((heroIndex + 1) % slides.length), 4500);
+}
+
+function goToHeroSlide(next) {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots   = document.querySelectorAll('.hero-dot');
+
+  slides[heroIndex].classList.remove('active');
+  dots[heroIndex]?.classList.remove('active');
+  heroIndex = next;
+  slides[heroIndex].classList.add('active');
+  dots[heroIndex]?.classList.add('active');
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Slider starten (nur index.html)
-  startSlider();
+  startHeroCarousel();
+
+  document.querySelectorAll('.hero-dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      clearInterval(heroTimer);
+      goToHeroSlide(parseInt(dot.dataset.index));
+      heroTimer = setInterval(() => {
+        goToHeroSlide((heroIndex + 1) % document.querySelectorAll('.hero-slide').length);
+      }, 4500);
+    });
+  });
 
   // Galerie laden – welche Funktion, bestimmt data-gallery am Container
   const galleryEl = document.getElementById("images");
@@ -52,40 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// =====================
-// Slider (nur wenn vorhanden)
-// =====================
-let currentImageIndex = 0;
-let sliderIntervalId = null;
-
-function startSlider() {
-  const imagess = document.getElementsByClassName("slider_image");
-  if (!imagess || imagess.length === 0) return;
-
-  // prevent double intervals
-  if (sliderIntervalId) clearInterval(sliderIntervalId);
-
-  sliderIntervalId = setInterval(() => {
-    currentImageIndex = (currentImageIndex + 1) % imagess.length;
-    updateSlider();
-  }, 3000);
-
-  updateSlider();
-}
-
-function updateSlider() {
-  const imagess = document.getElementsByClassName("slider_image");
-  if (!imagess || imagess.length === 0) return;
-
-  Array.from(imagess).forEach((image, index) => {
-    image.style.transform = `translateX(${(index - currentImageIndex) * 100}%)`;
-  });
-}
-
-function showImage(index) {
-  currentImageIndex = index - 1;
-  updateSlider();
-}
 
 // =====================
 // Kontaktformular (Formspree)

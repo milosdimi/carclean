@@ -14,8 +14,6 @@
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://www.carclean.cc/" />
 
-  <!-- Performance: Hero Image -->
-  <link rel="preload" as="image" href="/img/pexels-jan-kopřiva-3354648.jpg" fetchpriority="high" />
 
   <!-- Open Graph / Facebook / WhatsApp -->
   <meta property="og:title" content="CarClean Kufstein | Professionelle Autoaufbereitung" />
@@ -110,37 +108,33 @@
   </div>
 
   <section id="home" class="hero-section">
-    <div class="slider_container">
-      <div class="slider_image">
-        <img id="img-1" src="./img/pexels-jan-kopřiva-3354648.jpg" alt="Kfz-Reinigung Kufstein" />
-        <div class="text_overlay">
-          <h1>Professionelle <span class="highlight">Autoaufbereitung</span><br>in Kufstein, Tirol.</h1>
-          <p>Innen & außen – für Auto, Motorrad, LKW und Bus.</p>
-          <a href="#contact" class="hero-cta">Jetzt Termin anfragen</a>
-        </div>
+    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+      <source src="./img/video/hero-video.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-carousel">
+      <div class="hero-slide">
+        <h1>Professionelle <span class="highlight">Autoaufbereitung</span> in Kufstein, Tirol.</h1>
+        <p>Innen &amp; außen – für Auto, Motorrad, LKW und Bus.</p>
+        <a href="#contact" class="hero-cta">Jetzt Termin anfragen</a>
       </div>
-      <div class="slider_image">
-        <img id="img-2" src="./img/pexels-karolina-grabowska-4870739.jpg" alt="Autoaufbereitung Kufstein" />
-        <div class="text_overlay">
-          <h1><span class="highlight">Lackpolitur</span> &<br><span class="highlight">Versiegelung</span></h1>
-          <p>Brillanter Glanz und dauerhafter Schutz für Ihren Fahrzeuglack.</p>
-          <a href="#contact" class="hero-cta">Jetzt Termin anfragen</a>
-        </div>
+      <div class="hero-slide">
+        <h1><span class="highlight">Lackpolitur</span> &amp; <span class="highlight">Versiegelung</span></h1>
+        <p>Brillanter Glanz und dauerhafter Schutz für Ihren Fahrzeuglack.</p>
+        <a href="#contact" class="hero-cta">Jetzt Termin anfragen</a>
       </div>
-      <div class="slider_image">
-        <img id="img-3" src="./img/pexels-tima-miroshnichenko-6872161.jpg" alt="Fahrzeugpflege Tirol" />
-        <div class="text_overlay">
-          <h1>Bequemer <span class="highlight">Abholservice</span><br>direkt zu Ihnen.</h1>
-          <p>Wir holen Ihr Fahrzeug ab, reinigen es und bringen es zurück.</p>
-          <a href="#contact" class="hero-cta">Jetzt Termin anfragen</a>
-        </div>
+      <div class="hero-slide">
+        <h1>Bequemer <span class="highlight">Abholservice</span> direkt zu Ihnen.</h1>
+        <p>Wir holen Ihr Fahrzeug ab, reinigen es und bringen es zurück.</p>
+        <a href="#contact" class="hero-cta">Jetzt Termin anfragen</a>
       </div>
     </div>
 
-    <div class="slider_nav">
-      <button onclick="showImage(1)" aria-label="Bild 1"></button>
-      <button onclick="showImage(2)" aria-label="Bild 2"></button>
-      <button onclick="showImage(3)" aria-label="Bild 3"></button>
+    <div class="hero-dots">
+      <button class="hero-dot" data-index="0" aria-label="Folie 1"></button>
+      <button class="hero-dot" data-index="1" aria-label="Folie 2"></button>
+      <button class="hero-dot" data-index="2" aria-label="Folie 3"></button>
     </div>
   </section>
 
@@ -156,7 +150,7 @@
       <li>Außenreinigung</li>
       <li>Politur</li>
       <li>Waschen</li>
-      <li>Pflege & Vorbereitung</li>
+      <li>Pflege &amp; Vorbereitung</li>
       <li>Lederpflege</li>
       <li>Flächenreinigung</li>
       <li>Felgenreinigung</li>
@@ -238,7 +232,7 @@
 
     <div class="wrapper">
       <div class="card">
-        <img src="./img/pexels-tima-miroshnichenko-6873088.jpg" alt="KFZ-Reinigung Kufstein" />
+        <img src="./img/pexels-tima-miroshnichenko-6873088.jpg" alt="KFZ-Reinigung Kufstein" loading="lazy" />
         <div class="info">
           <h2>KFZ-Reinigung</h2>
           <p>Innen & außen – für Auto, Motorrad, Bus, LKW oder Wohnwagen. Volle Leistung für jedes Fahrzeug.</p>
@@ -247,7 +241,7 @@
       </div>
 
       <div class="card">
-        <img src="./img/microfiber-3789848_640.jpg" alt="Lackversiegelung Kufstein" />
+        <img src="./img/microfiber-3789848_640.jpg" alt="Lackversiegelung Kufstein" loading="lazy" />
         <div class="info">
           <h2>Versiegelung</h2>
           <p>Wir versiegeln Lack, Bremsen und Felgen – für dauerhaften Schutz empfindlicher Oberflächen.</p>
@@ -256,7 +250,7 @@
       </div>
 
       <div class="card">
-        <img src="./img/pexels-pixabay-159293.jpg" alt="Motorreinigung Kufstein" />
+        <img src="./img/pexels-pixabay-159293.jpg" alt="Motorreinigung Kufstein" loading="lazy" />
         <div class="info">
           <h2>Motorreinigung</h2>
           <p>Ein sauberer Motor schützt vor Schäden. Wir reinigen professionell und schonend.</p>
@@ -265,7 +259,7 @@
       </div>
 
       <div class="card">
-        <img src="./img/pexels-khunkorn-laowisit-5233261.jpg" alt="Lackpolitur Kufstein" />
+        <img src="./img/pexels-khunkorn-laowisit-5233261.jpg" alt="Lackpolitur Kufstein" loading="lazy" />
         <div class="info">
           <h2>Lackpolitur</h2>
           <p>Kratzer, Schlieren, matter Lack – wir bringen Ihren Fahrzeuglack zum Strahlen.</p>
@@ -458,7 +452,7 @@
           </div>
         </div>
         <div class="footer__col">
-          <h3 class="footer__col-title"><span>Sozial Media</span></h3>
+          <h3 class="footer__col-title"><span>Social Media</span></h3>
           <div class="footer__nav">
             <ul class="social-media-list">
               <li>

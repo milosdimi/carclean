@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /tmp/
 
-Sitemap: https://www.carclean.cc/sitemap.xml
+Sitemap: https://carclean.cc/sitemap.xml

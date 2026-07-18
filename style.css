@@ -20,6 +20,7 @@ body {
   display: flex;
   flex-direction: column;
   max-width: 1600px;
+  overflow-x: hidden;
 }
 
 /* Sicherstellen, dass alle Text-Elemente die Schriftart verwenden */
@@ -39,6 +40,18 @@ textarea,
 select,
 label {
   font-family: 'Unbounded', sans-serif !important;
+}
+
+/* Verhindert horizontalen Overflow durch lange, unteilbare Wörter (z.B. lange Komposita) */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* Anpassen der Schriftgewichte für Überschriften, falls nötig */
@@ -2263,7 +2276,7 @@ hr {
   /* Entfernen der Listenpunkte */
   padding: 0;
   /* Entfernen des Abstands */
-  margin: 20px;
+  margin: 0;
   /* Entfernen des Abstands */
 }
 
@@ -2700,7 +2713,7 @@ p {
   }
 }
 
-@media screen and (max-width: 480px) and (min-width: 321px) {
+@media screen and (max-width: 480px) {
   .section_pad {
     padding-left: 32px;
     padding-right: 430px;

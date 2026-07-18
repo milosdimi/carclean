@@ -137,7 +137,8 @@ header {
   pointer-events: auto;
 }
 
-.hero-slide h1 {
+.hero-slide h1,
+.hero-slide h2 {
   font-size: clamp(1.8rem, 4vw, 3rem);
   color: #fff;
   line-height: 1.25;
@@ -183,7 +184,8 @@ header {
 }
 
 @media (max-width: 600px) {
-  .hero-slide h1 {
+  .hero-slide h1,
+  .hero-slide h2 {
     font-size: clamp(1.5rem, 6.5vw, 2rem);
   }
 }

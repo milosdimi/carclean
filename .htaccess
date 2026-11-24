@@ -8,6 +8,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # 0) Versteckte Dateien/Ordner sperren (.git, .cpanel.yml, ...)
+  #    Ausnahme: .well-known – wird für das SSL-Zertifikat (https) gebraucht!
+  RewriteRule (^|/)\.(?!well-known/) - [F]
+
   # 1) Alles auf HTTPS + www umleiten (eine einzige Adresse für Google):
   #    http://carclean.cc, https://carclean.cc, http://www.carclean.cc
   #    -> https://www.carclean.cc

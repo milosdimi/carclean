@@ -2,6 +2,10 @@
 # CarClean – Server-Einstellungen (Namecheap / LiteSpeed)
 # =========================================================
 
+# Zeichensatz im HTTP-Header mitschicken (Umlaute sicher richtig darstellen)
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .css .js .xml .txt .svg .webmanifest
+
 # Eigene Fehlerseite statt der grauen Standardseite
 ErrorDocument 404 /404.html
 

@@ -175,7 +175,9 @@ header {
 }
 
 .hero-slide h1,
-.hero-slide h2 {
+.hero-slide h2,
+.hero-slide .hero-title {
+  font-weight: 700;
   font-size: clamp(1.8rem, 4vw, 3rem);
   color: #fff;
   line-height: 1.25;
@@ -222,7 +224,8 @@ header {
 
 @media (max-width: 600px) {
   .hero-slide h1,
-  .hero-slide h2 {
+  .hero-slide h2,
+  .hero-slide .hero-title {
     font-size: clamp(1.5rem, 6.5vw, 2rem);
   }
 }
@@ -502,7 +505,9 @@ main {
 }
 
 /* ---------- Winterpflege-Liste ---------- */
-.offer-subtitle {
+.offer-content .offer-subtitle {
+  font-weight: 700;
+  line-height: normal;
   font-size: 1rem;
   color: var(--offer-sub);
   margin: 0 0 14px;
@@ -623,7 +628,9 @@ main {
   padding: 32px 28px;
 }
 
-.offer-popup-content h2 {
+.offer-popup-content .offer-popup-title {
+  font-weight: 700;
+  line-height: normal;
   margin: 0 0 18px;
   text-align: center;
   font-size: 1.3rem;
@@ -710,7 +717,10 @@ main {
   margin-bottom: 8px;
 }
 
-.offer-success h3 {
+.offer-success .offer-success-title {
+  font-size: 1.17rem;
+  font-weight: 700;
+  line-height: normal;
   color: #111;
   margin: 0 0 8px;
 }
@@ -1275,9 +1285,10 @@ nav ul li a {
   transform: translateY(0);
 }
 
-.card .info h2 {
+.card .info h3 {
   margin: 0 0 8px;
   font-size: 1.2rem;
+  color: #f27634;
 }
 
 .card .info p {
@@ -2626,6 +2637,8 @@ hr {
 }
 
 .footer__col-title {
+  margin-top: 1em;
+  line-height: normal;
   font-size: 0.8rem;
   font-weight: 700;
   margin-bottom: 1.2rem;

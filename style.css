@@ -1,3 +1,26 @@
+/* =========================
+   Schrift: Unbounded (selbst gehostet statt Google Fonts -> DSGVO-konform,
+   keine IP-Adressen gehen an Google). Variable Font: eine Datei = alle Stärken 300-700.
+   Lizenz: SIL Open Font License (frei nutzbar).
+========================= */
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('./fonts/unbounded-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('./fonts/unbounded-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 html {
   scroll-padding-top: 90px; /* Anker-Links (#offer, #contact) landen nicht hinter dem fixen Header */
   --s: 50px;
@@ -1532,6 +1555,100 @@ iframe {
   filter: grayscale(0%);
 }
 
+/* --- 2-Klick-Karte: Platzhalter bis zur Zustimmung --- */
+.map-consent {
+  height: 100%;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  /* "Karten-Look": dunkler Verlauf + feines Raster wie Straßen */
+  background:
+    radial-gradient(circle at 50% 42%, rgba(44, 58, 130, 0.45) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 42px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 42px),
+    #0f1626;
+}
+
+.map-consent-inner {
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.map-consent-icon {
+  font-size: 2.4rem;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+.map-consent-address {
+  margin: 0;
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.map-consent-btn {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #3b4fb8, #2c3a82);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(44, 58, 130, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.map-consent-btn:hover,
+.map-consent-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(59, 79, 184, 0.6);
+}
+
+.map-consent-remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.map-consent-check {
+  width: 16px;
+  height: 16px;
+  accent-color: #3b4fb8;
+  cursor: pointer;
+}
+
+.map-consent-note {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.map-consent-note a,
+.map-consent-link {
+  color: #8fa2ff;
+}
+
+.map-consent-link {
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.map-consent-link:hover {
+  text-decoration: underline;
+}
+
 /* Responsive */
 @media (max-width: 1100px) {
   .connect-section {
@@ -1543,7 +1660,8 @@ iframe {
     grid-column: 1 / -1;
   }
 
-  .connect-map iframe { min-height: 300px; }
+  .connect-map iframe,
+  .map-consent { min-height: 300px; }
 }
 
 @media (max-width: 650px) {
@@ -1685,14 +1803,14 @@ a:hover {
   transform: translateY(0);
 }
 
-.item-1 { background-image: url("./vornachfotos/1.jpg"); }
-.item-2 { background-image: url("./vornachfotos/2.jpg"); }
-.item-3 { background-image: url("./vornachfotos/3.jpg"); }
-.item-4 { background-image: url("./vornachfotos/4.jpg"); }
-.item-5 { background-image: url("./galerie/1.jpg"); }
-.item-6 { background-image: url("./galerie/2.jpg"); }
-.item-7 { background-image: url("./galerie/3.jpg"); }
-.item-8 { background-image: url("./galerie/4.jpg"); }
+.item-1 { background-image: url("./vornachfotos/thumbs/1.jpg"); }
+.item-2 { background-image: url("./vornachfotos/thumbs/2.jpg"); }
+.item-3 { background-image: url("./vornachfotos/thumbs/3.jpg"); }
+.item-4 { background-image: url("./vornachfotos/thumbs/4.jpg"); }
+.item-5 { background-image: url("./galerie/thumbs/1.jpg"); }
+.item-6 { background-image: url("./galerie/thumbs/2.jpg"); }
+.item-7 { background-image: url("./galerie/thumbs/3.jpg"); }
+.item-8 { background-image: url("./galerie/thumbs/4.jpg"); }
 
 @media (hover: none) {
   .gallery-wrap {

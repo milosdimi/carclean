@@ -86,7 +86,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Saison-Aktion
   initOffer();
+
+  // 2-Klick-Karte (Google Maps erst nach Zustimmung)
+  initMapConsent();
 });
+
+
+// =====================
+// 2-Klick-Karte (DSGVO)
+// Google Maps wird erst geladen, wenn der Besucher auf "Karte laden" klickt.
+// Mit Häkchen "Karten immer laden" merken wir uns die Wahl im localStorage.
+// =====================
+const MAP_CONSENT_KEY = "maps_consent";
+
+function initMapConsent() {
+  const placeholders = document.querySelectorAll(".map-consent");
+  if (!placeholders.length) return;
+
+  // Wurde die Zustimmung schon früher gespeichert? -> direkt laden
+  if (readMapConsent()) {
+    placeholders.forEach(loadMap);
+    return;
+  }
+
+  placeholders.forEach(placeholder => {
+    placeholder.querySelector(".map-consent-btn").addEventListener("click", () => {
+      if (placeholder.querySelector(".map-consent-check").checked) saveMapConsent();
+      loadMap(placeholder);
+    });
+  });
+}
+
+function loadMap(placeholder) {
+  const iframe = document.createElement("iframe");
+  iframe.src = placeholder.dataset.mapSrc;
+  iframe.title = "CarClean Kufstein Standort";
+  iframe.loading = "lazy";
+  iframe.referrerPolicy = "no-referrer-when-downgrade";
+  iframe.allowFullscreen = true;
+  placeholder.replaceWith(iframe); // Platzhalter raus, Karte rein
+}
+
+// localStorage kann im privaten Modus oder bei blockierten Website-Daten einen Fehler werfen -> try/catch
+function readMapConsent() {
+  try { return localStorage.getItem(MAP_CONSENT_KEY) === "true"; }
+  catch { return false; }
+}
+
+function saveMapConsent() {
+  try { localStorage.setItem(MAP_CONSENT_KEY, "true"); }
+  catch { /* nicht speichern können ist kein Problem, Karte lädt trotzdem */ }
+}
 
 
 // =====================
@@ -233,6 +283,12 @@ function startChristmasCountdown() {
 // Galerie
 // =====================
 const images = Array.from({ length: 52 }, (_, i) => `galerie/${i + 1}.jpg`);
+
+// Vorschaubild (800px) für das Raster: "galerie/5.jpg" -> "galerie/thumbs/5.jpg"
+// Das große Bild (1600px) wird erst in der Lightbox geladen.
+function thumbOf(src) {
+  return src.replace(/\/([^/]+)$/, "/thumbs/$1");
+}
 let imageIndex = 0;
 
 function load() {
@@ -243,7 +299,7 @@ function load() {
   images.forEach((src, i) => {
     html += `
       <div class="imgbox">
-        <img src="${src}"
+        <img src="${thumbOf(src)}"
              alt="CarClean Galerie – Autoaufbereitung Kufstein Bild ${i + 1}"
              loading="lazy"
              onclick="openImage(${i})">
@@ -305,7 +361,7 @@ function loadvor() {
   imagesvor.forEach((src, i) => {
     html += `
       <div class="imgbox">
-        <img src="${src}"
+        <img src="${thumbOf(src)}"
              alt="Vorher–Nachher Autoaufbereitung Kufstein – CarClean Bild ${i + 1}"
              loading="lazy"
              onclick="openImagevor(${i})">

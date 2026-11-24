@@ -33,9 +33,7 @@
   <meta name="twitter:image" content="https://www.carclean.cc/img/logocc.png" />
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="./fonts/unbounded-latin.woff2" as="font" type="font/woff2" crossorigin />
   <meta name="format-detection" content="telephone=no" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
@@ -351,10 +349,19 @@
     </div>
 
     <div class="connect-map">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3195.4365098606795!2d12.17757837557385!3d47.59892987987244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477639a403366857%3A0xea387eaaea5da389!2sCar%20Clean!5e1!3m2!1sde!2sat!4v1727908236917!5m2!1sde!2sat"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        title="CarClean Kufstein Standort"></iframe>
+      <!-- 2-Klick-Karte (DSGVO): Google Maps wird erst nach Klick geladen (Logik in script.js) -->
+      <div class="map-consent" data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3195.4365098606795!2d12.17757837557385!3d47.59892987987244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477639a403366857%3A0xea387eaaea5da389!2sCar%20Clean!5e1!3m2!1sde!2sat!4v1727908236917!5m2!1sde!2sat">
+        <div class="map-consent-inner">
+          <span class="map-consent-icon" aria-hidden="true">📍</span>
+          <p class="map-consent-address"><strong>CarClean</strong><br>Untere Sparchen 18, 6330 Kufstein</p>
+          <button type="button" class="map-consent-btn">Karte laden</button>
+          <label class="map-consent-remember">
+            <input type="checkbox" class="map-consent-check" /> Karten immer laden
+          </label>
+          <p class="map-consent-note">Beim Laden der Karte werden Daten (z.&nbsp;B. Ihre IP-Adresse) an Google übertragen. <a href="datenschutz.html#google-maps">Mehr erfahren</a></p>
+          <a class="map-consent-link" href="https://maps.app.goo.gl/DPDSxfMkDGzxPVxH7" target="_blank" rel="noopener noreferrer">Route in Google Maps öffnen ↗</a>
+        </div>
+      </div>
     </div>
   </section>
 

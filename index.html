@@ -55,35 +55,301 @@
   <!-- Theme -->
   <meta name="theme-color" content="#0b1220" />
 
-  <!-- LocalBusiness Schema (SEO Boost) -->
+  <!-- Firmendaten für Google und KI-Assistenten (schema.org) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "AutoWash",
+    "@id": "https://www.carclean.cc/#business",
     "name": "CarClean",
-    "description": "Professionelle Autoaufbereitung in Kufstein, Tirol",
-    "url": "https://www.carclean.cc",
+    "alternateName": "CarClean Kufstein",
+    "description": "Professionelle Autoaufbereitung in Kufstein, Tirol: Innen- und Außenreinigung, Lackpolitur, Lackversiegelung und Motorraumreinigung mit Trockeneis. Abholservice im ganzen Bezirk Kufstein.",
+    "url": "https://www.carclean.cc/",
     "telephone": "+436606568206",
+    "email": "carclean@kufnet.at",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Untere Sparchen 18",
       "addressLocality": "Kufstein",
       "postalCode": "6330",
+      "addressRegion": "Tirol",
       "addressCountry": "AT"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 47.599190,
+      "latitude": 47.59919,
       "longitude": 12.178009
     },
-    "image": "https://www.carclean.cc/img/pexels-tima-miroshnichenko-6873088.jpg",
+    "hasMap": "https://www.google.com/maps?cid=16877378876112479113",
+    "image": "https://www.carclean.cc/img/og/start.jpg",
     "logo": "https://www.carclean.cc/img/logocc.png",
     "sameAs": [
       "https://www.facebook.com/carcleankufstein/",
-      "https://www.instagram.com/carclean.kufstein/"
+      "https://www.instagram.com/carclean.kufstein/",
+      "https://www.google.com/maps?cid=16877378876112479113"
     ],
-    "openingHours": "Mo-Sa 08:00-20:00",
-    "priceRange": "€€"
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      }
+    ],
+    "priceRange": "€€",
+    "areaServed": [
+      {
+        "@type": "AdministrativeArea",
+        "name": "Bezirk Kufstein"
+      },
+      {
+        "@type": "City",
+        "name": "Alpbach"
+      },
+      {
+        "@type": "City",
+        "name": "Angath"
+      },
+      {
+        "@type": "City",
+        "name": "Angerberg"
+      },
+      {
+        "@type": "City",
+        "name": "Bad Häring"
+      },
+      {
+        "@type": "City",
+        "name": "Brandenberg"
+      },
+      {
+        "@type": "City",
+        "name": "Breitenbach am Inn"
+      },
+      {
+        "@type": "City",
+        "name": "Brixlegg"
+      },
+      {
+        "@type": "City",
+        "name": "Ebbs"
+      },
+      {
+        "@type": "City",
+        "name": "Ellmau"
+      },
+      {
+        "@type": "City",
+        "name": "Erl"
+      },
+      {
+        "@type": "City",
+        "name": "Kirchbichl"
+      },
+      {
+        "@type": "City",
+        "name": "Kramsach"
+      },
+      {
+        "@type": "City",
+        "name": "Kufstein"
+      },
+      {
+        "@type": "City",
+        "name": "Kundl"
+      },
+      {
+        "@type": "City",
+        "name": "Langkampfen"
+      },
+      {
+        "@type": "City",
+        "name": "Mariastein"
+      },
+      {
+        "@type": "City",
+        "name": "Münster"
+      },
+      {
+        "@type": "City",
+        "name": "Niederndorf"
+      },
+      {
+        "@type": "City",
+        "name": "Niederndorferberg"
+      },
+      {
+        "@type": "City",
+        "name": "Radfeld"
+      },
+      {
+        "@type": "City",
+        "name": "Rattenberg"
+      },
+      {
+        "@type": "City",
+        "name": "Reith im Alpbachtal"
+      },
+      {
+        "@type": "City",
+        "name": "Rettenschöß"
+      },
+      {
+        "@type": "City",
+        "name": "Scheffau am Wilden Kaiser"
+      },
+      {
+        "@type": "City",
+        "name": "Schwoich"
+      },
+      {
+        "@type": "City",
+        "name": "Söll"
+      },
+      {
+        "@type": "City",
+        "name": "Thiersee"
+      },
+      {
+        "@type": "City",
+        "name": "Walchsee"
+      },
+      {
+        "@type": "City",
+        "name": "Wildschönau"
+      },
+      {
+        "@type": "City",
+        "name": "Wörgl"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Leistungen von CarClean",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "KFZ-Reinigung innen & außen",
+            "url": "https://www.carclean.cc/kfz-reinigung.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lackversiegelung",
+            "url": "https://www.carclean.cc/versiegelung.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Motorraumreinigung mit Trockeneis",
+            "url": "https://www.carclean.cc/motorreinigung.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lackpolitur",
+            "url": "https://www.carclean.cc/lackpolitur.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Abholservice im Bezirk Kufstein",
+            "url": "https://www.carclean.cc/#faq"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Gutscheine",
+            "url": "https://www.carclean.cc/#offer"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- FAQ-Schema: gleicher Wortlaut wie die sichtbare FAQ auf der Seite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wo kann ich in Kufstein mein Auto professionell reinigen lassen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bei CarClean in Kufstein (Untere Sparchen 18, 6330 Kufstein). Wir bieten professionelle Autoaufbereitung: Innenreinigung, Außenreinigung per Handwäsche, Lackpolitur, Lackversiegelung und Motorraumreinigung mit Trockeneis – für Auto, Motorrad, LKW, Bus und Wohnmobil."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gibt es einen Abholservice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Wir holen Ihr Fahrzeug im ganzen Bezirk Kufstein ab und bringen es nach der Reinigung wieder zurück – zum Beispiel in Kufstein, Wörgl, Kirchbichl, Ebbs, Langkampfen, Schwoich, Thiersee, Söll, Kundl, Niederndorf und Walchsee."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Welche Leistungen bietet CarClean an?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "KFZ-Innenreinigung und Außenreinigung, Polster- und Teppich-Tiefenreinigung, Lederpflege, Felgenreinigung, Lackpolitur und Kratzerentfernung, Lack- und Keramikversiegelung, Motorraumreinigung mit Trockeneis, Folienentfernung und Flugrostentfernung."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wann hat CarClean geöffnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Montag bis Samstag von 08:00 bis 20:00 Uhr. Bitte vereinbaren Sie vorab einen Termin – telefonisch unter +43 660 65 68 206, per WhatsApp oder über das Kontaktformular."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was kostet eine Autoaufbereitung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Preis hängt von Fahrzeuggröße, Zustand und gewünschten Leistungen ab. Schreiben Sie uns kurz, was Sie brauchen – wir erstellen Ihnen gerne ein unverbindliches Angebot."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie lange dauert eine Reinigung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Je nach Leistung und Zustand meist zwischen 1,5 und 4 Stunden. Eine gründliche Innen- und Außenreinigung dauert in der Regel 1,5 bis 3 Stunden, eine Lackpolitur 2 bis 4 Stunden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kann man bei CarClean Gutscheine kaufen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, das ganze Jahr: Wertgutscheine über 20, 50, 80 oder 100 Euro oder einen Wunschbetrag. Der Gutschein ist für alle Leistungen einlösbar und wird in unserer Werkstatt in Kufstein abgeholt."
+        }
+      }
+    ]
   }
   </script>
 
@@ -141,7 +407,7 @@
       </div>
       <div class="hero-slide">
         <p class="hero-title">Bequemer <span class="highlight">Abholservice</span> direkt zu Ihnen.</p>
-        <p>Wir holen Ihr Fahrzeug ab, reinigen es und bringen es zurück.</p>
+        <p>Im ganzen Bezirk Kufstein: Wir holen Ihr Fahrzeug ab, reinigen es und bringen es zurück.</p>
         <a href="#contact" class="hero-cta">Jetzt Termin anfragen</a>
       </div>
       <div class="hero-slide" data-season="christmas">
@@ -179,7 +445,7 @@
     <div class="about-text">
       <h2>Ihr Experte für <span class="highlight">Fahrzeugpflege</span> in Kufstein</h2>
       <p>Als Spezialist für professionelle Autoaufbereitung in Kufstein, Tirol, bieten wir umfassende Dienstleistungen an. Wir kümmern uns darum, Ihr Fahrzeug in Bestform zu bringen – sei es durch gründliche <strong>KFZ-Reinigung, Lackversiegelung, Motorreinigung oder Lackpolitur.</strong> Egal ob <strong>Auto, Motorrad, LKW oder Bus</strong> – wir bieten schnellen und präzisen Service für makellose Sauberkeit.</p>
-      <p>Nutzen Sie unseren bequemen <strong>Abholservice!</strong> Wir holen Ihr Auto direkt bei Ihnen ab, reinigen es gründlich und bringen es Ihnen anschließend wieder zurück – ohne den Aufwand, Ihr Zuhause zu verlassen.</p>
+      <p>Nutzen Sie unseren bequemen <strong>Abholservice!</strong> Wir holen Ihr Auto im ganzen Bezirk Kufstein – von Wörgl bis Walchsee – direkt bei Ihnen ab, reinigen es gründlich und bringen es Ihnen anschließend wieder zurück.</p>
     </div>
     <ul class="service-list">
       <li>Abholservice</li>
@@ -501,6 +767,43 @@
       </div>
     </div>
 
+  </section>
+
+  <!-- ===== Häufige Fragen =====
+       Wichtig für Google UND KI-Assistenten (ChatGPT, Gemini, Claude ...): Menschen fragen genau so.
+       Texte hier ändern = auch im FAQ-Schema im <head> ändern (gleicher Wortlaut). -->
+  <section id="faq" class="faq-section">
+    <h2 class="section-title">Häufige <span class="highlight">Fragen</span></h2>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>Wo kann ich in Kufstein mein Auto professionell reinigen lassen?</summary>
+        <p>Bei CarClean in Kufstein (Untere Sparchen 18, 6330 Kufstein). Wir bieten professionelle Autoaufbereitung: Innenreinigung, Außenreinigung per Handwäsche, Lackpolitur, Lackversiegelung und Motorraumreinigung mit Trockeneis – für Auto, Motorrad, LKW, Bus und Wohnmobil.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Gibt es einen Abholservice?</summary>
+        <p>Ja. Wir holen Ihr Fahrzeug im ganzen Bezirk Kufstein ab und bringen es nach der Reinigung wieder zurück – zum Beispiel in Kufstein, Wörgl, Kirchbichl, Ebbs, Langkampfen, Schwoich, Thiersee, Söll, Kundl, Niederndorf und Walchsee.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Welche Leistungen bietet CarClean an?</summary>
+        <p>KFZ-Innenreinigung und Außenreinigung, Polster- und Teppich-Tiefenreinigung, Lederpflege, Felgenreinigung, Lackpolitur und Kratzerentfernung, Lack- und Keramikversiegelung, Motorraumreinigung mit Trockeneis, Folienentfernung und Flugrostentfernung.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Wann hat CarClean geöffnet?</summary>
+        <p>Montag bis Samstag von 08:00 bis 20:00 Uhr. Bitte vereinbaren Sie vorab einen Termin – telefonisch unter +43 660 65 68 206, per WhatsApp oder über das Kontaktformular.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Was kostet eine Autoaufbereitung?</summary>
+        <p>Der Preis hängt von Fahrzeuggröße, Zustand und gewünschten Leistungen ab. Schreiben Sie uns kurz, was Sie brauchen – wir erstellen Ihnen gerne ein unverbindliches Angebot.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Wie lange dauert eine Reinigung?</summary>
+        <p>Je nach Leistung und Zustand meist zwischen 1,5 und 4 Stunden. Eine gründliche Innen- und Außenreinigung dauert in der Regel 1,5 bis 3 Stunden, eine Lackpolitur 2 bis 4 Stunden.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Kann man bei CarClean Gutscheine kaufen?</summary>
+        <p>Ja, das ganze Jahr: Wertgutscheine über 20, 50, 80 oder 100 Euro oder einen Wunschbetrag. Der Gutschein ist für alle Leistungen einlösbar und wird in unserer Werkstatt in Kufstein abgeholt.</p>
+      </details>
+    </div>
   </section>
 
   <!-- ===== Bewertungen =====

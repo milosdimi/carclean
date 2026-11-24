@@ -8,5 +8,5 @@ deployment:
   tasks:
     - export DEPLOYPATH=$HOME/public_html/
     - /bin/cp -f *.html $DEPLOYPATH
-    - /bin/cp -f style.css script.js robots.txt sitemap.xml .htaccess $DEPLOYPATH
+    - /bin/cp -f style.css script.js robots.txt sitemap.xml llms.txt .htaccess $DEPLOYPATH
     - /bin/cp -Rf img fonts galerie vornachfotos $DEPLOYPATH

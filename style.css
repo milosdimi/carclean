@@ -3868,3 +3868,93 @@ a.offer-btn {
 .reviews-link:hover {
   text-decoration: underline;
 }
+
+/* =========================
+   Häufige Fragen (index.html #faq)
+   <details>/<summary> = aufklappbar ohne JavaScript, für Screenreader zugänglich
+========================= */
+.faq-section {
+  padding: 80px 5% 20px;
+}
+
+.faq-list {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.faq-item[open] {
+  background: rgba(44, 58, 130, 0.14);
+  border-color: rgba(108, 140, 255, 0.35);
+}
+
+.faq-item summary {
+  position: relative;
+  padding: 18px 52px 18px 20px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.4;
+  cursor: pointer;
+  list-style: none;            /* Standard-Dreieck ausblenden ... */
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;               /* ... auch in Safari */
+}
+
+/* eigenes Plus-Zeichen, das sich beim Öffnen zum X dreht */
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c8cff;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.faq-item[open] summary::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.faq-item summary:focus-visible {
+  outline: 3px solid #6c8cff;
+  outline-offset: 2px;
+  border-radius: 14px;
+}
+
+.faq-item p {
+  margin: 0;
+  padding: 0 20px 20px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .faq-item summary {
+    padding: 16px 46px 16px 16px;
+    font-size: 0.88rem;
+  }
+
+  .faq-item summary::after {
+    right: 16px;
+  }
+
+  .faq-item p {
+    padding: 0 16px 16px;
+  }
+}

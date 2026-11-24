@@ -89,7 +89,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 2-Klick-Karte (Google Maps erst nach Zustimmung)
   initMapConsent();
+
+  // "Jetzt geöffnet" / "Geschlossen"
+  showOpenStatus();
 });
+
+
+// =====================
+// Öffnungszeiten: "Jetzt geöffnet" / "Geschlossen"
+// Zeiten hier zentral ändern. Tage: 1 = Montag … 6 = Samstag, 0 = Sonntag.
+// Hinweis: Feiertage werden nicht berücksichtigt.
+// =====================
+const OPENING_HOURS = { days: [1, 2, 3, 4, 5, 6], open: "08:00", close: "20:00" };
+const DAY_NAMES = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+
+function showOpenStatus() {
+  const badges = document.querySelectorAll("[data-open-status]");
+  if (!badges.length) return;
+
+  const { day, minutes } = nowInKufstein();
+  const openMin = toMinutes(OPENING_HOURS.open);
+  const closeMin = toMinutes(OPENING_HOURS.close);
+  const isOpenDay = OPENING_HOURS.days.includes(day);
+  const isOpen = isOpenDay && minutes >= openMin && minutes < closeMin;
+
+  let text;
+  if (isOpen) {
+    text = `Jetzt geöffnet · bis ${OPENING_HOURS.close} Uhr`;
+  } else if (isOpenDay && minutes < openMin) {
+    text = `Geschlossen · öffnet heute um ${OPENING_HOURS.open} Uhr`;
+  } else {
+    // nächsten Öffnungstag suchen (morgen, übermorgen, …)
+    let next = day, step = 0;
+    do { next = (next + 1) % 7; step++; } while (!OPENING_HOURS.days.includes(next));
+    const when = step === 1 ? "morgen" : DAY_NAMES[next];
+    text = `Geschlossen · öffnet ${when} um ${OPENING_HOURS.open} Uhr`;
+  }
+
+  badges.forEach(badge => {
+    badge.textContent = text;
+    badge.classList.toggle("is-open", isOpen);
+    badge.classList.toggle("is-closed", !isOpen);
+  });
+}
+
+// Aktuelle Zeit in Kufstein – auch wenn der Besucher z.B. im Urlaub in einer anderen Zeitzone ist
+function nowInKufstein() {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/Vienna",
+    weekday: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(new Date());
+
+  const get = (type) => parts.find(p => p.type === type).value;
+  const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(get("weekday"));
+  return { day, minutes: Number(get("hour")) * 60 + Number(get("minute")) };
+}
+
+function toMinutes(hhmm) {
+  const [h, m] = hhmm.split(":").map(Number);
+  return h * 60 + m;
+}
 
 
 // =====================

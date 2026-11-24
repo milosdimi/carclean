@@ -1057,9 +1057,15 @@ nav ul li a {
    Highlight Span
 ========================= */
 
+/* Hervorgehobene Wörter in Überschriften.
+   Vorher #2c3a82 auf fast schwarzem Hintergrund = Kontrast nur ca. 1,7:1 (kaum lesbar).
+   Jetzt helleres Markenblau = ca. 5,9:1 (WCAG verlangt mind. 4,5:1). */
 .highlight {
-  color: #2c3a82;
+  color: #6c8cff;
   text-decoration: underline;
+  text-decoration-color: rgba(108, 140, 255, 0.45);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
   font-weight: 600;
 }
 
@@ -2217,6 +2223,73 @@ a:hover {
 
 .contact-detail a:hover {
   color: #6c8cff;
+}
+
+/* --- Öffnungszeiten --- */
+.contact-icon--emoji {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.contact-hours {
+  color: #fff;
+  font-size: 0.82rem;
+}
+
+/* "Jetzt geöffnet" / "Geschlossen" – Text kommt aus script.js */
+.open-status:empty {
+  display: none;
+}
+
+.open-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  margin-top: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.open-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.open-status.is-open {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.12);
+}
+
+.open-status.is-open::before {
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+  animation: openPulse 2s ease-out infinite;
+}
+
+.open-status.is-closed {
+  color: #fca5a5;
+  background: rgba(248, 113, 113, 0.12);
+}
+
+@keyframes openPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
+  100% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .open-status.is-open::before { animation: none; }
+}
+
+/* Emoji-Icon im Footer statt Bild */
+.footer-emoji {
+  font-style: normal;
+  font-size: 1.1rem;
+  line-height: 1;
 }
 
 /* Social Buttons */

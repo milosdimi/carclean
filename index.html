@@ -139,12 +139,18 @@
         <p>Wir holen Ihr Fahrzeug ab, reinigen es und bringen es zurück.</p>
         <a href="#contact" class="hero-cta">Jetzt Termin anfragen</a>
       </div>
+      <div class="hero-slide">
+        <h2>Das perfekte <span class="highlight">Weihnachtsgeschenk</span> 🎁</h2>
+        <p>CarClean-Gutscheine ab 20 € – oder Ihr Wunschbetrag.</p>
+        <a href="#offer" class="hero-cta">Gutschein ansehen</a>
+      </div>
     </div>
 
     <div class="hero-dots">
       <button class="hero-dot" data-index="0" aria-label="Folie 1"></button>
       <button class="hero-dot" data-index="1" aria-label="Folie 2"></button>
       <button class="hero-dot" data-index="2" aria-label="Folie 3"></button>
+      <button class="hero-dot" data-index="3" aria-label="Folie 4"></button>
     </div>
   </section>
 
@@ -169,73 +175,109 @@
     </ul>
   </section>
 
-  <!-- Sommer-Aktion -->
-  <section id="spring-offer" class="spring-offer">
+  <!-- ===== Saison-Aktion: Weihnachten / Winter =====
+       Für die nächste Saison: nur Texte, Bild (in style.css) und Farb-Variablen ändern. -->
+  <section id="offer" class="offer offer--winter">
 
-    <!-- fallende Blüten (CSS Animation) -->
-    <span class="petal"></span>
-    <span class="petal"></span>
-    <span class="petal"></span>
-    <span class="petal"></span>
-    <span class="petal"></span>
-    <span class="petal"></span>
-    <span class="petal"></span>
-    <span class="petal"></span>
+    <!-- fallende Schneeflocken (reine CSS Animation, aria-hidden = für Screenreader unsichtbar) -->
+    <div class="offer-snow" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
 
-    <div class="spring-offer-content">
-      <span class="spring-badge">☀️ Sommer-Aktion 2026</span>
-      <h2>Insekten & Straßenstaub? Wir bringen<br>Ihr Auto in <span class="highlight-green">Bestform.</span></h2>
-      <p>Insektenreste, Pollen und UV-Strahlung setzen dem Lack im Sommer zu. Jetzt ist der perfekte Zeitpunkt für eine gründliche Aufbereitung – innen wie außen.</p>
+    <div class="offer-content">
+      <span class="offer-badge">🎄 Weihnachts-Special 2026</span>
+      <h2>Das perfekte Weihnachtsgeschenk:<br>ein <span class="offer-highlight">CarClean-Gutschein</span></h2>
+      <p>Schenken Sie Glanz statt Krimskrams – für alle, die ihr Auto lieben. Einlösbar für jede unserer Leistungen in Kufstein.</p>
 
-      <ul class="spring-badges">
-        <li>🐝 Insekten- & Pollenentfernung</li>
-        <li>✨ Lack polieren & versiegeln</li>
-        <li>🚗 Innenraum-Tiefenreinigung</li>
+      <!-- Beträge: Klick öffnet das Popup mit vorausgewähltem Betrag (data-amount) -->
+      <div class="offer-amounts" role="group" aria-label="Gutschein-Betrag wählen">
+        <button type="button" class="offer-amount" data-amount="20 €">20 €</button>
+        <button type="button" class="offer-amount" data-amount="50 €">50 €</button>
+        <button type="button" class="offer-amount" data-amount="80 €">80 €</button>
+        <button type="button" class="offer-amount" data-amount="100 €">100 €</button>
+        <button type="button" class="offer-amount offer-amount--free" data-amount="Wunschbetrag">Wunschbetrag</button>
+      </div>
+
+      <h3 class="offer-subtitle">❄️ Und für Ihr eigenes Auto: Winterpflege</h3>
+      <ul class="offer-list">
+        <li>🧂 Streusalz &amp; Schmutz entfernen</li>
+        <li>🛡️ Lackversiegelung als Winterschutz</li>
+        <li>🧽 Innenraum von Schneematsch befreien</li>
         <li>🚐 Abholservice möglich</li>
       </ul>
 
-      <button class="spring-offer-btn" id="spring-offer-open">
-        Jetzt Termin anfragen
-      </button>
+      <p class="offer-deadline">
+        <span id="offer-countdown"></span>
+        Bis <strong>20.12.</strong> bestellen – dann ist Ihr Gutschein rechtzeitig vor Weihnachten fertig.
+      </p>
+
+      <button type="button" class="offer-btn" id="offer-open">🎁 Gutschein bestellen</button>
     </div>
 
-    <!-- Popup -->
-    <div id="spring-offer-popup" class="spring-popup">
-      <div class="spring-popup-content">
-        <button class="spring-popup-close" id="spring-offer-close" aria-label="Schließen">×</button>
-        <h2>☀️ Sommer-Termin anfragen</h2>
+    <!-- Popup: Gutschein-Bestellung -->
+    <div id="offer-popup" class="offer-popup" role="dialog" aria-modal="true" aria-labelledby="offer-popup-title">
+      <div class="offer-popup-content">
+        <button type="button" class="offer-popup-close" id="offer-close" aria-label="Schließen">×</button>
+        <h2 id="offer-popup-title">🎁 Gutschein bestellen</h2>
 
-        <form onsubmit="sendVoucherMail(event)">
+        <form id="offer-form">
+          <!-- versteckte Felder: Betreff der Mail bei Formspree -->
+          <input type="hidden" name="_subject" value="🎁 Neue Gutschein-Bestellung (Weihnachten)" />
+          <input type="hidden" name="anfrage_typ" value="Gutschein-Bestellung" />
+
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Ihr Name" name="name" required />
+            <input type="text" class="form-control" placeholder="Ihr Name" name="name" required autocomplete="name" />
           </div>
           <div class="form-group">
-            <input type="email" class="form-control" placeholder="E-Mail" name="email" required />
+            <input type="email" class="form-control" placeholder="E-Mail" name="email" required autocomplete="email" />
           </div>
           <div class="form-group">
-            <input type="tel" class="form-control" placeholder="Telefon (optional)" name="phone" />
+            <input type="tel" class="form-control" placeholder="Telefon (für Rückruf)" name="phone" autocomplete="tel" />
           </div>
           <div class="form-group">
-            <select title="Leistung wählen" class="form-control" name="voucher_type" required>
-              <option value="" disabled selected>Leistung wählen</option>
-              <option value="Komplettaufbereitung">Komplettaufbereitung</option>
-              <option value="Außenreinigung & Politur">Außenreinigung & Politur</option>
-              <option value="Innenreinigung">Innenreinigung</option>
-              <option value="Lackversiegelung">Lackversiegelung</option>
-              <option value="Motorreinigung">Motorreinigung</option>
-              <option value="Sonstiges">Sonstiges / Beratung</option>
+            <select title="Gutschein wählen" class="form-control" name="gutschein" id="offer-select" required>
+              <option value="" disabled selected>Gutschein wählen</option>
+              <optgroup label="Wertgutschein">
+                <option value="20 €">Wertgutschein 20 €</option>
+                <option value="50 €">Wertgutschein 50 €</option>
+                <option value="80 €">Wertgutschein 80 €</option>
+                <option value="100 €">Wertgutschein 100 €</option>
+                <option value="Wunschbetrag">Wunschbetrag</option>
+              </optgroup>
+              <optgroup label="Leistungs-Gutschein">
+                <option value="Komplettaufbereitung">Komplettaufbereitung</option>
+                <option value="Innenreinigung">Innenreinigung</option>
+                <option value="Außenreinigung &amp; Politur">Außenreinigung &amp; Politur</option>
+                <option value="Lackversiegelung">Lackversiegelung</option>
+              </optgroup>
             </select>
           </div>
-          <div class="form-group">
-            <textarea class="form-control" rows="3" placeholder="Gewünschter Termin oder Nachricht (optional)" name="message"></textarea>
+          <!-- nur sichtbar, wenn "Wunschbetrag" gewählt ist (Steuerung in script.js) -->
+          <div class="form-group" id="offer-custom-wrap" hidden>
+            <input type="number" class="form-control" id="offer-custom" name="wunschbetrag" min="10" step="5" placeholder="Wunschbetrag in €" />
           </div>
-          <p class="small-note">Wir melden uns innerhalb von 24h bei Ihnen.</p>
-          <button class="send-button" type="submit">Anfrage senden</button>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Für wen ist der Gutschein? (optional)" name="beschenkte_person" />
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" rows="3" placeholder="Nachricht (optional)" name="message"></textarea>
+          </div>
+          <p class="small-note">Wir melden uns per Telefon oder E-Mail zur Zahlung. Den Gutschein holen Sie bei uns in der Werkstatt ab.</p>
+          <button class="send-button" type="submit">Bestellung absenden</button>
         </form>
+
+        <!-- Erfolgsmeldung (statt alert) -->
+        <div class="offer-success" id="offer-success" hidden>
+          <span class="offer-success-icon">🎄</span>
+          <h3>Danke für Ihre Bestellung!</h3>
+          <p>Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+          <button type="button" class="send-button" id="offer-success-close">Schließen</button>
+        </div>
       </div>
     </div>
   </section>
-  <!-- Ende Sommer-Aktion -->
+  <!-- ===== Ende Saison-Aktion ===== -->
 
   <section id="service" class="services-section">
     <h2 class="section-title">Unsere <span class="highlight">Leistungen</span></h2>

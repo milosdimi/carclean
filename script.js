@@ -78,18 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelectorAll(
-    ".about-text, .service-list, .spring-offer-content, .wrapper, .connect-text, .connect-buttons, .connect-map, .gallery-block, .contact-form, .contact-info"
+    ".about-text, .service-list, .offer-content, .wrapper, .connect-text, .connect-buttons, .connect-map, .gallery-block, .contact-form, .contact-info"
   ).forEach(el => revealObserver.observe(el));
 
   // Kontaktformular
   document.getElementById("contact-form")?.addEventListener("submit", sendMail);
 
-  // Frühjahrs-Aktion Popup
-  document.getElementById("spring-offer-open")?.addEventListener("click", openSpringOffer);
-  document.getElementById("spring-offer-close")?.addEventListener("click", closeSpringOffer);
-  document.getElementById("spring-offer-popup")?.addEventListener("click", (e) => {
-    if (e.target === e.currentTarget) closeSpringOffer(); // Klick außerhalb schließt Popup
-  });
+  // Saison-Aktion
+  initOffer();
 });
 
 
@@ -120,30 +116,117 @@ function sendMail(event) {
 }
 
 // =====================
-// Frühjahrs-Aktion Terminformular
+// Saison-Aktion (Weihnachts-Gutschein)
 // =====================
-function sendVoucherMail(event) {
+function initOffer() {
+  const popup = document.getElementById("offer-popup");
+  if (!popup) return; // Section gibt es nur auf der Startseite
+
+  const select = document.getElementById("offer-select");
+
+  // Haupt-Button: Popup ohne Vorauswahl öffnen
+  document.getElementById("offer-open").addEventListener("click", () => openOffer());
+
+  // Betrag-Buttons: Popup öffnen + Betrag im Select vorauswählen
+  document.querySelectorAll(".offer-amount").forEach(btn => {
+    btn.addEventListener("click", () => openOffer(btn.dataset.amount));
+  });
+
+  // Wunschbetrag-Feld nur zeigen, wenn "Wunschbetrag" gewählt ist
+  select.addEventListener("change", toggleCustomAmount);
+
+  // Schließen: X-Button, Klick auf den dunklen Hintergrund, Escape-Taste
+  document.getElementById("offer-close").addEventListener("click", closeOffer);
+  document.getElementById("offer-success-close").addEventListener("click", closeOffer);
+  popup.addEventListener("click", (e) => {
+    if (e.target === e.currentTarget) closeOffer();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && popup.classList.contains("is-open")) closeOffer();
+  });
+
+  document.getElementById("offer-form").addEventListener("submit", sendOfferMail);
+
+  startChristmasCountdown();
+}
+
+function openOffer(amount) {
+  const popup = document.getElementById("offer-popup");
+  const select = document.getElementById("offer-select");
+
+  if (amount) select.value = amount;
+  toggleCustomAmount();
+
+  popup.classList.add("is-open");
+  document.body.style.overflow = "hidden";
+  popup.querySelector("input[name='name']").focus();
+}
+
+function closeOffer() {
+  const popup = document.getElementById("offer-popup");
+  popup.classList.remove("is-open");
+  document.body.style.overflow = "";
+
+  // Nach dem Schließen wieder das Formular statt der Danke-Meldung zeigen
+  document.getElementById("offer-form").hidden = false;
+  document.getElementById("offer-success").hidden = true;
+}
+
+function toggleCustomAmount() {
+  const isCustom = document.getElementById("offer-select").value === "Wunschbetrag";
+  const wrap = document.getElementById("offer-custom-wrap");
+  const input = document.getElementById("offer-custom");
+
+  wrap.hidden = !isCustom;
+  input.required = isCustom; // Pflichtfeld nur, wenn sichtbar
+  if (!isCustom) input.value = "";
+}
+
+function sendOfferMail(event) {
   event.preventDefault();
   const form = event.target;
   if (!form.reportValidity()) return;
 
-  const data = new FormData(form);
+  const button = form.querySelector("button[type='submit']");
+  button.disabled = true; // verhindert Doppelklick = doppelte Bestellung
+  button.textContent = "Wird gesendet…";
 
   fetch("https://formspree.io/f/mdknjddr", {
     method: "POST",
-    body: data,
+    body: new FormData(form),
     headers: { Accept: "application/json" },
   })
     .then((response) => {
       if (!response.ok) throw new Error("Formspree Status " + response.status);
-      alert("Danke! Wir melden uns so schnell wie möglich bei Ihnen.");
-      closeSpringOffer();
       form.reset();
+      toggleCustomAmount();
+      form.hidden = true;
+      document.getElementById("offer-success").hidden = false;
     })
     .catch((error) => {
       console.error("Fehler beim Senden:", error);
-      alert("Fehler beim Senden. Bitte versuch es später nochmal.");
+      alert("Fehler beim Senden. Bitte versuchen Sie es später nochmal oder rufen Sie uns an.");
+    })
+    .finally(() => {
+      button.disabled = false;
+      button.textContent = "Bestellung absenden";
     });
+}
+
+// Zeigt "Noch X Tage bis Weihnachten" – ab dem 25.12. verschwindet die Anzeige
+function startChristmasCountdown() {
+  const el = document.getElementById("offer-countdown");
+  if (!el) return;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const christmas = new Date(today.getFullYear(), 11, 24); // Monat 11 = Dezember (zählt ab 0!)
+  const days = Math.round((christmas - today) / (1000 * 60 * 60 * 24));
+
+  if (days > 1) el.textContent = `🎄 Noch ${days} Tage bis Weihnachten`;
+  else if (days === 1) el.textContent = "🎄 Morgen ist Heiligabend!";
+  else if (days === 0) el.textContent = "🎄 Frohe Weihnachten!";
+  // days < 0 → bleibt leer, CSS blendet es aus (:not(:empty))
 }
 
 // =====================
@@ -297,20 +380,3 @@ document.addEventListener("DOMContentLoaded", () => {
     banner.style.display = "none";
   };
 });
-
-// =====================
-// Frühjahrs-Aktion Popup
-// =====================
-function openSpringOffer() {
-  const popup = document.getElementById("spring-offer-popup");
-  if (!popup) return;
-  popup.classList.add("is-open");
-  document.body.style.overflow = "hidden";
-}
-
-function closeSpringOffer() {
-  const popup = document.getElementById("spring-offer-popup");
-  if (!popup) return;
-  popup.classList.remove("is-open");
-  document.body.style.overflow = "";
-}

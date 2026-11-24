@@ -116,7 +116,11 @@
   </div>
 
   <section id="home" class="hero-section">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <!-- poster = Standbild, sofort sichtbar, bis das Video geladen ist.
+         Handys (bis 768px) bekommen die kleine Version, der Browser nimmt die erste passende <source>. -->
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+      poster="./img/video/hero-poster.jpg" aria-hidden="true">
+      <source src="./img/video/hero-video-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
       <source src="./img/video/hero-video.mp4" type="video/mp4" />
     </video>
     <div class="hero-overlay"></div>

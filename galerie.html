@@ -84,7 +84,17 @@
       <p class="subpage-subtitle">Einblicke in unsere Arbeit – professionelle Autoaufbereitung in Kufstein</p>
     </div>
 
-    <div class="imgcontainer" id="images" data-gallery="galerie"></div>
+    <div class="gallery-grid" id="images" data-gallery="galerie"></div>
+
+    <!-- Call-to-Action: wer die Bilder mag, soll direkt anfragen können -->
+    <section class="gallery-cta">
+      <h2>Gefällt Ihnen das Ergebnis?</h2>
+      <p>Wir bringen auch Ihr Fahrzeug wieder zum Glänzen – innen wie außen.</p>
+      <div class="gallery-cta-buttons">
+        <a href="./index.html#contact" class="gallery-cta-btn">Jetzt Termin anfragen</a>
+        <a href="https://wa.me/436606568206" target="_blank" rel="noopener" class="gallery-cta-btn gallery-cta-btn--wa">Per WhatsApp schreiben</a>
+      </div>
+    </section>
 
     <div class="subpage-back">
       <a href="./index.html" class="back-btn">← Zurück zur Hauptseite</a>
@@ -92,7 +102,16 @@
 
   </main>
 
-  <div class="image d-none" id="openimg"></div>
+  <!-- Lightbox (Großansicht). hidden = unsichtbar, bis ein Bild angeklickt wird. Logik in script.js -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildansicht" hidden>
+    <button type="button" class="lightbox-close" aria-label="Schließen">×</button>
+    <button type="button" class="lightbox-nav lightbox-prev" aria-label="Vorheriges Bild">‹</button>
+    <div class="lightbox-stage">
+      <img class="lightbox-img" src="" alt="" />
+    </div>
+    <button type="button" class="lightbox-nav lightbox-next" aria-label="Nächstes Bild">›</button>
+    <p class="lightbox-counter" aria-live="polite"></p>
+  </div>
 
   <!-- Cookie-Banner -->
   <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen" style="display: none">

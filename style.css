@@ -1902,151 +1902,282 @@ a:hover {
   transform: translateX(-4px);
 }
 
-/* Galerie 2*/
-.imgcontainer {
+/* =========================
+   Galerie-Raster (galerie.html, vornach.html)
+========================= */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.gallery-tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;        /* fester Platz -> nichts springt beim Laden */
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Vorher-Nachher-Bilder sind meist Collagen -> quadratisch zeigt mehr davon */
+.gallery-grid[data-gallery="vornach"] .gallery-tile {
+  aspect-ratio: 1 / 1;
+}
+
+.gallery-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.gallery-tile img.is-loaded {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Lupe + Abdunkeln beim Hover */
+.gallery-tile::after {
+  content: "🔍";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  background: rgba(11, 18, 32, 0.45);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-tile:hover img.is-loaded,
+.gallery-tile:focus-visible img.is-loaded {
+  transform: scale(1.06);
+}
+
+.gallery-tile:hover::after,
+.gallery-tile:focus-visible::after {
+  opacity: 1;
+}
+
+.gallery-tile:focus-visible {
+  outline: 3px solid #6c8cff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .gallery-tile {
+    border-radius: 10px;
+  }
+}
+
+/* Am Touch-Handy gibt es kein Hover -> Lupe nicht "kleben" lassen */
+@media (hover: none) {
+  .gallery-tile::after { display: none; }
+}
+
+/* ---------- Call-to-Action unter der Galerie ---------- */
+.gallery-cta {
+  max-width: 720px;
+  margin: 64px auto 0;
+  padding: 40px 24px;
+  text-align: center;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(44, 58, 130, 0.25), rgba(11, 18, 32, 0.6));
+  border: 1px solid rgba(108, 140, 255, 0.2);
+}
+
+.gallery-cta h2 {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+}
+
+.gallery-cta p {
+  margin: 0 0 24px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.gallery-cta-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 20px;
+  gap: 12px;
 }
 
-.imgbox {
-  height: 300px;
-  margin: 10px;
-  overflow: hidden;
+.gallery-cta-btn {
+  padding: 13px 26px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #3b4fb8, #2c3a82);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.imgbox img {
-  height: 100%;
-  width: auto;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+.gallery-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(59, 79, 184, 0.45);
 }
 
-.imgbox:hover img {
-  transform: scale(1.1);
+.gallery-cta-btn--wa {
+  background: linear-gradient(135deg, #25d366, #128c7e);
 }
 
-.imagesolo {
-  width: 90vw;
-  height: 90vh;
-  object-fit: contain;
+.gallery-cta-btn--wa:hover {
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
 }
 
-.d-none {
-  display: none;
-}
-
-.image {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1000;
+@media (max-width: 600px) {
+  .gallery-cta {
+    margin: 48px 12px 0;
+  }
 }
 
 /* =========================
-   FIX: Gallery Modal Overlay (#openimg)
-   -> macht echtes Fullscreen-Modal
+   Lightbox (Großansicht)
 ========================= */
-
-#openimg {
+.lightbox {
   position: fixed;
   inset: 0;
   z-index: 999999;
-  /* über allem */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 14px;
-  background: rgba(0, 0, 0, 0.88);
-}
-
-/* dein d-none bleibt ok – nur zur Sicherheit */
-#openimg.d-none {
-  display: none !important;
-}
-
-/* dein .openimg war bisher "normal" im Flow + mit padding 0 80px */
-#openimg .openimg {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* überschreibt dein altes padding/background */
-  padding: 0 !important;
-  background: transparent !important;
-}
-
-/* Bild sauber zentriert + passt immer auf Handy */
-#openimg .imagesolo {
-  max-width: min(1100px, 96vw);
-  max-height: 86vh;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  border-radius: 14px;
-}
-
-/* Buttons oben mittig (statt bottom:100px) */
-#openimg .btn-container {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 14px;
-  z-index: 2;
-  bottom: 50px;
-
-}
-
-/* Button Icons modern + klickbar */
-#openimg .nextimage {
-  height: 52px;
-  width: 52px;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(5, 8, 16, 0.94);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
 
-/* Mobile Feinschliff */
-@media (max-width: 480px) {
-  #openimg .imagesolo {
-    max-height: 78vh;
-  }
-
-  #openimg .nextimage {
-    height: 46px;
-    width: 46px;
-    padding: 9px;
-  }
+.lightbox[hidden] {
+  display: none;
 }
 
+.lightbox-stage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 80px;
+  box-sizing: border-box;
+}
 
-.btn-container {
+.lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.lightbox-img.is-loaded {
+  opacity: 1;
+}
+
+.lightbox-close,
+.lightbox-nav {
   position: absolute;
-  bottom: 100px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover,
+.lightbox-close:focus-visible,
+.lightbox-nav:focus-visible {
+  background: rgba(108, 140, 255, 0.35);
+  outline: none;
+}
+
+.lightbox-close {
+  top: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  font-size: 2rem;
+}
+
+.lightbox-nav {
+  top: 50%;
+  width: 56px;
+  height: 56px;
+  font-size: 2.4rem;
+  transform: translateY(-50%);
+  padding-bottom: 4px;
+}
+
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+
+.lightbox-nav:hover { transform: translateY(-50%) scale(1.08); }
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  gap: 50px;
-  z-index: 1;
+  margin: 0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.8rem;
 }
 
-.nextimage {
-  height: 64px;
-  cursor: pointer;
+/* Handy: Bild fast randlos, Pfeile unten neben dem Zähler (man wischt sowieso) */
+@media (max-width: 600px) {
+  .lightbox-stage {
+    padding: 70px 8px 90px;
+  }
+
+  .lightbox-nav {
+    top: auto;
+    bottom: 12px;
+    width: 46px;
+    height: 46px;
+    font-size: 2rem;
+    transform: none;
+  }
+
+  .lightbox-nav:hover { transform: none; }
+  .lightbox-prev { left: 16px; }
+  .lightbox-next { right: 16px; }
+  .lightbox-counter { bottom: 22px; }
 }
 
-/* Galerie 2 ende*/
 
 /* ===================== */
 /* Contact Section       */
@@ -2808,32 +2939,92 @@ hr {
 }
 
 /*kfz-reinigung*/
-.hintergrund-div,
-.hintergrund_versiegelung,
-.hintergrund_motorreinigung,
-.hintergrund_lackpolitur {
-  width: 100%;
-  height: 600px;
+
+/* =========================
+   Leistungsseiten: Hero-Banner
+   Bild + dunkler Verlauf, Überschrift links unten.
+========================= */
+.service-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(380px, 62vh, 560px);
+  padding: 140px 20px 56px;            /* oben Platz für den fixen Header */
+  box-sizing: border-box;
   background-size: cover;
   background-position: center;
-  margin-top: 70px;
 }
 
-.hintergrund-div {
-  background-image: url("./img/pexels-tima-miroshnichenko-6873088.jpg");
+/* dunkler Verlauf, damit der Text immer gut lesbar ist */
+.service-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(11, 18, 32, 0.55) 0%, rgba(11, 18, 32, 0.35) 40%, rgba(25, 27, 34, 0.96) 100%),
+    linear-gradient(90deg, rgba(11, 18, 32, 0.7) 0%, transparent 70%);
 }
 
-.hintergrund_versiegelung {
-  background-image: url("./img/microfiber-3789848_640.jpg");
+.service-hero-content {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.hintergrund_motorreinigung {
-  background-image: url("./img/pexels-pixabay-159293.jpg");
+.service-hero-kicker {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(108, 140, 255, 0.15);
+  border: 1px solid rgba(108, 140, 255, 0.4);
+  color: #c7d2ff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
-.hintergrund_lackpolitur {
-  background-image: url("./img/pexels-khunkorn-laowisit-5233261.jpg");
+.service-hero h1 {
+  margin: 0 0 14px;
+  color: #fff;
+  font-size: clamp(1.7rem, 4.4vw, 2.9rem);
+  line-height: 1.2;
 }
+
+.service-hero p {
+  margin: 0 0 26px;
+  max-width: 560px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  line-height: 1.6;
+}
+
+.service-hero--kfz          { background-image: url("./img/pexels-tima-miroshnichenko-6873088.jpg"); }
+.service-hero--versiegelung { background-image: url("./img/actions/versiegelung-hero.jpg"); }
+
+/* Versiegelungs-Bild ist schon dunkel -> hellerer Verlauf, damit die Wasserperlen sichtbar bleiben */
+.service-hero--versiegelung::before {
+  background:
+    linear-gradient(180deg, rgba(11, 18, 32, 0.35) 0%, rgba(11, 18, 32, 0.1) 40%, rgba(25, 27, 34, 0.95) 100%),
+    linear-gradient(90deg, rgba(11, 18, 32, 0.6) 0%, transparent 60%);
+}
+.service-hero--motor        { background-image: url("./img/pexels-pixabay-159293.jpg"); }
+.service-hero--politur      { background-image: url("./img/pexels-khunkorn-laowisit-5233261.jpg"); }
+
+@media (max-width: 600px) {
+  .service-hero {
+    min-height: 420px;
+    padding: 110px 16px 36px;
+  }
+
+  .service-hero h1 {
+    font-size: clamp(1.4rem, 6.6vw, 1.8rem);
+  }
+}
+
+
 
 .line_div {
   width: 100%;
@@ -2860,14 +3051,178 @@ hr {
   margin: 20px 0;
 }
 
+/* Globale Überschriften-Farbe (z.B. Startseite: "Ihr Experte…", Leistungskarten) – NICHT entfernen */
 h1,
 h2 {
   color: #f27634;
 }
 
+/* Überschriften im Textbereich der Leistungsseiten: weiß wie auf der Startseite (vorher orange) */
+.container_kfz h2 {
+  position: relative;
+  color: #fff;
+  font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+  line-height: 1.3;
+  margin: 40px 0 12px;
+  padding-left: 16px;
+}
+
+/* kleiner blauer Balken links als Akzent */
+.container_kfz h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  bottom: 0.15em;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #6c8cff, #2c3a82);
+}
+
+/* Hinweis-Kasten hat seinen eigenen Stil -> ohne Balken */
+.container_kfz .notice-box h2 {
+  padding-left: 0;
+  margin-top: 0;
+}
+.container_kfz .notice-box h2::before { display: none; }
+
+/* FAQ-Fragen auf den Leistungsseiten: vorher ohne Farbe = fast schwarz auf dunklem Grund */
+.container_kfz h3 {
+  color: #fff;
+  font-size: 1rem;
+  margin: 24px 0 6px;
+}
+
+/* "inklusive"-Liste auf den Leistungsseiten: hatte keine Textfarbe -> schwarz */
+.container_kfz .service-list li {
+  color: #e5e7eb;
+}
+
 p {
   color: #cbcbcb;
   line-height: 1.6;
+}
+
+/* --- Motorreinigung: Sicherheits-Check (4 Schritte) --- */
+.safety-steps {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 20px 0 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.safety-steps li {
+  counter-increment: step;
+  position: relative;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 18px 30px 18px 16px; /* rechts Platz für die Schritt-Nummer */
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* kleine Schritt-Nummer oben rechts */
+.safety-steps li::after {
+  content: counter(step);
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(242, 118, 52, 0.7);
+}
+
+.safety-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(242, 118, 52, 0.14);
+  font-size: 1.3rem;
+}
+
+.safety-steps strong {
+  display: block;
+  color: #fff;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.safety-steps p {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 600px) {
+  .safety-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Hinweis-Kasten "Wichtig zu wissen" --- */
+.notice-box {
+  margin: 32px 0;
+  padding: 22px 24px;
+  border-radius: 14px;
+  background: rgba(108, 140, 255, 0.08);
+  border: 1px solid rgba(108, 140, 255, 0.25);
+  border-left: 4px solid #6c8cff;
+}
+
+.notice-box h2 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  color: #fff;
+}
+
+.notice-box p {
+  margin: 0 0 10px;
+  font-size: 0.88rem;
+}
+
+.notice-box p:last-child {
+  margin-bottom: 0;
+}
+
+.notice-box strong {
+  color: #fff;
+}
+
+/* --- "Motorreinigung anfragen" --- */
+.motor-cta {
+  margin: 36px 0 8px;
+  text-align: center;
+}
+
+.motor-cta-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f27634, #d85f1f);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 20px rgba(242, 118, 52, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.motor-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(242, 118, 52, 0.5);
+}
+
+.motor-cta p {
+  margin: 12px 0 0;
+  font-size: 0.8rem;
 }
 
 /*kfz-reinigung ende*/
@@ -3313,4 +3668,14 @@ p {
   .header-content {
     height: 90vh;
   }
+}
+/* Textlink in Fließtext (z.B. "Zum CarClean-Gutschein →") */
+.text-link {
+  color: #6c8cff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.text-link:hover {
+  text-decoration: underline;
 }

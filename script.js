@@ -55,10 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Galerie laden – welche Funktion, bestimmt data-gallery am Container
-  const galleryEl = document.getElementById("images");
-  if (galleryEl?.dataset.gallery === "galerie") load();
-  if (galleryEl?.dataset.gallery === "vornach") loadvor();
+  // Galerie / Vorher-Nachher (nur auf diesen Seiten vorhanden)
+  initGallery();
 
   // Menü-Buttons
   document.getElementById("menu-toggle")?.addEventListener("click", showMenu);
@@ -342,133 +340,126 @@ function startChristmasCountdown() {
 }
 
 // =====================
-// Galerie
+// Galerie + Vorher/Nachher (ein gemeinsames Modul für beide Seiten)
+// Welche Galerie geladen wird, steht im HTML: <div id="images" data-gallery="galerie">
 // =====================
-const images = Array.from({ length: 52 }, (_, i) => `galerie/${i + 1}.jpg`);
+const GALLERIES = {
+  galerie: { folder: "galerie",      count: 52, alt: "CarClean Galerie – Autoaufbereitung Kufstein" },
+  vornach: { folder: "vornachfotos", count: 21, alt: "Vorher-Nachher Autoaufbereitung Kufstein – CarClean" },
+};
+
+let galleryImages = [];   // Liste der großen Bilder (1600px)
+let galleryAlt = "";
+let lightboxIndex = 0;
+let lastFocusedTile = null; // um nach dem Schließen den Fokus zurückzugeben
+
+function initGallery() {
+  const grid = document.getElementById("images");
+  const config = GALLERIES[grid?.dataset.gallery];
+  if (!config) return;
+
+  galleryImages = Array.from({ length: config.count }, (_, i) => `${config.folder}/${i + 1}.jpg`);
+  galleryAlt = config.alt;
+
+  // Raster aus Vorschaubildern bauen. <button> statt <div>, damit es auch per Tastatur bedienbar ist.
+  grid.innerHTML = galleryImages.map((src, i) => `
+    <button type="button" class="gallery-tile" data-index="${i}" aria-label="Bild ${i + 1} groß anzeigen">
+      <img src="${thumbOf(src)}" alt="${galleryAlt} – Bild ${i + 1}" loading="lazy" decoding="async">
+    </button>`).join("");
+
+  // sanft einblenden, sobald das Vorschaubild geladen ist
+  grid.querySelectorAll(".gallery-tile img").forEach(img => {
+    if (img.complete) img.classList.add("is-loaded");
+    else img.addEventListener("load", () => img.classList.add("is-loaded"), { once: true });
+  });
+
+  // ein Klick-Listener für alle Kacheln ("Event Delegation")
+  grid.addEventListener("click", (e) => {
+    const tile = e.target.closest(".gallery-tile");
+    if (tile) openLightbox(Number(tile.dataset.index), tile);
+  });
+
+  initLightbox();
+}
 
 // Vorschaubild (800px) für das Raster: "galerie/5.jpg" -> "galerie/thumbs/5.jpg"
 // Das große Bild (1600px) wird erst in der Lightbox geladen.
 function thumbOf(src) {
   return src.replace(/\/([^/]+)$/, "/thumbs/$1");
 }
-let imageIndex = 0;
 
-function load() {
-  const container = document.getElementById("images");
-  if (!container) return;
+// ---------- Lightbox ----------
+function initLightbox() {
+  const box = document.getElementById("lightbox");
+  if (!box) return;
 
-  let html = "";
-  images.forEach((src, i) => {
-    html += `
-      <div class="imgbox">
-        <img src="${thumbOf(src)}"
-             alt="CarClean Galerie – Autoaufbereitung Kufstein Bild ${i + 1}"
-             loading="lazy"
-             onclick="openImage(${i})">
-      </div>`;
+  box.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
+  box.querySelector(".lightbox-prev").addEventListener("click", () => stepLightbox(-1));
+  box.querySelector(".lightbox-next").addEventListener("click", () => stepLightbox(1));
+
+  // Klick auf den dunklen Hintergrund schließt
+  box.addEventListener("click", (e) => {
+    if (e.target === box || e.target.classList.contains("lightbox-stage")) closeLightbox();
   });
 
-  container.innerHTML = html;
-}
-
-function openImage(i) {
-  const openImgContainer = document.getElementById("openimg");
-  if (!openImgContainer) return;
-
-  openImgContainer.innerHTML = `
-    <div class="openimg">
-      <div class="btn-container">
-        <img onclick="backImage()" class="nextimage" src="./img/next-button.png" alt="Zurück">
-        <img onclick="closeImg()" class="nextimage" src="./img/close.png" alt="Schließen">
-        <img onclick="nextImage()" class="nextimage" src="./img/back-button.png" alt="Weiter">
-      </div>
-      <div><img class="imagesolo" src="${images[i]}" alt="CarClean Galerie – Bild ${i + 1}"></div>
-    </div>`;
-
-  openImgContainer.classList.remove("d-none");
-  document.body.style.overflow = "hidden";
-
-  imageIndex = i;
-}
-
-function closeImg() {
-  const openImgContainer = document.getElementById("openimg");
-  if (!openImgContainer) return;
-  openImgContainer.classList.add("d-none");
-  document.body.style.overflow = "";
-
-}
-
-function backImage() {
-  imageIndex = (imageIndex - 1 + images.length) % images.length;
-  openImage(imageIndex);
-}
-
-function nextImage() {
-  imageIndex = (imageIndex + 1) % images.length;
-  openImage(imageIndex);
-}
-
-// =====================
-// Vorher / Nachher Galerie
-// =====================
-const imagesvor = Array.from({ length: 21 }, (_, i) => `vornachfotos/${i + 1}.jpg`);
-let imageIndexvor = 0;
-
-function loadvor() {
-  const container = document.getElementById("images");
-  if (!container) return;
-
-  let html = "";
-  imagesvor.forEach((src, i) => {
-    html += `
-      <div class="imgbox">
-        <img src="${thumbOf(src)}"
-             alt="Vorher–Nachher Autoaufbereitung Kufstein – CarClean Bild ${i + 1}"
-             loading="lazy"
-             onclick="openImagevor(${i})">
-      </div>`;
+  // Tastatur: Escape, Pfeil links/rechts
+  document.addEventListener("keydown", (e) => {
+    if (box.hidden) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") stepLightbox(-1);
+    if (e.key === "ArrowRight") stepLightbox(1);
   });
 
-  container.innerHTML = html;
+  // Wischen am Handy: Startpunkt merken, beim Loslassen Richtung auswerten
+  let touchStartX = 0, touchStartY = 0;
+  box.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive: true });
+  box.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) stepLightbox(dx < 0 ? 1 : -1);
+  });
 }
 
-function openImagevor(i) {
-  const openImgContainer = document.getElementById("openimg");
-  if (!openImgContainer) return;
-
-  openImgContainer.innerHTML = `
-    <div class="openimg">
-      <div class="btn-container">
-        <img onclick="backImagevor()" class="nextimage" src="./img/next-button.png" alt="Zurück">
-        <img onclick="closeImgvor()" class="nextimage" src="./img/close.png" alt="Schließen">
-        <img onclick="nextImagevor()" class="nextimage" src="./img/back-button.png" alt="Weiter">
-      </div>
-      <div><img class="imagesolo" src="${imagesvor[i]}" alt="Vorher–Nachher CarClean – Bild ${i + 1}"></div>
-    </div>`;
-
-  openImgContainer.classList.remove("d-none");
+function openLightbox(index, tile) {
+  const box = document.getElementById("lightbox");
+  lastFocusedTile = tile || null;
+  box.hidden = false;
   document.body.style.overflow = "hidden";
-
-  imageIndexvor = i;
+  showLightboxImage(index);
+  box.querySelector(".lightbox-close").focus();
 }
 
-function closeImgvor() {
-  const openImgContainer = document.getElementById("openimg");
-  if (!openImgContainer) return;
-  openImgContainer.classList.add("d-none");
+function closeLightbox() {
+  const box = document.getElementById("lightbox");
+  box.hidden = true;
   document.body.style.overflow = "";
-
+  lastFocusedTile?.focus(); // Tastatur-Nutzer landen wieder bei der Kachel
 }
 
-function backImagevor() {
-  imageIndexvor = (imageIndexvor - 1 + imagesvor.length) % imagesvor.length;
-  openImagevor(imageIndexvor);
+function stepLightbox(direction) {
+  // Modulo = Endlos-Schleife: nach dem letzten Bild kommt wieder das erste
+  showLightboxImage((lightboxIndex + direction + galleryImages.length) % galleryImages.length);
 }
 
-function nextImagevor() {
-  imageIndexvor = (imageIndexvor + 1) % imagesvor.length;
-  openImagevor(imageIndexvor);
+function showLightboxImage(index) {
+  const box = document.getElementById("lightbox");
+  const img = box.querySelector(".lightbox-img");
+  lightboxIndex = index;
+
+  img.classList.remove("is-loaded");
+  img.onload = () => img.classList.add("is-loaded");
+  img.src = galleryImages[index];
+  img.alt = `${galleryAlt} – Bild ${index + 1}`;
+  box.querySelector(".lightbox-counter").textContent = `${index + 1} / ${galleryImages.length}`;
+
+  // Nachbarbilder schon vorladen -> Blättern fühlt sich sofort an
+  [index - 1, index + 1].forEach(n => {
+    const pre = new Image();
+    pre.src = galleryImages[(n + galleryImages.length) % galleryImages.length];
+  });
 }
 
 // =====================

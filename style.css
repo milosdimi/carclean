@@ -2514,12 +2514,6 @@ a:hover {
   .open-status.is-open::before { animation: none; }
 }
 
-/* Emoji-Icon im Footer statt Bild */
-.footer-emoji {
-  font-style: normal;
-  font-size: 1.1rem;
-  line-height: 1;
-}
 
 /* Social Buttons */
 .contact-socials {
@@ -2576,8 +2570,11 @@ a:hover {
 /* Legacy footer helpers */
 .copyright {
   text-align: center;
-  font: 200 14px "Oswald", sans-serif;
-  color: #555;
+  /* vorher "Oswald" – die Schrift wird nirgends geladen, darum kam Arial */
+  font-family: "Unbounded", sans-serif;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.4);
+  gap: 4px;
   display: flex;
   justify-content: center;
 }
@@ -2901,6 +2898,12 @@ hr {
   width: 18px;
   height: 18px;
   filter: invert(1) opacity(0.6);
+}
+
+/* Footer: Text ohne Link (z.B. Öffnungszeiten) im gleichen Stil wie die Links */
+.footer .contact-text {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.82rem;
 }
 
 .contact-text a {
@@ -3496,8 +3499,14 @@ p {
     justify-content: center;
   }
 
+  /* Block mittig, Zeilen darin LINKS ausgerichtet -> Icons und Texte stehen genau untereinander */
+  .footer .contact-list {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
   .footer .contact-list li {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .social-media-list {

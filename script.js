@@ -462,30 +462,3 @@ function showLightboxImage(index) {
   });
 }
 
-// =====================
-// Cookies (nur wenn vorhanden)
-// =====================
-document.addEventListener("DOMContentLoaded", () => {
-  const banner = document.getElementById("cookie-banner");
-  const accept = document.getElementById("accept-cookies");
-  const decline = document.getElementById("decline-cookies");
-
-  if (!banner || !accept || !decline) return;
-
-  if (document.cookie.includes("cookies_accepted=true")) {
-    banner.style.display = "none";
-    return;
-  }
-
-  banner.style.display = "block";
-
-  accept.onclick = () => {
-    document.cookie =
-      "cookies_accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
-    banner.style.display = "none";
-  };
-
-  decline.onclick = () => {
-    banner.style.display = "none";
-  };
-});

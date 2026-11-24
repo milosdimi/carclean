@@ -3236,131 +3236,6 @@ p {
   align-items: center;
 }
 
-/* Cookie Banner */
-.cookie-banner {
-  position: fixed;
-  bottom: 24px;
-  left: 16px;
-  z-index: 9998;
-  width: min(540px, calc(100% - 32px));
-  animation: cookieSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-@keyframes cookieSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.cookie-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 16px 22px;
-  background: rgba(18, 20, 30, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(44, 58, 130, 0.45);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-}
-
-.cookie-text {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-}
-
-.cookie-icon {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-}
-
-.cookie-text p {
-  margin: 0;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.72);
-  line-height: 1.5;
-}
-
-.cookie-text a {
-  color: #6c8cff;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.cookie-text a:hover {
-  color: #fff;
-}
-
-.cookie-actions {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.cookie-btn {
-  padding: 9px 18px;
-  border-radius: 8px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  cursor: pointer;
-  border: none;
-  white-space: nowrap;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
-}
-
-.cookie-btn:hover {
-  transform: translateY(-2px);
-}
-
-.cookie-btn--primary {
-  background: linear-gradient(135deg, #2c3a82, #1a224e);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(44, 58, 130, 0.4);
-}
-
-.cookie-btn--primary:hover {
-  box-shadow: 0 6px 20px rgba(44, 58, 130, 0.6);
-}
-
-.cookie-btn--ghost {
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.cookie-btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-}
-
-@media (max-width: 480px) {
-  .cookie-banner {
-    left: 16px;
-    right: 86px;
-    width: auto;
-  }
-
-  .cookie-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-  }
-
-  .cookie-actions {
-    width: 100%;
-    justify-content: flex-end;
-  }
-}
-
 /* Media Queries für responsives Design */
 
 @media screen and (max-width: 320px) {
@@ -3678,4 +3553,46 @@ p {
 
 .text-link:hover {
   text-decoration: underline;
+}
+
+/* Danke-Seite (send_mail.html) */
+.thankyou-note {
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+}
+
+.thankyou-quick {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.thankyou-quick p {
+  margin: 0 0 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+}
+
+.thankyou-quick-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.thankyou-back {
+  display: inline-block;
+  margin-top: 32px;
+}
+
+/* Link-Farbe der Rechtsseiten (.legal-page a) würde die Buttons blau färben */
+.thankyou-quick .gallery-cta-btn {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Danke-Seite: Strich unter der Überschrift mittig (Überschrift ist zentriert) */
+.thankyou-container .legal-title::after {
+  left: 50%;
+  transform: translateX(-50%);
 }

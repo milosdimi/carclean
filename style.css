@@ -3958,3 +3958,12 @@ a.offer-btn {
     padding: 0 16px 16px;
   }
 }
+
+/* Einleitungstext auf Galerie / Vorher-Nachher (mehr Text für Google) */
+.subpage-intro {
+  max-width: 640px;
+  margin: 14px auto 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}

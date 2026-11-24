@@ -238,7 +238,7 @@ main {
 }
 
 .spring-offer::before {
-  content: “”;
+  content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at 70% 50%,

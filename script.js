@@ -108,7 +108,9 @@ function sendMail(event) {
     body: data,
     headers: { Accept: "application/json" },
   })
-    .then(() => {
+    .then((response) => {
+      // fetch wirft bei HTTP-Fehlern (z.B. 400, 500) KEINEN Fehler – das müssen wir selbst prüfen
+      if (!response.ok) throw new Error("Formspree Status " + response.status);
       window.location.href = "./send_mail.html";
     })
     .catch((error) => {
@@ -132,8 +134,9 @@ function sendVoucherMail(event) {
     body: data,
     headers: { Accept: "application/json" },
   })
-    .then(() => {
-      alert("Danke! Wir melden uns so schnell wie möglich bei Ihnen. 🌸");
+    .then((response) => {
+      if (!response.ok) throw new Error("Formspree Status " + response.status);
+      alert("Danke! Wir melden uns so schnell wie möglich bei Ihnen.");
       closeSpringOffer();
       form.reset();
     })

@@ -1,0 +1,48 @@
+# =========================================================
+# CarClean – Server-Einstellungen (Namecheap / LiteSpeed)
+# =========================================================
+
+# Eigene Fehlerseite statt der grauen Standardseite
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) Alles auf HTTPS + www umleiten (eine einzige Adresse für Google):
+  #    http://carclean.cc, https://carclean.cc, http://www.carclean.cc
+  #    -> https://www.carclean.cc
+  #    301 = "dauerhaft umgezogen" -> Google überträgt das Ranking auf die neue Adresse
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+  RewriteRule ^ https://www.%1%{REQUEST_URI} [L,R=301]
+
+  # 2) /index.html -> / (verhindert doppelte Startseite bei Google)
+  RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+  RewriteRule ^index\.html$ / [L,R=301]
+</IfModule>
+
+# Ordnerinhalte nicht auflisten (z.B. /img/ zeigt keine Dateiliste)
+Options -Indexes
+
+# Bilder, Schrift, Video lange im Browser speichern (1 Jahr),
+# CSS/JS kurz (1 Tag), damit Änderungen schnell bei allen ankommen
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 day"
+  ExpiresByType application/javascript "access plus 1 day"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Kleine Sicherheits-Header
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>

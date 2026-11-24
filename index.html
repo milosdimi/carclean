@@ -144,18 +144,34 @@
         <p>Wir holen Ihr Fahrzeug ab, reinigen es und bringen es zurück.</p>
         <a href="#contact" class="hero-cta">Jetzt Termin anfragen</a>
       </div>
-      <div class="hero-slide">
+      <div class="hero-slide" data-season="christmas">
         <h2>Das perfekte <span class="highlight">Weihnachtsgeschenk</span> 🎁</h2>
         <p>CarClean-Gutscheine ab 20 € – oder Ihr Wunschbetrag.</p>
         <a href="#offer" class="hero-cta">Gutschein ansehen</a>
       </div>
+      <div class="hero-slide" data-season="spring">
+        <h2><span class="highlight">Frühjahrsputz</span> für Ihr Auto 🌸</h2>
+        <p>Streusalz-Reste, Pollen und Winterdreck – wir machen Ihr Auto wieder frühlingsfrisch.</p>
+        <a href="#offer" class="hero-cta">Frühjahrs-Special ansehen</a>
+      </div>
+      <div class="hero-slide" data-season="summer">
+        <h2>Ihr Auto <span class="highlight">urlaubsbereit</span> machen ☀️</h2>
+        <p>Insekten entfernen, Lack vor UV schützen, Innenraum auffrischen.</p>
+        <a href="#offer" class="hero-cta">Sommer-Special ansehen</a>
+      </div>
+      <div class="hero-slide" data-season="autumn">
+        <h2>Lack <span class="highlight">winterfest</span> machen 🍂</h2>
+        <p>Versiegelung jetzt – bevor Streusalz und Matsch kommen.</p>
+        <a href="#offer" class="hero-cta">Herbst-Special ansehen</a>
+      </div>
+      <div class="hero-slide" data-season="winter">
+        <h2>Ihr Auto <span class="highlight">winterfit</span> machen ❄️</h2>
+        <p>Streusalz entfernen, Lack versiegeln, Innenraum reinigen.</p>
+        <a href="#offer" class="hero-cta">Winter-Special ansehen</a>
+      </div>
     </div>
 
-    <div class="hero-dots">
-      <button class="hero-dot" data-index="0" aria-label="Folie 1"></button>
-      <button class="hero-dot" data-index="1" aria-label="Folie 2"></button>
-      <button class="hero-dot" data-index="2" aria-label="Folie 3"></button>
-      <button class="hero-dot" data-index="3" aria-label="Folie 4"></button>
+    <div class="hero-dots"><!-- Punkte werden in script.js passend zur Anzahl der Folien erzeugt -->
     </div>
   </section>
 
@@ -182,42 +198,127 @@
 
   <!-- ===== Saison-Aktion: Weihnachten / Winter =====
        Für die nächste Saison: nur Texte, Bild (in style.css) und Farb-Variablen ändern. -->
-  <section id="offer" class="offer offer--winter">
+  <section id="offer" class="offer offer--christmas">
 
-    <!-- fallende Schneeflocken (reine CSS Animation, aria-hidden = für Screenreader unsichtbar) -->
-    <div class="offer-snow" aria-hidden="true">
+    <!-- Partikel je nach Saison: Schnee, Blüten, Sonnenfunken, Blätter (reines CSS, aria-hidden = für Screenreader unsichtbar) -->
+    <div class="offer-particles" aria-hidden="true">
       <span></span><span></span><span></span><span></span><span></span><span></span>
       <span></span><span></span><span></span><span></span><span></span><span></span>
     </div>
 
+    <!-- Saison-Aktion: wechselt JEDES JAHR automatisch (Kalender: SEASONS in script.js)
+         Frühling 01.03.–31.05. · Sommer 01.06.–31.08. · Herbst 01.09.–14.11.
+         Weihnachten 15.11.–24.12. · Winter 25.12.–28./29.02.
+         Testen: index.html?datum=2027-04-10 -->
     <div class="offer-content">
-      <span class="offer-badge">🎄 Weihnachts-Special 2026</span>
-      <h2>Das perfekte Weihnachtsgeschenk:<br>ein <span class="offer-highlight">CarClean-Gutschein</span></h2>
-      <p>Schenken Sie Glanz statt Krimskrams – für alle, die ihr Auto lieben. Einlösbar für jede unserer Leistungen in Kufstein.</p>
 
-      <!-- Beträge: Klick öffnet das Popup mit vorausgewähltem Betrag (data-amount) -->
-      <div class="offer-amounts" role="group" aria-label="Gutschein-Betrag wählen">
-        <button type="button" class="offer-amount" data-amount="20 €">20 €</button>
-        <button type="button" class="offer-amount" data-amount="50 €">50 €</button>
-        <button type="button" class="offer-amount" data-amount="80 €">80 €</button>
-        <button type="button" class="offer-amount" data-amount="100 €">100 €</button>
-        <button type="button" class="offer-amount offer-amount--free" data-amount="Wunschbetrag">Wunschbetrag</button>
+      <!-- ===== Frühling ===== -->
+      <div class="offer-season" data-season="spring">
+        <span class="offer-badge">🌸 Frühjahrs-Special</span>
+        <h2>Frühjahrsputz für Ihr Auto:<br>weg mit dem <span class="offer-highlight">Winterdreck</span></h2>
+        <p>Streusalz-Reste, Pollen und der Schmutz der letzten Monate setzen Lack und Innenraum zu. Jetzt ist die perfekte Zeit für eine gründliche Aufbereitung – innen wie außen.</p>
+        <h3 class="offer-subtitle">🌸 Unser Frühjahrs-Paket</h3>
+        <ul class="offer-list">
+          <li>🧂 Streusalz-Reste &amp; Unterboden</li>
+          <li>🌼 Pollen &amp; Blütenstaub entfernen</li>
+          <li>🧽 Innenraum-Frühjahrsputz</li>
+          <li>🚐 Abholservice möglich</li>
+        </ul>
+        <a href="#contact" class="offer-btn">Jetzt Termin anfragen</a>
+        <p class="offer-voucher-hint">
+          🎁 CarClean-Gutscheine gibt es das ganze Jahr –
+          <button type="button" class="offer-text-btn" data-offer-open>Gutschein bestellen</button>
+        </p>
       </div>
 
-      <h3 class="offer-subtitle">❄️ Und für Ihr eigenes Auto: Winterpflege</h3>
-      <ul class="offer-list">
-        <li>🧂 Streusalz &amp; Schmutz entfernen</li>
-        <li>🛡️ Lackversiegelung als Winterschutz</li>
-        <li>🧽 Innenraum von Schneematsch befreien</li>
-        <li>🚐 Abholservice möglich</li>
-      </ul>
+      <!-- ===== Sommer ===== -->
+      <div class="offer-season" data-season="summer">
+        <span class="offer-badge">☀️ Sommer-Special</span>
+        <h2>Insekten, Sonne &amp; Urlaub?<br>Ihr Auto in <span class="offer-highlight">Bestform</span></h2>
+        <p>Insektenreste, Baumharz und UV-Strahlung greifen den Lack im Sommer an. Wir machen Ihr Auto urlaubsbereit und schützen den Lack für die heißen Monate.</p>
+        <h3 class="offer-subtitle">☀️ Unser Sommer-Paket</h3>
+        <ul class="offer-list">
+          <li>🐞 Insekten &amp; Baumharz entfernen</li>
+          <li>🛡️ Versiegelung als UV-Schutz</li>
+          <li>🧳 Innenraum fit für den Urlaub</li>
+          <li>🚐 Abholservice möglich</li>
+        </ul>
+        <a href="#contact" class="offer-btn">Jetzt Termin anfragen</a>
+        <p class="offer-voucher-hint">
+          🎁 CarClean-Gutscheine gibt es das ganze Jahr –
+          <button type="button" class="offer-text-btn" data-offer-open>Gutschein bestellen</button>
+        </p>
+      </div>
 
-      <p class="offer-deadline">
-        <span id="offer-countdown"></span>
-        Bis <strong>20.12.</strong> bestellen – dann ist Ihr Gutschein rechtzeitig vor Weihnachten fertig.
-      </p>
+      <!-- ===== Herbst ===== -->
+      <div class="offer-season" data-season="autumn">
+        <span class="offer-badge">🍂 Herbst-Special</span>
+        <h2>Bereit für den Winter?<br>Jetzt den <span class="offer-highlight">Lack schützen</span></h2>
+        <p>Laub, Regen und bald auch Streusalz: Wer seinen Lack im Herbst versiegelt, kommt sauber und geschützt durch den Winter.</p>
+        <h3 class="offer-subtitle">🍂 Unser Herbst-Paket</h3>
+        <ul class="offer-list">
+          <li>🍁 Laub &amp; Baumharz entfernen</li>
+          <li>🛡️ Lackversiegelung vor dem Winter</li>
+          <li>🪟 Scheiben für klare Sicht</li>
+          <li>🚐 Abholservice möglich</li>
+        </ul>
+        <a href="#contact" class="offer-btn">Jetzt Termin anfragen</a>
+        <p class="offer-voucher-hint">
+          🎁 CarClean-Gutscheine gibt es das ganze Jahr –
+          <button type="button" class="offer-text-btn" data-offer-open>Gutschein bestellen</button>
+        </p>
+      </div>
 
-      <button type="button" class="offer-btn" id="offer-open">🎁 Gutschein bestellen</button>
+      <!-- ===== Weihnachten ===== -->
+      <div class="offer-season" data-season="christmas">
+        <span class="offer-badge">🎄 Weihnachts-Special <span data-year></span></span>
+        <h2>Das perfekte Weihnachtsgeschenk:<br>ein <span class="offer-highlight">CarClean-Gutschein</span></h2>
+        <p>Schenken Sie Glanz statt Krimskrams – für alle, die ihr Auto lieben. Einlösbar für jede unserer Leistungen in Kufstein.</p>
+
+        <!-- Beträge: Klick öffnet das Popup mit vorausgewähltem Betrag (data-amount) -->
+        <div class="offer-amounts" role="group" aria-label="Gutschein-Betrag wählen">
+          <button type="button" class="offer-amount" data-amount="20 €">20 €</button>
+          <button type="button" class="offer-amount" data-amount="50 €">50 €</button>
+          <button type="button" class="offer-amount" data-amount="80 €">80 €</button>
+          <button type="button" class="offer-amount" data-amount="100 €">100 €</button>
+          <button type="button" class="offer-amount offer-amount--free" data-amount="Wunschbetrag">Wunschbetrag</button>
+        </div>
+
+        <h3 class="offer-subtitle">❄️ Und für Ihr eigenes Auto: Winterpflege</h3>
+        <ul class="offer-list">
+          <li>🧂 Streusalz &amp; Schmutz entfernen</li>
+          <li>🛡️ Lackversiegelung als Winterschutz</li>
+          <li>🧽 Innenraum von Schneematsch befreien</li>
+          <li>🚐 Abholservice möglich</li>
+        </ul>
+
+        <!-- Bestell-Frist: verschwindet nach dem 20.12. (data-until = MM-TT) -->
+        <p class="offer-deadline" data-until="12-20">
+          <span id="offer-countdown"></span>
+          Bis <strong>20.12.</strong> bestellen – dann ist Ihr Gutschein rechtzeitig vor Weihnachten fertig.
+        </p>
+
+        <button type="button" class="offer-btn" data-offer-open>🎁 Gutschein bestellen</button>
+      </div>
+
+      <!-- ===== Winter ===== -->
+      <div class="offer-season" data-season="winter">
+        <span class="offer-badge">❄️ Winter-Special</span>
+        <h2>Streusalz, Matsch &amp; Schnee?<br>Wir machen Ihr Auto <span class="offer-highlight">winterfit</span></h2>
+        <p>Streusalz greift Lack, Felgen und Unterboden an – und Schneematsch landet im Innenraum. Mit unserer Winterpflege bleibt Ihr Auto auch in der kalten Jahreszeit in Bestform.</p>
+        <h3 class="offer-subtitle">❄️ Unsere Winterpflege</h3>
+        <ul class="offer-list">
+          <li>🧂 Streusalz &amp; Schmutz entfernen</li>
+          <li>🛡️ Lackversiegelung als Winterschutz</li>
+          <li>🧽 Innenraum von Schneematsch befreien</li>
+          <li>🚐 Abholservice möglich</li>
+        </ul>
+        <a href="#contact" class="offer-btn">Jetzt Termin anfragen</a>
+        <p class="offer-voucher-hint">
+          🎁 CarClean-Gutscheine gibt es das ganze Jahr –
+          <button type="button" class="offer-text-btn" data-offer-open>Gutschein bestellen</button>
+        </p>
+      </div>
     </div>
 
     <!-- Popup: Gutschein-Bestellung -->
@@ -400,6 +501,43 @@
       </div>
     </div>
 
+  </section>
+
+  <!-- ===== Bewertungen =====
+       Jetzt aktiv: Aufruf, eine Google-Bewertung zu schreiben.
+       Sobald CarClean echte Daten liefert: Block "Google-Sterne" und die Kundenstimmen unten
+       einkommentieren (die Kommentar-Zeichen am Anfang und Ende des Blocks entfernen) und ausfüllen. NIEMALS erfundene Bewertungen eintragen! -->
+  <section id="reviews" class="reviews-section">
+    <h2 class="section-title">Was unsere <span class="highlight">Kunden</span> sagen</h2>
+
+    <!-- Google-Sterne (ausfüllen: Durchschnitt + Anzahl aus dem Google-Unternehmensprofil)
+    <div class="reviews-rating">
+      <span class="reviews-stars" aria-hidden="true">★★★★★</span>
+      <p><strong>4,9</strong> von 5 Sternen · <strong>00</strong> Bewertungen auf Google</p>
+    </div>
+    -->
+
+    <!-- Kundenstimmen (2–3 echte Google-Bewertungen, Vorname + erster Buchstabe Nachname)
+    <div class="reviews-grid">
+      <figure class="review-card">
+        <span class="reviews-stars" aria-label="5 von 5 Sternen">★★★★★</span>
+        <blockquote>„Text der Bewertung …"</blockquote>
+        <figcaption>– Vorname N., Google-Bewertung</figcaption>
+      </figure>
+    </div>
+    -->
+
+    <div class="reviews-cta">
+      <span class="reviews-cta-icon" aria-hidden="true">⭐</span>
+      <h3>Zufrieden mit unserer Arbeit?</h3>
+      <p>Ihre Bewertung hilft anderen Autofahrern in Kufstein – und uns. Es dauert nur eine Minute!</p>
+      <div class="reviews-cta-buttons">
+        <!-- TODO: durch den "Rezension schreiben"-Link aus dem Google-Unternehmensprofil ersetzen
+             (Profil öffnen -> "Nach Rezensionen fragen" -> Link kopieren, sieht aus wie https://g.page/r/.../review) -->
+        <a href="https://www.google.com/maps?cid=16877378876112479113" target="_blank" rel="noopener" class="reviews-btn">Bewertung auf Google schreiben</a>
+        <a href="https://www.google.com/maps?cid=16877378876112479113" target="_blank" rel="noopener" class="reviews-link">Alle Bewertungen ansehen →</a>
+      </div>
+    </div>
   </section>
 
   <section id="contact" class="contact-section">

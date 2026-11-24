@@ -1,0 +1,12 @@
+# =========================================================
+# Deployment für Namecheap cPanel ("Git Version Control")
+# cPanel führt diese Befehle aus, wenn man auf "Deploy HEAD Commit" klickt:
+# Es kopiert NUR die Dateien der Webseite nach public_html.
+# =========================================================
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=$HOME/public_html/
+    - /bin/cp -f *.html $DEPLOYPATH
+    - /bin/cp -f style.css script.js robots.txt sitemap.xml .htaccess $DEPLOYPATH
+    - /bin/cp -Rf img fonts galerie vornachfotos $DEPLOYPATH

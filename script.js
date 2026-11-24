@@ -42,7 +42,72 @@ function goToHeroSlide(next) {
   dots[heroIndex]?.classList.add('active');
 }
 
+// =====================
+// Saison-Wechsel – wiederholt sich JEDES JAHR automatisch
+// Zeiträume als "MM-TT" (Monat-Tag). Ein Zeitraum darf über Silvester gehen (Winter).
+// Zum Testen: index.html?datum=2027-04-10
+// =====================
+const SEASONS = [
+  { key: "spring",    from: "03-01", until: "05-31" },
+  { key: "summer",    from: "06-01", until: "08-31" },
+  { key: "autumn",    from: "09-01", until: "11-14" },
+  { key: "christmas", from: "11-15", until: "12-24" },
+  { key: "winter",    from: "12-25", until: "02-29" }, // über Silvester; 02-29 deckt auch Schaltjahre ab
+];
+
+// Heutiges Datum in Kufstein als "JJJJ-MM-TT" ("en-CA" liefert genau dieses Format)
+function todayInKufstein() {
+  const testDate = new URLSearchParams(location.search).get("datum");
+  if (/^\d{4}-\d{2}-\d{2}$/.test(testDate || "")) return testDate;
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Vienna" }).format(new Date());
+}
+
+// "MM-TT"-Texte kann man direkt mit < und > vergleichen ("03-01" < "05-31")
+function isInRange(monthDay, from, until) {
+  return from <= until
+    ? monthDay >= from && monthDay <= until     // normaler Zeitraum
+    : monthDay >= from || monthDay <= until;    // über Silvester (z.B. 12-25 bis 02-29)
+}
+
+function currentSeason() {
+  const monthDay = todayInKufstein().slice(5); // "2026-11-24" -> "11-24"
+  return SEASONS.find(s => isInRange(monthDay, s.from, s.until))?.key || "christmas";
+}
+
+function applySeasons() {
+  const today = todayInKufstein();
+  const season = currentSeason();
+
+  // 1) alles entfernen, was zu einer anderen Saison gehört (Aktions-Blöcke + Hero-Folien)
+  document.querySelectorAll("[data-season]").forEach(el => {
+    if (el.dataset.season !== season) el.remove();
+  });
+
+  // 2) Elemente mit Ablaufdatum innerhalb der Saison (z.B. Bestell-Frist 20.12.)
+  document.querySelectorAll("[data-until]").forEach(el => {
+    if (today.slice(5) > el.dataset.until) el.remove();
+  });
+
+  // 3) Farben + Bild der Saison: Klasse an der Section setzen (Farben stehen in style.css)
+  const offer = document.getElementById("offer");
+  if (offer) offer.className = `offer offer--${season}`;
+
+  // 4) Jahreszahl einsetzen (z.B. "Weihnachts-Special 2026")
+  document.querySelectorAll("[data-year]").forEach(el => { el.textContent = today.slice(0, 4); });
+}
+
+// Hero-Punkte passend zur Anzahl der (noch vorhandenen) Folien erzeugen
+function buildHeroDots() {
+  const container = document.querySelector(".hero-dots");
+  if (!container) return;
+  const count = document.querySelectorAll(".hero-slide").length;
+  container.innerHTML = Array.from({ length: count }, (_, i) =>
+    `<button class="hero-dot" data-index="${i}" aria-label="Folie ${i + 1}"></button>`).join("");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  applySeasons();   // zuerst! sonst stimmen Folien und Punkte nicht
+  buildHeroDots();
   startHeroCarousel();
 
   document.querySelectorAll('.hero-dot').forEach(dot => {
@@ -234,8 +299,10 @@ function initOffer() {
 
   const select = document.getElementById("offer-select");
 
-  // Haupt-Button: Popup ohne Vorauswahl öffnen
-  document.getElementById("offer-open").addEventListener("click", () => openOffer());
+  // Alle "Gutschein bestellen"-Buttons (Weihnachten: großer Button, Winter: kleiner Textlink)
+  document.querySelectorAll("[data-offer-open]").forEach(btn => {
+    btn.addEventListener("click", () => openOffer());
+  });
 
   // Betrag-Buttons: Popup öffnen + Betrag im Select vorauswählen
   document.querySelectorAll(".offer-amount").forEach(btn => {

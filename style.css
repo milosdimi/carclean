@@ -233,21 +233,75 @@ main {
 }
 
 /* =========================
-   Saison-Aktion (aktuell: Weihnachten / Winter)
-   Für eine neue Saison: Variablen in .offer--winter kopieren,
-   z.B. .offer--spring anlegen und im HTML die Klasse tauschen.
+   Saison-Aktion – wechselt automatisch nach Datum (applySeasons() in script.js).
+   script.js setzt die Klasse .offer--spring / --summer / --autumn / --christmas / --winter.
+   Jede Saison definiert hier nur ihre Farben + ihr Bild:
+     --offer-accent   Farbe der hervorgehobenen Wörter
+     --offer-glow     Leuchten um hervorgehobene Wörter
+     --offer-sub      Farbe der Zwischenüberschrift
+     --offer-rgb      Hauptfarbe als "R, G, B" (für Badge, Button-Schatten, Countdown)
+     --offer-c1/c2    Farbverlauf des Buttons
 ========================= */
 
-.offer--winter {
-  --offer-accent: #f5c542;          /* Gold */
-  --offer-accent-2: #e23b3b;        /* Weihnachtsrot */
-  --offer-ice: #bfe3ff;             /* Eisblau */
+.offer.offer--christmas {
+  --offer-accent: #f5c542;
   --offer-glow: rgba(245, 197, 66, 0.45);
-  --offer-border: rgba(191, 227, 255, 0.22);
+  --offer-sub: #bfe3ff;
+  --offer-rgb: 226, 59, 59;
+  --offer-c1: #e23b3b;
+  --offer-c2: #b91c1c;
   --offer-bg-image: url('./img/actions/winter-action.jpg');
 }
 
+.offer.offer--winter {
+  --offer-accent: #7dd3fc;
+  --offer-glow: rgba(125, 211, 252, 0.45);
+  --offer-sub: #bfe3ff;
+  --offer-rgb: 59, 130, 246;
+  --offer-c1: #3b82f6;
+  --offer-c2: #1d4ed8;
+  --offer-bg-image: url('./img/actions/winter-season.jpg');
+}
+
+.offer.offer--spring {
+  --offer-accent: #f9a8d4;
+  --offer-glow: rgba(249, 168, 212, 0.45);
+  --offer-sub: #bbf7d0;
+  --offer-rgb: 34, 197, 94;
+  --offer-c1: #22c55e;
+  --offer-c2: #15803d;
+  --offer-bg-image: url('./img/actions/spring-action.jpg');
+}
+
+.offer.offer--summer {
+  --offer-accent: #fcd34d;
+  --offer-glow: rgba(252, 211, 77, 0.45);
+  --offer-sub: #fde68a;
+  --offer-rgb: 234, 88, 12;
+  --offer-c1: #f97316;
+  --offer-c2: #c2410c;
+  --offer-bg-image: url('./img/actions/summer-action.jpg');
+}
+
+.offer.offer--autumn {
+  --offer-accent: #fb923c;
+  --offer-glow: rgba(251, 146, 60, 0.45);
+  --offer-sub: #fed7aa;
+  --offer-rgb: 194, 65, 12;
+  --offer-c1: #ea580c;
+  --offer-c2: #9a3412;
+  --offer-bg-image: url('./img/actions/autumn-action.jpg');
+}
+
 .offer {
+  --offer-accent: #f5c542;
+  --offer-glow: rgba(245, 197, 66, 0.45);
+  --offer-sub: #bfe3ff;
+  --offer-rgb: 226, 59, 59;
+  --offer-c1: #e23b3b;
+  --offer-c2: #b91c1c;
+  --offer-border: rgba(255, 255, 255, 0.16);
+  --offer-bg-image: url('./img/actions/winter-action.jpg');
   position: relative;
   min-height: 70vh;
   display: flex;
@@ -256,7 +310,7 @@ main {
   padding: clamp(56px, 7vw, 100px) 16px;
   overflow: hidden;
   background:
-    linear-gradient(180deg, rgba(5, 12, 30, 0.78) 0%, rgba(5, 12, 30, 0.6) 45%, rgba(5, 12, 30, 0.88) 100%),
+    linear-gradient(180deg, rgba(5, 12, 30, 0.55) 0%, rgba(5, 12, 30, 0.3) 45%, rgba(5, 12, 30, 0.8) 100%),
     var(--offer-bg-image) no-repeat center 60% / cover;
 }
 
@@ -265,18 +319,19 @@ main {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 40%, rgba(245, 197, 66, 0.14) 0%, transparent 65%);
+  background: radial-gradient(ellipse at 50% 40%, var(--offer-glow) 0%, transparent 65%);
+  opacity: 0.3;
   pointer-events: none;
 }
 
-/* ---------- Schneeflocken ---------- */
+/* ---------- Partikel: Schnee (Standard), Blüten, Blätter, Sonnenfunken ---------- */
 @keyframes snowFall {
   0%   { transform: translateY(-40px) translateX(0); opacity: 0; }
   10%  { opacity: 1; }
   100% { transform: translateY(110vh) translateX(60px); opacity: 0.2; }
 }
 
-.offer-snow span {
+.offer-particles span {
   position: absolute;
   top: -20px;
   width: 6px;
@@ -289,18 +344,61 @@ main {
 }
 
 /* jede Flocke: andere Position, Größe, Geschwindigkeit, Startzeit */
-.offer-snow span:nth-child(1)  { left: 5%;  width: 5px; height: 5px; animation-duration: 11s; animation-delay: 0s; }
-.offer-snow span:nth-child(2)  { left: 13%; width: 8px; height: 8px; animation-duration: 14s; animation-delay: -4s; }
-.offer-snow span:nth-child(3)  { left: 22%; width: 4px; height: 4px; animation-duration: 9s;  animation-delay: -7s; }
-.offer-snow span:nth-child(4)  { left: 31%; width: 6px; height: 6px; animation-duration: 13s; animation-delay: -2s; }
-.offer-snow span:nth-child(5)  { left: 40%; width: 3px; height: 3px; animation-duration: 10s; animation-delay: -9s; }
-.offer-snow span:nth-child(6)  { left: 49%; width: 7px; height: 7px; animation-duration: 15s; animation-delay: -5s; }
-.offer-snow span:nth-child(7)  { left: 58%; width: 4px; height: 4px; animation-duration: 12s; animation-delay: -1s; }
-.offer-snow span:nth-child(8)  { left: 67%; width: 6px; height: 6px; animation-duration: 10s; animation-delay: -6s; }
-.offer-snow span:nth-child(9)  { left: 75%; width: 5px; height: 5px; animation-duration: 13s; animation-delay: -10s; }
-.offer-snow span:nth-child(10) { left: 83%; width: 8px; height: 8px; animation-duration: 16s; animation-delay: -3s; }
-.offer-snow span:nth-child(11) { left: 91%; width: 4px; height: 4px; animation-duration: 11s; animation-delay: -8s; }
-.offer-snow span:nth-child(12) { left: 97%; width: 6px; height: 6px; animation-duration: 14s; animation-delay: -12s; }
+.offer-particles span:nth-child(1)  { left: 5%;  width: 5px; height: 5px; animation-duration: 11s; animation-delay: 0s; }
+.offer-particles span:nth-child(2)  { left: 13%; width: 8px; height: 8px; animation-duration: 14s; animation-delay: -4s; }
+.offer-particles span:nth-child(3)  { left: 22%; width: 4px; height: 4px; animation-duration: 9s;  animation-delay: -7s; }
+.offer-particles span:nth-child(4)  { left: 31%; width: 6px; height: 6px; animation-duration: 13s; animation-delay: -2s; }
+.offer-particles span:nth-child(5)  { left: 40%; width: 3px; height: 3px; animation-duration: 10s; animation-delay: -9s; }
+.offer-particles span:nth-child(6)  { left: 49%; width: 7px; height: 7px; animation-duration: 15s; animation-delay: -5s; }
+.offer-particles span:nth-child(7)  { left: 58%; width: 4px; height: 4px; animation-duration: 12s; animation-delay: -1s; }
+.offer-particles span:nth-child(8)  { left: 67%; width: 6px; height: 6px; animation-duration: 10s; animation-delay: -6s; }
+.offer-particles span:nth-child(9)  { left: 75%; width: 5px; height: 5px; animation-duration: 13s; animation-delay: -10s; }
+.offer-particles span:nth-child(10) { left: 83%; width: 8px; height: 8px; animation-duration: 16s; animation-delay: -3s; }
+.offer-particles span:nth-child(11) { left: 91%; width: 4px; height: 4px; animation-duration: 11s; animation-delay: -8s; }
+.offer-particles span:nth-child(12) { left: 97%; width: 6px; height: 6px; animation-duration: 14s; animation-delay: -12s; }
+
+/* Frühling + Herbst: Blüten/Blätter, die sich beim Fallen drehen */
+@keyframes particleSpin {
+  0%   { transform: translateY(-40px) rotate(0deg) translateX(0); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(540deg) translateX(80px); opacity: 0.3; }
+}
+
+.offer--spring .offer-particles span {
+  width: 10px !important;
+  height: 13px !important;
+  border-radius: 50% 10% 50% 10%;
+  background: rgba(249, 168, 212, 0.85);
+  box-shadow: none;
+  animation-name: particleSpin;
+}
+
+.offer--autumn .offer-particles span {
+  width: 13px !important;
+  height: 13px !important;
+  border-radius: 0 70% 0 70%;
+  background: #ea580c;
+  box-shadow: none;
+  animation-name: particleSpin;
+}
+
+.offer--autumn .offer-particles span:nth-child(3n)   { background: #b91c1c; }
+.offer--autumn .offer-particles span:nth-child(3n+1) { background: #a16207; }
+
+/* Sommer: warme Lichtfunken, die langsam aufsteigen */
+@keyframes particleRise {
+  0%   { transform: translateY(0) scale(0.6); opacity: 0; }
+  20%  { opacity: 0.9; }
+  100% { transform: translateY(-75vh) scale(1.2); opacity: 0; }
+}
+
+.offer--summer .offer-particles span {
+  top: auto;
+  bottom: -10px;
+  background: #fde68a;
+  box-shadow: 0 0 10px 3px rgba(252, 211, 77, 0.7);
+  animation-name: particleRise;
+}
 
 /* ---------- Karte (Scroll Reveal: Startzustand) ---------- */
 .offer-content {
@@ -315,7 +413,7 @@ main {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--offer-border);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 50px rgba(245, 197, 66, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 50px rgba(var(--offer-rgb), 0.1);
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 0.7s ease, transform 0.7s ease;
@@ -328,9 +426,9 @@ main {
 
 .offer-badge {
   display: inline-block;
-  background: rgba(226, 59, 59, 0.18);
-  border: 1px solid rgba(226, 59, 59, 0.55);
-  color: #ffd6d6;
+  background: rgba(var(--offer-rgb), 0.2);
+  border: 1px solid rgba(var(--offer-rgb), 0.6);
+  color: #fff;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -381,8 +479,8 @@ main {
   min-width: 78px;
   padding: 12px 18px;
   border-radius: 12px;
-  border: 1px solid rgba(245, 197, 66, 0.5);
-  background: rgba(245, 197, 66, 0.08);
+  border: 1px solid var(--offer-accent);
+  background: rgba(255, 255, 255, 0.06);
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
@@ -393,7 +491,7 @@ main {
 .offer-amount:hover,
 .offer-amount:focus-visible {
   transform: translateY(-3px);
-  background: rgba(245, 197, 66, 0.22);
+  background: rgba(255, 255, 255, 0.14);
   box-shadow: 0 6px 20px var(--offer-glow);
   outline: none;
 }
@@ -406,7 +504,7 @@ main {
 /* ---------- Winterpflege-Liste ---------- */
 .offer-subtitle {
   font-size: 1rem;
-  color: var(--offer-ice);
+  color: var(--offer-sub);
   margin: 0 0 14px;
 }
 
@@ -456,19 +554,19 @@ main {
   margin: 0 auto 8px;
   padding: 4px 14px;
   border-radius: 999px;
-  background: rgba(226, 59, 59, 0.2);
+  background: rgba(var(--offer-rgb), 0.25);
   color: #fff;
   font-weight: 700;
 }
 
 /* ---------- Haupt-Button ---------- */
 @keyframes offerPulse {
-  0%, 100% { box-shadow: 0 4px 20px rgba(226, 59, 59, 0.35); }
-  50%      { box-shadow: 0 4px 32px rgba(226, 59, 59, 0.7), 0 0 0 6px rgba(226, 59, 59, 0.12); }
+  0%, 100% { box-shadow: 0 4px 20px rgba(var(--offer-rgb), 0.35); }
+  50%      { box-shadow: 0 4px 32px rgba(var(--offer-rgb), 0.7), 0 0 0 6px rgba(var(--offer-rgb), 0.12); }
 }
 
 .offer-btn {
-  background: linear-gradient(135deg, #e23b3b, #b91c1c);
+  background: linear-gradient(135deg, var(--offer-c1), var(--offer-c2));
   color: #fff;
   border: none;
   padding: 15px 38px;
@@ -477,7 +575,7 @@ main {
   font-weight: 700;
   cursor: pointer;
   letter-spacing: 0.3px;
-  box-shadow: 0 4px 20px rgba(226, 59, 59, 0.35);
+  box-shadow: 0 4px 20px rgba(var(--offer-rgb), 0.35);
   opacity: 0;
   transition: opacity 0.4s ease 1.1s, transform 0.2s ease;
 }
@@ -490,7 +588,7 @@ main {
 .offer-btn:hover {
   transform: translateY(-3px);
   animation: none;
-  box-shadow: 0 8px 30px rgba(226, 59, 59, 0.55);
+  box-shadow: 0 8px 30px rgba(var(--offer-rgb), 0.55);
 }
 
 /* ---------- Popup ---------- */
@@ -520,7 +618,7 @@ main {
   box-sizing: border-box;
   background: #fff;
   border-radius: 18px;
-  border-top: 5px solid #e23b3b;
+  border-top: 5px solid var(--offer-c1);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   padding: 32px 28px;
 }
@@ -569,8 +667,8 @@ main {
 
 .offer-popup-content .form-control:focus {
   outline: none;
-  border-color: #e23b3b;
-  box-shadow: 0 0 0 3px rgba(226, 59, 59, 0.15);
+  border-color: var(--offer-c1);
+  box-shadow: 0 0 0 3px rgba(var(--offer-rgb), 0.15);
 }
 
 .offer-popup-content select.form-control:required:invalid { color: #6b7280; }
@@ -588,7 +686,7 @@ main {
   width: 100%;
   padding: 13px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #e23b3b, #b91c1c);
+  background: linear-gradient(135deg, var(--offer-c1), var(--offer-c2));
   color: #fff;
   border: none;
   font-size: 1rem;
@@ -672,7 +770,7 @@ main {
 
 /* Wer in den Systemeinstellungen "weniger Bewegung" gewählt hat: kein Schnee, kein Pulsieren */
 @media (prefers-reduced-motion: reduce) {
-  .offer-snow { display: none; }
+  .offer-particles { display: none; }
   .offer-btn,
   .offer-content.is-visible .offer-btn { animation: none; }
 }
@@ -3595,4 +3693,156 @@ p {
 .thankyou-container .legal-title::after {
   left: 50%;
   transform: translateX(-50%);
+}
+
+/* Saison-Aktion: Link-Button + Gutschein-Hinweis (alle Saisons außer Weihnachten) */
+a.offer-btn {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.offer-content .offer-voucher-hint {
+  margin: 18px 0 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* sieht aus wie ein Link, ist aber ein Button (öffnet das Gutschein-Popup) */
+.offer-text-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--offer-accent);
+  font-size: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.offer-text-btn:hover {
+  color: #fff;
+}
+
+/* =========================
+   Bewertungen (index.html #reviews)
+========================= */
+.reviews-section {
+  padding: 80px 5% 20px;
+}
+
+.reviews-stars {
+  color: #fbbf24;
+  letter-spacing: 2px;
+  font-size: 1.2rem;
+}
+
+/* Google-Sterne (sobald einkommentiert) */
+.reviews-rating {
+  text-align: center;
+  margin: 0 auto 36px;
+}
+
+.reviews-rating p {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+}
+
+.reviews-rating strong {
+  color: #fff;
+}
+
+/* Kundenstimmen (sobald einkommentiert) */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  max-width: 1100px;
+  margin: 0 auto 40px;
+}
+
+.review-card {
+  margin: 0;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.review-card blockquote {
+  margin: 12px 0 14px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.review-card figcaption {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.78rem;
+}
+
+/* Aufruf zur Bewertung */
+.reviews-cta {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 36px 24px;
+  text-align: center;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(44, 58, 130, 0.25));
+  border: 1px solid rgba(251, 191, 36, 0.25);
+}
+
+.reviews-cta-icon {
+  display: block;
+  font-size: 2.2rem;
+  margin-bottom: 6px;
+}
+
+.reviews-cta h3 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+}
+
+.reviews-cta p {
+  margin: 0 0 22px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.reviews-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 22px;
+}
+
+.reviews-btn {
+  padding: 13px 26px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #1f2430;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.88rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reviews-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.35);
+}
+
+.reviews-link {
+  color: #6c8cff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.reviews-link:hover {
+  text-decoration: underline;
 }
